@@ -1,0 +1,202 @@
+{
+  "items": [
+    {
+      "label": "Acasă",
+      "href": "#/"
+    },
+    {
+      "label": "Despre",
+      "children": [
+        {
+          "label": "Geografia",
+          "href": "#/geografia"
+        },
+        {
+          "label": "Istoria",
+          "href": "#/istoria"
+        },
+        {
+          "label": "Educaţia",
+          "href": "#/educatia"
+        },
+        {
+          "label": "Infrastructura",
+          "href": "#/infrastructura"
+        },
+        {
+          "label": "Economia",
+          "href": "#/economia"
+        },
+        {
+          "label": "Agricultura",
+          "href": "#/agricultura"
+        },
+        {
+          "label": "Resurse Umane",
+          "href": "#/resurse"
+        },
+        {
+          "label": "Sănătatea",
+          "href": "#/sanatatea"
+        },
+        {
+          "label": "Administraţia",
+          "href": "#/administratia"
+        },
+        {
+          "label": "Organigrama",
+          "href": "#/organigrama"
+        }
+      ]
+    },
+    {
+      "label": "Documente",
+      "children": [
+        {
+          "label": "2022",
+          "href": "#/2022-2"
+        },
+        {
+          "label": "2021",
+          "href": "#/2021-2"
+        },
+        {
+          "label": "2019",
+          "href": "#/2019-2"
+        },
+        {
+          "label": "2018",
+          "href": "#/2018-2"
+        },
+        {
+          "label": "2016",
+          "href": "#/2016-2"
+        },
+        {
+          "label": "2015",
+          "href": "#/2015-2"
+        },
+        {
+          "label": "2014",
+          "href": "#/2014-2"
+        },
+        {
+          "label": "Toate registrele (Monitorul Oficial)",
+          "href": "#/monitorul-oficial-local"
+        }
+      ]
+    },
+    {
+      "label": "Tipizate & Asistență",
+      "children": [
+        {
+          "label": "Formulare și cereri tipizate",
+          "href": "#/tipizate"
+        },
+        {
+          "label": "Compartiment asistență socială",
+          "href": "#/compartimentul-de-asistenta-sociala"
+        },
+        {
+          "label": "Alocație de susținere a familiei",
+          "href": "#/alocatie-de-sustinere-a-familiei"
+        },
+        {
+          "label": "Ajutor pentru încălzire",
+          "href": "#/ajutor-incalzire"
+        },
+        {
+          "label": "Venit minim garantat",
+          "href": "#/venit-minim-garantat"
+        },
+        {
+          "label": "Alocație de stat pentru copii",
+          "href": "#/alocatie-de-stat"
+        },
+        {
+          "label": "Indemnizație creștere copil",
+          "href": "#/indemnizatie-crestere-copil"
+        },
+        {
+          "label": "Stimulent de inserție",
+          "href": "#/stimulent-de-insertie"
+        },
+        {
+          "label": "Tichet social grădiniță",
+          "href": "#/stimulent-educationaltichet-social-de-gradinita"
+        }
+      ]
+    },
+    {
+      "label": "D.A.I.",
+      "children": [
+        {
+          "label": "Declarații de avere (29 persoane)",
+          "href": "#/declaratii-de-avere"
+        },
+        {
+          "label": "Declarații de interese (29 persoane)",
+          "href": "#/declaratii-de-interese"
+        },
+        {
+          "label": "Toate declarațiile D.A.I. (Registru complet)",
+          "href": "#/monitorul-oficial-local?register=dai"
+        }
+      ]
+    },
+    {
+      "label": "MONITORUL OFICIAL LOCAL",
+      "children": [
+        {
+          "label": "Statutul comunei",
+          "href": "#/monitorul-oficial-local?register=statut"
+        },
+        {
+          "label": "Regulamente administrative",
+          "href": "#/monitorul-oficial-local?register=regulamente"
+        },
+        {
+          "label": "Hotărârile Consiliului Local (HCL)",
+          "href": "#/monitorul-oficial-local?register=hcl"
+        },
+        {
+          "label": "Dispozițiile primarului (DSP)",
+          "href": "#/monitorul-oficial-local?register=dispozitii"
+        },
+        {
+          "label": "Documente financiare",
+          "href": "#/monitorul-oficial-local?register=finante"
+        },
+        {
+          "label": "Declarații de avere și de interese",
+          "href": "#/monitorul-oficial-local?register=dai"
+        },
+        {
+          "label": "Alte documente și formulare",
+          "href": "#/monitorul-oficial-local?register=diverse"
+        },
+        {
+          "label": "Toate registrele oficiale",
+          "href": "#/monitorul-oficial-local"
+        }
+      ]
+    },
+    {
+      "label": "Anunțuri",
+      "children": [
+        {
+          "label": "Toate anunțurile publice",
+          "href": "#/anunturi"
+        },
+        {
+          "label": "Concursuri și examene",
+          "href": "#/anunturi-concursuri-si-examene"
+        }
+      ]
+    },
+    {
+      "label": "Contact",
+      "href": "#/contact"
+    }
+  ]
+}

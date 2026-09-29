@@ -1,0 +1,430 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+<style>
+  /* Tab Navigation */
+  .admin-tab-nav {
+    display: flex;
+    gap: 10px;
+    margin: 0 0 24px 0;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--hairline-color, #e0e0e0);
+    flex-wrap: wrap;
+  }
+  .admin-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid var(--hairline-color, #d0d5dd);
+    background: var(--darkened-bg, #f4f5f7);
+    color: var(--body-fg, #333) !important;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+  }
+  .admin-tab-btn:hover {
+    background: var(--body-bg, #fff);
+    border-color: var(--primary, #205493);
+    color: var(--primary, #205493) !important;
+  }
+  .admin-tab-btn.active {
+    background: var(--primary, #205493);
+    border-color: var(--primary, #205493);
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+  .admin-tab-btn .tab-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    background: #c94a29;
+    color: #fff;
+  }
+  .admin-tab-btn.active .tab-badge {
+    background: #ffffff;
+    color: var(--primary, #205493);
+  }
+
+  /* Panels */
+  .admin-tab-panel {
+    display: none;
+  }
+  .admin-tab-panel.active {
+    display: block;
+    animation: adminFadeIn 0.2s ease-in-out;
+  }
+  @keyframes adminFadeIn {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Summary Cards */
+  .admin-dashboard-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .admin-summary-card {
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--hairline-color, #e0e0e0);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .admin-summary-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--body-quiet-color, #666);
+  }
+  .admin-summary-card .card-number {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--body-fg, #222);
+  }
+  .admin-summary-card .card-number.highlight-new {
+    color: #c94a29;
+  }
+  .admin-summary-card .card-links {
+    font-size: 12px;
+    margin-top: 4px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Quick actions */
+  .admin-quick-actions {
+    background: var(--darkened-bg, #f8f9fa);
+    border: 1px solid var(--hairline-color, #e0e0e0);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .admin-quick-actions strong {
+    font-size: 13px;
+    margin-right: 6px;
+    color: var(--body-fg, #333);
+  }
+  .admin-quick-actions .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    background: var(--primary, #205493);
+    color: #fff !important;
+    transition: opacity 0.15s ease;
+  }
+  .admin-quick-actions .action-btn:hover {
+    opacity: 0.9;
+  }
+  .admin-quick-actions .action-btn.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--primary, #205493);
+    color: var(--primary, #205493) !important;
+  }
+  .admin-quick-actions .action-btn.secondary-btn:hover {
+    background: rgba(32, 84, 147, 0.08);
+  }
+
+  /* Badges */
+  .contact-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .contact-badge.badge-new {
+    background: #ffebe6;
+    color: #bf2600;
+    border: 1px solid #ffbdad;
+  }
+  .contact-badge.badge-read {
+    background: #e3fcef;
+    color: #006644;
+    border: 1px solid #abf5d1;
+  }
+  .contact-badge.badge-archived {
+    background: #f4f5f7;
+    color: #505f79;
+    border: 1px solid #dfe1e6;
+  }
+  /* Contact dashboard table styles */
+  #contact-dashboard.module table {
+    width: 100% !important;
+    table-layout: auto !important;
+    border-collapse: collapse;
+  }
+  #contact-dashboard.module table caption {
+    background: var(--primary, #205493) !important;
+    color: #ffffff !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+  }
+  #contact-dashboard.module table caption a {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+  }
+  #contact-dashboard.module table caption a:hover {
+    color: #dbeafe !important;
+  }
+  #contact-dashboard.module table caption strong {
+    color: #ffd8cc !important;
+  }
+  #contact-dashboard.module table th,
+  #contact-dashboard.module table td {
+    width: auto !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    vertical-align: middle !important;
+    padding: 12px 14px !important;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  #contact-dashboard.module table thead th {
+    background: var(--darkened-bg, #f4f5f7);
+    color: var(--body-fg, #333);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--hairline-color, #e0e0e0);
+  }
+  #contact-dashboard.module table .col-status {
+    width: 120px !important;
+    min-width: 110px !important;
+  }
+  #contact-dashboard.module table .col-sender {
+    width: 180px !important;
+    min-width: 150px !important;
+  }
+  #contact-dashboard.module table .col-email {
+    width: 220px !important;
+    min-width: 180px !important;
+  }
+  #contact-dashboard.module table .col-subject {
+    min-width: 200px !important;
+  }
+  #contact-dashboard.module table .col-date {
+    width: 150px !important;
+    min-width: 130px !important;
+    white-space: nowrap !important;
+  }
+  #contact-dashboard.module table .col-action {
+    width: 110px !important;
+    text-align: right !important;
+  }
+  .dashboard-see-all {
+    display: block;
+    text-align: right;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .panel-header-title {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--body-fg, #333);
+  }
+</style>
+
+<!-- Meniu de navigare între tab-uri -->
+<nav class="admin-tab-nav" aria-label="Meniu administrare">
+  <button type="button" class="admin-tab-btn active" id="btn-tab-messages" onclick="switchAdminTab('messages', event)">
+    📬 Mesaje de contact {% if unread_contact_count %}<span class="tab-badge">{{ unread_contact_count }} necitite</span>{% endif %}
+  </button>
+  <button type="button" class="admin-tab-btn" id="btn-tab-sections" onclick="switchAdminTab('sections', event)">
+    📁 Toate secțiunile administrative
+  </button>
+</nav>
+
+<!-- TAB 1: Dashboard Mesaje de contact -->
+<div class="admin-tab-panel active" id="tab-messages-panel">
+  <div class="admin-dashboard-summary">
+    <div class="admin-summary-card">
+      <h4>Stare mesaje</h4>
+      <div class="card-number {% if unread_contact_count %}highlight-new{% endif %}">
+        {{ unread_contact_count }} <span style="font-size: 14px; font-weight: normal; color: var(--body-quiet-color, #777);">necitite (din {{ total_contact_count }})</span>
+      </div>
+      <div class="card-links">
+        <a href="{% url 'admin:civic_core_contactmessage_changelist' %}?status__exact=new">Filtrează doar necitite</a>
+        <a href="{% url 'admin:civic_core_contactmessage_changelist' %}">Vezi toate mesajele</a>
+      </div>
+    </div>
+
+    <div class="admin-summary-card">
+      <h4>Acțiuni primite</h4>
+      <div class="card-number">{{ total_contact_count }}</div>
+      <div class="card-links">
+        <a href="{% url 'admin:civic_core_contactmessage_changelist' %}">Gestiune completă mesaje &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="module" id="contact-dashboard">
+    <table>
+      <caption>
+        <a href="{% url 'admin:civic_core_contactmessage_changelist' %}">Mesaje de contact primite</a>
+        {% if unread_contact_count %} — <strong>{{ unread_contact_count }} necitite</strong>{% endif %}
+      </caption>
+      {% if recent_contact_messages %}
+      <thead>
+        <tr>
+          <th scope="col" class="col-status">Stare</th>
+          <th scope="col" class="col-sender">Expeditor</th>
+          <th scope="col" class="col-email">E-mail</th>
+          <th scope="col" class="col-subject">Subiect</th>
+          <th scope="col" class="col-date">Data primirii</th>
+          <th scope="col" class="col-action">Acțiune</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in recent_contact_messages %}
+        <tr>
+          <td class="col-status">
+            {% if message.status == 'new' %}
+              <span class="contact-badge badge-new">Necitit</span>
+            {% elif message.status == 'read' %}
+              <span class="contact-badge badge-read">Citit</span>
+            {% else %}
+              <span class="contact-badge badge-archived">Arhivat</span>
+            {% endif %}
+          </td>
+          <td class="col-sender"><strong>{{ message.name }}</strong></td>
+          <td class="col-email"><a href="mailto:{{ message.email }}">{{ message.email }}</a></td>
+          <td class="col-subject"><a href="{% url 'admin:civic_core_contactmessage_change' message.pk %}"><strong>{{ message.subject }}</strong></a></td>
+          <td class="col-date">{{ message.created_at|date:"d.m.Y H:i" }}</td>
+          <td class="col-action"><a href="{% url 'admin:civic_core_contactmessage_change' message.pk %}">Deschide &rarr;</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      {% else %}
+      <tr class="empty-row"><td colspan="6">Nu există mesaje de contact înregistrate în baza de date.</td></tr>
+      {% endif %}
+    </table>
+    {% if total_contact_count > 0 %}
+    <a class="dashboard-see-all" href="{% url 'admin:civic_core_contactmessage_changelist' %}">Vezi toate cele {{ total_contact_count }} mesaje de contact în lista detaliată &rarr;</a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- TAB 2: Toate secțiunile administrative -->
+<div class="admin-tab-panel" id="tab-sections-panel">
+  <!-- Carduri de statistici pentru secțiuni -->
+  <div class="admin-dashboard-summary">
+    <div class="admin-summary-card">
+      <h4>Pagini și Conținut</h4>
+      <div class="card-number">{{ total_pages_count }}</div>
+      <div class="card-links">
+        <a href="{% url 'admin:civic_core_page_changelist' %}">Lista pagini</a>
+        <a href="{% url 'admin:civic_core_page_add' %}">+ Pagină nouă</a>
+      </div>
+    </div>
+
+    <div class="admin-summary-card">
+      <h4>Documente Oficiale</h4>
+      <div class="card-number">{{ total_documents_count }}</div>
+      <div class="card-links">
+        <a href="{% url 'admin:documents_document_changelist' %}">Lista documente</a>
+        <a href="{% url 'admin:documents_document_add' %}">+ Încarcă document</a>
+      </div>
+    </div>
+
+    <div class="admin-summary-card">
+      <h4>Monitorul Oficial</h4>
+      <div class="card-number">{{ total_registers_count }} <span style="font-size: 14px; font-weight: normal; color: var(--body-quiet-color, #777);">registre</span></div>
+      <div class="card-links">
+        <a href="{% url 'admin:local_monitor_register_changelist' %}">Registre</a>
+        <a href="{% url 'admin:local_monitor_entry_add' %}">+ Adaugă act</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-quick-actions">
+    <strong>Scurtături editare rapidă:</strong>
+    {% if institution_obj %}
+    <a class="action-btn" href="{% url 'admin:civic_core_institution_change' institution_obj.pk %}">✏️ Editează Pagina Principală &amp; Contacte</a>
+    {% endif %}
+    <a class="action-btn secondary-btn" href="{% url 'admin:civic_core_page_add' %}">+ Pagină nouă</a>
+    <a class="action-btn secondary-btn" href="{% url 'admin:documents_document_add' %}">+ Document nou</a>
+    <a class="action-btn secondary-btn" href="{% url 'admin:local_monitor_entry_add' %}">+ Act Monitor</a>
+  </div>
+
+  <h2 class="panel-header-title">Module și tabele administrative</h2>
+  {{ block.super }}
+</div>
+
+<script>
+  function switchAdminTab(tabName, event) {
+    if (event) event.preventDefault();
+
+    var btnMessages = document.getElementById('btn-tab-messages');
+    var btnSections = document.getElementById('btn-tab-sections');
+    var panelMessages = document.getElementById('tab-messages-panel');
+    var panelSections = document.getElementById('tab-sections-panel');
+
+    if (tabName === 'sections') {
+      btnMessages.classList.remove('active');
+      btnSections.classList.add('active');
+      panelMessages.classList.remove('active');
+      panelSections.classList.add('active');
+    } else {
+      btnSections.classList.remove('active');
+      btnMessages.classList.add('active');
+      panelSections.classList.remove('active');
+      panelMessages.classList.add('active');
+    }
+
+    if (history.replaceState) {
+      history.replaceState(null, null, '#' + tabName);
+    } else {
+      window.location.hash = tabName;
+    }
+    try { localStorage.setItem('django_admin_active_tab', tabName); } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var hash = window.location.hash.replace(/^#/, '');
+    var urlParams = new URLSearchParams(window.location.search);
+    var paramTab = urlParams.get('tab');
+    var savedTab = '';
+    try { savedTab = localStorage.getItem('django_admin_active_tab'); } catch (e) {}
+
+    var target = hash || paramTab || savedTab || 'messages';
+    if (target === 'sections') {
+      switchAdminTab('sections');
+    } else {
+      switchAdminTab('messages');
+    }
+  });
+</script>
+{% endblock %}

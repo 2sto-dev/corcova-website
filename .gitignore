@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+# Included intentionally for this private repository.
+!backend/.env
+!frontend/.env
+.local-admin.json
+.development-key
+**/__pycache__/
+**/node_modules/
+**/.venv/
+**/test-results/
+**/playwright-report/
+*.pyc
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm

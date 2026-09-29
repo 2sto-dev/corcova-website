@@ -1,0 +1,2666 @@
+{
+  "registers": [
+    {
+      "id": 1,
+      "title": "Statutul unității administrativ-teritoriale",
+      "slug": "statut",
+      "entry_count": 1
+    },
+    {
+      "id": 2,
+      "title": "Regulamente privind procedurile administrative",
+      "slug": "regulamente",
+      "entry_count": 1
+    },
+    {
+      "id": 3,
+      "title": "Hotărârile autorității deliberative (HCL)",
+      "slug": "hcl",
+      "entry_count": 1
+    },
+    {
+      "id": 4,
+      "title": "Dispozițiile autorității executive (DSP)",
+      "slug": "dispozitii",
+      "entry_count": 0
+    },
+    {
+      "id": 5,
+      "title": "Documente și informații financiare",
+      "slug": "finante",
+      "entry_count": 22
+    },
+    {
+      "id": 6,
+      "title": "Declarații de avere și de interese (D.A.I.)",
+      "slug": "dai",
+      "entry_count": 58
+    },
+    {
+      "id": 7,
+      "title": "Alte documente și formulare oficiale",
+      "slug": "diverse",
+      "entry_count": 104
+    }
+  ],
+  "entries": [
+    {
+      "id": 186,
+      "title": "Statutul Comunei Corcova, Județul Mehedinți",
+      "register": "statut",
+      "year": 2021,
+      "number": "1",
+      "issued_on": "2021-01-20",
+      "document": {
+        "title": "Statutul Comunei Corcova",
+        "download_url": "#/geografia",
+        "available_locally": true,
+        "extension": "HTML"
+      }
+    },
+    {
+      "id": 187,
+      "title": "Regulamentul de organizare și funcționare al Consiliului Local Corcova",
+      "register": "regulamente",
+      "year": 2021,
+      "number": "2",
+      "issued_on": "2021-02-10",
+      "document": {
+        "title": "Regulament Consiliul Local",
+        "download_url": "#/administratia",
+        "available_locally": true,
+        "extension": "HTML"
+      }
+    },
+    {
+      "id": 1,
+      "title": "Strategia de dezvoltare durabilă a Comunei Corcova",
+      "register": "diverse",
+      "year": 2014,
+      "number": "2014",
+      "issued_on": "2014-01-15",
+      "document": {
+        "title": "Strategia de dezvoltare durabilă a Comunei Corcova",
+        "download_url": "/dosare/documente/2014/strategie_dezvoltare_corcova.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Buget local Corcova 2015.11.06",
+      "register": "finante",
+      "year": 2015,
+      "number": "2015.11.06",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Buget local Corcova 2015.11.06",
+        "download_url": "/dosare/documente/2015/buget_2015.11.06.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Buget local Corcova 2015.12.17",
+      "register": "finante",
+      "year": 2015,
+      "number": "2015.12.17",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Buget local Corcova 2015.12.17",
+        "download_url": "/dosare/documente/2015/buget_2015.12.17.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Situație financiară 2015.11.06",
+      "register": "finante",
+      "year": 2015,
+      "number": "2015.11.06",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Situație financiară 2015.11.06",
+        "download_url": "/dosare/documente/2015/finante_2015.11.06.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Raport investiții 2015.11.11",
+      "register": "finante",
+      "year": 2015,
+      "number": "2015.11.11",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Raport investiții 2015.11.11",
+        "download_url": "/dosare/documente/2015/investitii_2015.11.11.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Raport investiții 2015.12.17",
+      "register": "finante",
+      "year": 2015,
+      "number": "2015.12.17",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Raport investiții 2015.12.17",
+        "download_url": "/dosare/documente/2015/investitii_2015.12.17.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 7,
+      "title": "Raport Conscorcova 2016.08.26",
+      "register": "diverse",
+      "year": 2015,
+      "number": "2016.08.26",
+      "issued_on": "2015-01-15",
+      "document": {
+        "title": "Raport Conscorcova 2016.08.26",
+        "download_url": "/dosare/documente/2015/raport_conscorcova_2016.08.26.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Buget local Corcova 2016.01.08",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.01.08",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Buget local Corcova 2016.01.08",
+        "download_url": "/dosare/documente/2016/buget_2016.01.08.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 9,
+      "title": "Buget local Corcova 2016.02.05",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.02.05",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Buget local Corcova 2016.02.05",
+        "download_url": "/dosare/documente/2016/buget_2016.02.05.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 10,
+      "title": "Buget local Corcova 2016.03.03",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.03.03",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Buget local Corcova 2016.03.03",
+        "download_url": "/dosare/documente/2016/buget_2016.03.03.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 11,
+      "title": "Buget local Corcova 2016.05.06",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.05.06",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Buget local Corcova 2016.05.06",
+        "download_url": "/dosare/documente/2016/buget_2016.05.06.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 12,
+      "title": "Buget local Corcova 2016.06.08",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.06.08",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Buget local Corcova 2016.06.08",
+        "download_url": "/dosare/documente/2016/buget_2016.06.08.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 13,
+      "title": "Situație financiară 2016.02.04",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.02.04",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Situație financiară 2016.02.04",
+        "download_url": "/dosare/documente/2016/finante_2016.02.04.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 14,
+      "title": "Situație financiară 2016.02.05",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.02.05",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Situație financiară 2016.02.05",
+        "download_url": "/dosare/documente/2016/finante_2016.02.05.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 15,
+      "title": "Situație financiară 2016.04.25",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.04.25",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Situație financiară 2016.04.25",
+        "download_url": "/dosare/documente/2016/finante_2016.04.25.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 16,
+      "title": "Raport investiții 2016.02.05",
+      "register": "finante",
+      "year": 2016,
+      "number": "2016.02.05",
+      "issued_on": "2016-01-15",
+      "document": {
+        "title": "Raport investiții 2016.02.05",
+        "download_url": "/dosare/documente/2016/investitii_2016.02.05.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 17,
+      "title": "Venituri Salariale Pag1",
+      "register": "diverse",
+      "year": 2018,
+      "number": "2018",
+      "issued_on": "2018-01-15",
+      "document": {
+        "title": "Venituri Salariale Pag1",
+        "download_url": "/uploads/2018/05/venituri_salariale_pag1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 18,
+      "title": "Venituri Salariale Pag2",
+      "register": "diverse",
+      "year": 2018,
+      "number": "2018",
+      "issued_on": "2018-01-15",
+      "document": {
+        "title": "Venituri Salariale Pag2",
+        "download_url": "/uploads/2018/05/venituri_salariale_pag2.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 19,
+      "title": "Buget local Corcova 2019.04.11",
+      "register": "finante",
+      "year": 2019,
+      "number": "2019.04.11",
+      "issued_on": "2019-01-15",
+      "document": {
+        "title": "Buget local Corcova 2019.04.11",
+        "download_url": "/dosare/documente/2019/buget_2019.04.11.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 20,
+      "title": "Acte Necesare Ajutor Incalzire",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Ajutor Incalzire",
+        "download_url": "/uploads/2020/10/ACTE-NECESARE-AJUTOR-INCALZIRE.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 21,
+      "title": "Acte Necesare Indemnizatie Crestere Copil",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Indemnizatie Crestere Copil",
+        "download_url": "/uploads/2020/10/Acte-necesare-INDEMNIZATIE-CRESTERE-COPIL.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 22,
+      "title": "Acte Necesare Intocmire Ancheta Handicap Copil Copy",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Intocmire Ancheta Handicap Copil Copy",
+        "download_url": "/uploads/2020/10/Acte-necesare-intocmire-ancheta-handicap-copil-Copy.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 23,
+      "title": "Acte Necesare Intocmire Ancheta Handicap",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Intocmire Ancheta Handicap",
+        "download_url": "/uploads/2020/10/Acte-necesare-intocmire-ancheta-handicap.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 24,
+      "title": "Acte Necesare Parinti Plecati La Munca In Strainatate",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Parinti Plecati La Munca In Strainatate",
+        "download_url": "/uploads/2020/10/Acte-necesare-parinti-plecati-la-munca-in-strainatate.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 25,
+      "title": "Acte Necesare Privind Acordarea Tichetelor Sociale Pe Suport Electronic Pentru Sprijin Educational",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Privind Acordarea Tichetelor Sociale Pe Suport Electronic Pentru Sprijin Educational",
+        "download_url": "/uploads/2020/10/Acte-necesare-privind-acordarea-tichetelor-sociale-pe-suport-electronic-pentru-sprijin-educational.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 26,
+      "title": "Acte Necesare Stimulent De Insertie",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Stimulent De Insertie",
+        "download_url": "/uploads/2020/10/Acte-necesare-stimulent-de-insertie.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 27,
+      "title": "Acte Necesare Stimulent Educational",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Acte Necesare Stimulent Educational",
+        "download_url": "/uploads/2020/10/Acte-necesare-stimulent-educational.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 28,
+      "title": "Formular: Cerere Declaratie Alocatie De Sustinere A Familiei 1",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Declaratie Alocatie De Sustinere A Familiei 1",
+        "download_url": "/uploads/2020/10/Cerere-Declaratie-alocatie-de-sustinere-a-familiei-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 29,
+      "title": "Formular: Cerere Declaratie Pentru Ajutor De Incalzire",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Declaratie Pentru Ajutor De Incalzire",
+        "download_url": "/uploads/2020/10/Cerere-Declaratie-pentru-ajutor-de-incalzire.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 30,
+      "title": "Formular: Cerere Declaratie Tip Pentru Stimulent Educational",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Declaratie Tip Pentru Stimulent Educational",
+        "download_url": "/uploads/2020/10/Cerere-Declaratie-tip-pentru-stimulent-educational.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 31,
+      "title": "Formular: Cerere Declaratie Venit Minim Garantat 1",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Declaratie Venit Minim Garantat 1",
+        "download_url": "/uploads/2020/10/Cerere-Declaratie-venit-minim-garantat-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 32,
+      "title": "Formular: Cerere Indemnizatie Crestere Copil",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Indemnizatie Crestere Copil",
+        "download_url": "/uploads/2020/10/Cerere-indemnizatie-crestere-copil.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 33,
+      "title": "Formular: Cerere Pentru Acordarea Alocatiei De Stat",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Pentru Acordarea Alocatiei De Stat",
+        "download_url": "/uploads/2020/10/Cerere-pentru-acordarea-alocatiei-de-stat.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 34,
+      "title": "Formular: Cerere Stimulent De Insertie",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Cerere Stimulent De Insertie",
+        "download_url": "/uploads/2020/10/Cerere-stimulent-de-insertie.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 35,
+      "title": "Documente Ajutor Social 1",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Documente Ajutor Social 1",
+        "download_url": "/uploads/2020/10/DOCUMENTE-AJUTOR-SOCIAL-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 36,
+      "title": "Documente Necesare Dosarului De Alocatie Pentru Sustinerea Familiei 1",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Documente Necesare Dosarului De Alocatie Pentru Sustinerea Familiei 1",
+        "download_url": "/uploads/2020/10/DOCUMENTE-NECESARE-DOSARULUI-DE-ALOCATIE-PENTRU-SUSTINEREA-FAMILIEI-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 37,
+      "title": "Declaratie Celalaltat Parinte Privind Datele Cu Caracter Personal",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Celalaltat Parinte Privind Datele Cu Caracter Personal",
+        "download_url": "/uploads/2020/10/Declaratie-celalaltat-parinte-privind-datele-cu-caracter-personal.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 38,
+      "title": "Declaratie Prelucrare Date Cu Caracter Personal Ajutor Incalzire",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Prelucrare Date Cu Caracter Personal Ajutor Incalzire",
+        "download_url": "/uploads/2020/10/Declaratie-prelucrare-date-cu-caracter-personal-ajutor-incalzire.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 39,
+      "title": "Declaratie Prelucrare Date Cu Caracter Personal Pentru Alocatie De Stat",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Prelucrare Date Cu Caracter Personal Pentru Alocatie De Stat",
+        "download_url": "/uploads/2020/10/Declaratie-prelucrare-date-cu-caracter-personal-pentru-alocatie-de-stat.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 40,
+      "title": "Declaratie Prelucrare Date Cu Caracter Personal Stimulent De Insertie Copy",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Prelucrare Date Cu Caracter Personal Stimulent De Insertie Copy",
+        "download_url": "/uploads/2020/10/Declaratie-prelucrare-date-cu-caracter-personal-stimulent-de-insertie-Copy.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 41,
+      "title": "Declaratie Solicitant Privind Datele Cu Caracter Personal",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Solicitant Privind Datele Cu Caracter Personal",
+        "download_url": "/uploads/2020/10/Declaratie-solicitant-privind-datele-cu-caracter-personal.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 42,
+      "title": "Declaratie Asf",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Asf",
+        "download_url": "/uploads/2020/10/Declaratie_ASF.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 43,
+      "title": "Declaratie Vmg 1",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Declaratie Vmg 1",
+        "download_url": "/uploads/2020/10/Declaratie_VMG-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 44,
+      "title": "Informare H.G 691",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Informare H.G 691",
+        "download_url": "/uploads/2020/10/INFORMARE-H.G-691.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 45,
+      "title": "Lista Informare Pentru Judecatorie",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Lista Informare Pentru Judecatorie",
+        "download_url": "/uploads/2020/10/Lista-informare-pentru-judecatorie.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 46,
+      "title": "Model Adeverinta Angajator Pentru Indemnizatie Crestere Copil",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Model Adeverinta Angajator Pentru Indemnizatie Crestere Copil",
+        "download_url": "/uploads/2020/10/Model-adeverinta-angajator-pentru-indemnizatie-crestere-copil.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 47,
+      "title": "Model Adeverinta Angajator Pentru Stimulent De Insertie",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Model Adeverinta Angajator Pentru Stimulent De Insertie",
+        "download_url": "/uploads/2020/10/Model-adeverinta-angajator-pentru-stimulent-de-insertie.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 48,
+      "title": "Formular: Model Cerere Catre Judecatorie",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Formular: Model Cerere Catre Judecatorie",
+        "download_url": "/uploads/2020/10/Model-cerere-catre-Judecatorie.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 49,
+      "title": "Notificare",
+      "register": "diverse",
+      "year": 2020,
+      "number": "2020",
+      "issued_on": "2020-01-15",
+      "document": {
+        "title": "Notificare",
+        "download_url": "/uploads/2020/10/Notificare.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 50,
+      "title": "Anexe 14 27 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Anexe 14 27 2019",
+        "download_url": "/uploads/2021/03/Anexe-14-27-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 51,
+      "title": "Anexe 33 35 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Anexe 33 35 2019",
+        "download_url": "/uploads/2021/03/Anexe-33-35-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 52,
+      "title": "Balanta 2019",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Balanta 2019",
+        "download_url": "/uploads/2021/03/Balanta-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 53,
+      "title": "Bilant 2019",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Bilant 2019",
+        "download_url": "/uploads/2021/03/Bilant-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 54,
+      "title": "Cheltuieli 2019",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Cheltuieli 2019",
+        "download_url": "/uploads/2021/03/Cheltuieli-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 55,
+      "title": "Cont Rezultat Sit Trezorerie 2019",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Cont Rezultat Sit Trezorerie 2019",
+        "download_url": "/uploads/2021/03/Cont-rezultat-sit-trezorerie-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 56,
+      "title": "Declarație de avere – Barbu Robert",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Barbu Robert",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Barbu-Robert.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 57,
+      "title": "Declarație de avere – Birau Damian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Birau Damian",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Birau-Damian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 58,
+      "title": "Declarație de avere – Buru Eugen",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Buru Eugen",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Buru-Eugen.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 59,
+      "title": "Declarație de avere – Cantemir Petre",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Cantemir Petre",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Cantemir-Petre.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 60,
+      "title": "Declarație de avere – Chirculescu Dumitru",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Chirculescu Dumitru",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Chirculescu-Dumitru.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 61,
+      "title": "Declarație de avere – Chirculescu Emanoil",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Chirculescu Emanoil",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Chirculescu-Emanoil.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 62,
+      "title": "Declarație de avere – Coarda George Marian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Coarda George Marian",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Coarda-George-Marian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 63,
+      "title": "Declarație de avere – Coravu Cornel",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Coravu Cornel",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Coravu-Cornel.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 64,
+      "title": "Declarație de avere – Darloaga Eugen",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Darloaga Eugen",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Darloaga-Eugen.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 65,
+      "title": "Declarație de avere – Durac Adana",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Durac Adana",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Durac-Adana.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 66,
+      "title": "Declarație de avere – Enescu Camelia Elena",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Enescu Camelia Elena",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Enescu-Camelia-Elena.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 67,
+      "title": "Declarație de avere – Faina Marin",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Faina Marin",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Faina-Marin.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 68,
+      "title": "Declarație de avere – Firan Alexandru",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Firan Alexandru",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Firan-Alexandru.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 69,
+      "title": "Declarație de avere – Ghiubega Ion",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Ghiubega Ion",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Ghiubega-Ion.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 70,
+      "title": "Declarație de avere – Giurca George",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Giurca George",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Giurca-George.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 71,
+      "title": "Declarație de avere – Grecu Marius",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Grecu Marius",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Grecu-Marius.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 72,
+      "title": "Declarație de avere – Iorga Stefan",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Iorga Stefan",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Iorga-Stefan.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 73,
+      "title": "Declarație de avere – Istodoroniu Viorel",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Istodoroniu Viorel",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Istodoroniu-Viorel.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 74,
+      "title": "Declarație de avere – Kidzinski Daniel Sliuta",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Kidzinski Daniel Sliuta",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Kidzinski-Daniel-Sliuta.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 75,
+      "title": "Declarație de avere – Lapadat Marcu",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Lapadat Marcu",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Lapadat-Marcu.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 76,
+      "title": "Declarație de avere – Mogosanu Emil Octavian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Mogosanu Emil Octavian",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Mogosanu-Emil-Octavian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 77,
+      "title": "Declarație de avere – Neagoe Violeta",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Neagoe Violeta",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Neagoe-Violeta.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 78,
+      "title": "Declarație de avere – Pitigoi Doina",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Pitigoi Doina",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Pitigoi-Doina.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 79,
+      "title": "Declarație de avere – Popescu Florica",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Popescu Florica",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Popescu-Florica.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 80,
+      "title": "Declarație de avere – Predoi Madalina Gabriela",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Predoi Madalina Gabriela",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Predoi-Madalina-Gabriela.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 81,
+      "title": "Declarație de avere – Punic Benone",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Punic Benone",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Punic-Benone.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 82,
+      "title": "Declarație de avere – Serban Ana",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Serban Ana",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Serban-Ana.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 83,
+      "title": "Declarație de avere – Udrescu Vasile",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Udrescu Vasile",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Udrescu-Vasile.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 84,
+      "title": "Declarație de avere – Vlad Victoria",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de avere – Vlad Victoria",
+        "download_url": "/uploads/2021/03/Declaratie-de-avere-Vlad-Victoria.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 85,
+      "title": "Declarație de interese – Barbu Robert",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Barbu Robert",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Barbu-Robert.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 86,
+      "title": "Declarație de interese – Birau Damian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Birau Damian",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Birau-Damian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 87,
+      "title": "Declarație de interese – Buru Eugen",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Buru Eugen",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Buru-Eugen.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 88,
+      "title": "Declarație de interese – Cantomir Petre",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Cantomir Petre",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Cantomir-Petre.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 89,
+      "title": "Declarație de interese – Chirculescu Dumitru",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Chirculescu Dumitru",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Chirculescu-Dumitru.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 90,
+      "title": "Declarație de interese – Chirculescu Emanoil",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Chirculescu Emanoil",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Chirculescu-Emanoil.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 91,
+      "title": "Declarație de interese – Coarda George Marian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Coarda George Marian",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Coarda-George-Marian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 92,
+      "title": "Declarație de interese – Coravu Cornel",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Coravu Cornel",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Coravu-Cornel.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 93,
+      "title": "Declarație de interese – Darloaga Eugen",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Darloaga Eugen",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Darloaga-Eugen.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 94,
+      "title": "Declarație de interese – Durac Adana",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Durac Adana",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Durac-Adana.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 95,
+      "title": "Declarație de interese – Enescu Camelia Elena",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Enescu Camelia Elena",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Enescu-Camelia-Elena.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 96,
+      "title": "Declarație de interese – Faina Marin",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Faina Marin",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Faina-Marin.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 97,
+      "title": "Declarație de interese – Firan Alexandru",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Firan Alexandru",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Firan-Alexandru.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 98,
+      "title": "Declarație de interese – Ghiubega Ion",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Ghiubega Ion",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Ghiubega-Ion.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 99,
+      "title": "Declarație de interese – Giurca George",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Giurca George",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Giurca-George.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 100,
+      "title": "Declarație de interese – Grecu Marius",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Grecu Marius",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Grecu-Marius.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 101,
+      "title": "Declarație de interese – Iorga Stefan",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Iorga Stefan",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Iorga-Stefan.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 102,
+      "title": "Declarație de interese – Istodoroniu Viorel",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Istodoroniu Viorel",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Istodoroniu-Viorel.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 103,
+      "title": "Declarație de interese – Kidzinski Daniel Sliuta",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Kidzinski Daniel Sliuta",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Kidzinski-Daniel-Sliuta.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 104,
+      "title": "Declarație de interese – Lapadat Marcu",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Lapadat Marcu",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Lapadat-Marcu.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 105,
+      "title": "Declarație de interese – Mogosanu Emil Octavian",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Mogosanu Emil Octavian",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Mogosanu-Emil-Octavian.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 106,
+      "title": "Declarație de interese – Neagoe Violeta",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Neagoe Violeta",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Neagoe-Violeta.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 107,
+      "title": "Declarație de interese – Pitigoi Doina",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Pitigoi Doina",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Pitigoi-Doina.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 108,
+      "title": "Declarație de interese – Popescu Florica",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Popescu Florica",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Popescu-Florica.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 109,
+      "title": "Declarație de interese – Predoi Madalina Gabriela",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Predoi Madalina Gabriela",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Predoi-Madalina-Gabriela.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 110,
+      "title": "Declarație de interese – Punic Benone",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Punic Benone",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Punic-Benone.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 111,
+      "title": "Declarație de interese – Serban Ana",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Serban Ana",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Serban-Ana.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 112,
+      "title": "Declarație de interese – Udrescu Vasile",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Udrescu Vasile",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Udrescu-Vasile.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 113,
+      "title": "Declarație de interese – Vlad Victoria",
+      "register": "dai",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Declarație de interese – Vlad Victoria",
+        "download_url": "/uploads/2021/03/Declaratie-de-interese-Vlad-Victoria.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 114,
+      "title": "Detalieri 1 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Detalieri 1 2019",
+        "download_url": "/uploads/2021/03/Detalieri-1-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 115,
+      "title": "Detalieri 2 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Detalieri 2 2019",
+        "download_url": "/uploads/2021/03/Detalieri-2-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 116,
+      "title": "Detalieri 3 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Detalieri 3 2019",
+        "download_url": "/uploads/2021/03/Detalieri-3-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 117,
+      "title": "Detalieri 4 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Detalieri 4 2019",
+        "download_url": "/uploads/2021/03/Detalieri-4-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 118,
+      "title": "Detalieri 5 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Detalieri 5 2019",
+        "download_url": "/uploads/2021/03/Detalieri-5-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 119,
+      "title": "Hcl 17 Din 27.11.2020",
+      "register": "hcl",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Hcl 17 Din 27.11.2020",
+        "download_url": "/uploads/2021/02/HCL-17-din-27.11.2020.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 120,
+      "title": "Buget local Corcova",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Buget local Corcova",
+        "download_url": "/uploads/2021/03/Proiect-buget-2020.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 121,
+      "title": "Raport Declaratie 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Raport Declaratie 2019",
+        "download_url": "/uploads/2021/03/Raport-declaratie-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 122,
+      "title": "Buget local Corcova",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Buget local Corcova",
+        "download_url": "/uploads/2021/03/Referat-proiect-buget-2020.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 123,
+      "title": "Skmbt C22020021410550",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020021410550",
+        "download_url": "/uploads/2021/03/SKMBT_C22020021410550.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 124,
+      "title": "Skmbt C22020021411030",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020021411030",
+        "download_url": "/uploads/2021/03/SKMBT_C22020021411030.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 125,
+      "title": "Skmbt C22020022011200",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020022011200",
+        "download_url": "/uploads/2021/03/SKMBT_C22020022011200.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 126,
+      "title": "Skmbt C22020022609130",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020022609130",
+        "download_url": "/uploads/2021/03/SKMBT_C22020022609130.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 127,
+      "title": "Skmbt C22020030313080",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020030313080",
+        "download_url": "/uploads/2021/03/SKMBT_C22020030313080.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 128,
+      "title": "Skmbt C22020030609590",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020030609590",
+        "download_url": "/uploads/2021/03/SKMBT_C22020030609590.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 129,
+      "title": "Skmbt C22020031709140",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020031709140",
+        "download_url": "/uploads/2021/03/SKMBT_C22020031709140.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 130,
+      "title": "Skmbt C22020032609400",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020032609400",
+        "download_url": "/uploads/2021/03/SKMBT_C22020032609400.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 131,
+      "title": "Skmbt C22020040209500",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Skmbt C22020040209500",
+        "download_url": "/uploads/2021/03/SKMBT_C22020040209500.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 132,
+      "title": "Venituri 02 2019",
+      "register": "diverse",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Venituri 02 2019",
+        "download_url": "/uploads/2021/03/Venituri-02-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 133,
+      "title": "Venituri Cheltuieli 10 2019",
+      "register": "finante",
+      "year": 2021,
+      "number": "2021",
+      "issued_on": "2021-01-15",
+      "document": {
+        "title": "Venituri Cheltuieli 10 2019",
+        "download_url": "/uploads/2021/03/Venituri-cheltuieli-10-2019.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 134,
+      "title": "Anunț: Anunt Examen Promovare In Grad",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Anunț: Anunt Examen Promovare In Grad",
+        "download_url": "/uploads/2022/08/ANUNT-examen-promovare-in-grad.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 135,
+      "title": "Anunț: Anunt Concurs",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Anunț: Anunt Concurs",
+        "download_url": "/uploads/2022/03/Anunt-concurs.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 136,
+      "title": "Anunț: Anunt Ocupare Clasa I Grad Superior In Cadrul Compartimentului Juridic 26.05.2022",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Anunț: Anunt Ocupare Clasa I Grad Superior In Cadrul Compartimentului Juridic 26.05.2022",
+        "download_url": "/uploads/2022/05/Anunt-ocupare-Clasa-I-grad-superior-in-cadrul-Compartimentului-Juridic-26.05.2022.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 137,
+      "title": "Anunț: Anunt Promovare In Clasa",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Anunț: Anunt Promovare In Clasa",
+        "download_url": "/uploads/2022/08/Anunt-promovare-in-clasa.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 138,
+      "title": "Anunț: Anunt Secretar",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Anunț: Anunt Secretar",
+        "download_url": "/uploads/2022/06/Anunt-secretar.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 139,
+      "title": "Formular Sia Fose Septice",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Formular Sia Fose Septice",
+        "download_url": "/uploads/2022/11/Formular-SIA-fose-septice.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 140,
+      "title": "Selectie Dosare",
+      "register": "diverse",
+      "year": 2022,
+      "number": "2022",
+      "issued_on": "2022-01-15",
+      "document": {
+        "title": "Selectie Dosare",
+        "download_url": "/uploads/2022/06/selectie-dosare.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 141,
+      "title": "Comuna Corcova Eu Proof Of Consent November 12 2023",
+      "register": "diverse",
+      "year": 2023,
+      "number": "2023",
+      "issued_on": "2023-01-15",
+      "document": {
+        "title": "Comuna Corcova Eu Proof Of Consent November 12 2023",
+        "download_url": "/uploads/complianz/snapshots/Comuna-Corcova-eu-proof-of-consent-November-12-2023.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 142,
+      "title": "Acordul Date Personal",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acordul Date Personal",
+        "download_url": "/uploads/2025/05/ACORDUL-DATE-PERSONAL.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 143,
+      "title": "Acte Necesare Acordarii Ajutorului Pentru Incalzirea Locuintei",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acte Necesare Acordarii Ajutorului Pentru Incalzirea Locuintei",
+        "download_url": "/uploads/2025/06/Acte-necesare-acordarii-ajutorului-pentru-incalzirea-locuintei.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 144,
+      "title": "Acte Necesare Ajutor De Urgenta",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acte Necesare Ajutor De Urgenta",
+        "download_url": "/uploads/2025/06/Acte-necesare-ajutor-de-urgenta.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 145,
+      "title": "Acte Necesare Intocmire Ancheta Handicap Adulti",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acte Necesare Intocmire Ancheta Handicap Adulti",
+        "download_url": "/uploads/2025/06/Acte-necesare-intocmire-ancheta-handicap-adulti.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 146,
+      "title": "Acte Necesare Intocmire Ancheta Handicap Copil",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acte Necesare Intocmire Ancheta Handicap Copil",
+        "download_url": "/uploads/2025/06/Acte-necesare-intocmire-ancheta-handicap-copil.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 147,
+      "title": "Acte Necesare Pentru Alocatia De Stat Pentru Copii",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Acte Necesare Pentru Alocatia De Stat Pentru Copii",
+        "download_url": "/uploads/2025/06/Acte-necesare-pentru-alocatia-de-stat-pentru-copii.odt",
+        "available_locally": true,
+        "extension": "ODT"
+      }
+    },
+    {
+      "id": 148,
+      "title": "Adeverinta Angajator Pentru Icc Si Stimulent",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Adeverinta Angajator Pentru Icc Si Stimulent",
+        "download_url": "/uploads/2025/06/Adeverinta-angajator-pentru-ICC-si-STIMULENT.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 149,
+      "title": "Afis Proiect 336239 Sprijin Ii",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Afis Proiect 336239 Sprijin Ii",
+        "download_url": "/uploads/2025/06/Afis-proiect_336239_Sprijin-II.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 150,
+      "title": "Afis Masuri Auxiliare Proiect Sprijin Ii",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Afis Masuri Auxiliare Proiect Sprijin Ii",
+        "download_url": "/uploads/2025/06/Afis_Masuri-auxiliare_proiect-Sprijin-II.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 151,
+      "title": "Angajament De Plata",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Angajament De Plata",
+        "download_url": "/uploads/2025/05/Angajament-de-plata.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 152,
+      "title": "Anunț: Anunt 1491 14.02.2025 Rezultat Final",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt 1491 14.02.2025 Rezultat Final",
+        "download_url": "/uploads/2025/02/Anunt-1491-14.02.2025-rezultat-final.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 153,
+      "title": "Anunț: Anunt 6282 Din 25.08.2025 Rezultat Proba Scrisa",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt 6282 Din 25.08.2025 Rezultat Proba Scrisa",
+        "download_url": "/uploads/2025/08/Anunt-6282-din-25.08.2025-rezultat-proba-scrisa.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 154,
+      "title": "Anunț: Anunt 6282 Din 26.08.2025 Rezultat Proba Scrisa",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt 6282 Din 26.08.2025 Rezultat Proba Scrisa",
+        "download_url": "/uploads/2025/08/Anunt-6282-din-26.08.2025-rezultat-proba-scrisa.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 155,
+      "title": "Anunț: Anunt 9461 Din 28.11.2025 Privind Examenul De Promovare In Grad Compartimentul Asistenta Sociala",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt 9461 Din 28.11.2025 Privind Examenul De Promovare In Grad Compartimentul Asistenta Sociala",
+        "download_url": "/uploads/2025/12/Anunt-9461-din-28.11.2025-privind-examenul-de-promovare-in-grad-Compartimentul-Asistenta-sociala.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 156,
+      "title": "Anunț: Anunt Nr. 6321 Din 27.08.2025 Rezultat Contestatii Proba Scrisa",
+      "register": "diverse",
+      "year": 2025,
+      "number": "6321",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Nr. 6321 Din 27.08.2025 Rezultat Contestatii Proba Scrisa",
+        "download_url": "/uploads/2025/08/Anunt-Nr.-6321-din-27.08.2025-rezultat-contestatii-proba-scrisa.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 157,
+      "title": "Anunț: Anunt Nr. 6330 Din 27.08.2025 Rezultat Interviu Concurs Spclep",
+      "register": "diverse",
+      "year": 2025,
+      "number": "6330",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Nr. 6330 Din 27.08.2025 Rezultat Interviu Concurs Spclep",
+        "download_url": "/uploads/2025/08/Anunt-Nr.-6330-din-27.08.2025-rezultat-interviu-concurs-SPCLEP.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 158,
+      "title": "Anunț: Anunt Nr. 6364 Din 29.08.2025 Rezultat Final Concurs Spclep",
+      "register": "diverse",
+      "year": 2025,
+      "number": "6364",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Nr. 6364 Din 29.08.2025 Rezultat Final Concurs Spclep",
+        "download_url": "/uploads/2025/08/Anunt-Nr.-6364-din-29.08.2025-rezultat-final-concurs-SPCLEP.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 159,
+      "title": "Anunț: Anunt Concurs Itl 1",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Concurs Itl 1",
+        "download_url": "/uploads/2025/01/Anunt-concurs-ITL-1.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 160,
+      "title": "Anunț: Anunt Concurs Itl",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Concurs Itl",
+        "download_url": "/uploads/2025/01/Anunt-concurs-ITL.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 161,
+      "title": "Anunț: Anunt Selectie Dosare Concurs Spclep",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt Selectie Dosare Concurs Spclep",
+        "download_url": "/uploads/2025/08/Anunt-selectie-dosare-Concurs-SPCLEP.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 162,
+      "title": "Anunut Nr. 9184 Din 14.11.2025 Privind Organizare Examen Promovare In Grad",
+      "register": "diverse",
+      "year": 2025,
+      "number": "9184",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunut Nr. 9184 Din 14.11.2025 Privind Organizare Examen Promovare In Grad",
+        "download_url": "/uploads/2025/11/Anunut-Nr.-9184-din-14.11.2025-privind-organizare-examen-promovare-in-grad.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 163,
+      "title": "Ce Este Venitul Minim De Incluziune",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Ce Este Venitul Minim De Incluziune",
+        "download_url": "/uploads/2025/05/CE-ESTE-VENITUL-MINIM-DE-INCLUZIUNE.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 164,
+      "title": "Formular: Cerere Si Declaratie",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Si Declaratie",
+        "download_url": "/uploads/2025/06/CERERE-SI-DECLARATIE.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 165,
+      "title": "Formular: Cerere Venit Minim De Incluziune",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Venit Minim De Incluziune",
+        "download_url": "/uploads/2025/05/Cerere-Venit-minim-de-incluziune.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 166,
+      "title": "Formular: Cerere Ajutor De Urgenta",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Ajutor De Urgenta",
+        "download_url": "/uploads/2025/06/Cerere-ajutor-de-urgenta.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 167,
+      "title": "Formular: Cerere Incalzire",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Incalzire",
+        "download_url": "/uploads/2025/06/Cerere-incalzire.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 168,
+      "title": "Formular: Cerere Tineri 18 Ani",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Tineri 18 Ani",
+        "download_url": "/uploads/2025/06/Cerere-tineri-18-ani.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 169,
+      "title": "Formular: Cerere Tip Alocatie De Stat",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Tip Alocatie De Stat",
+        "download_url": "/uploads/2025/06/Cerere-tip-ALOCATIE-DE-STAT.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 170,
+      "title": "Formular: Cerere Tip Icc",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Cerere Tip Icc",
+        "download_url": "/uploads/2025/06/Cerere-tip-ICC.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 171,
+      "title": "Conditii De Acordare A Tichetelor De Gradinita",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Conditii De Acordare A Tichetelor De Gradinita",
+        "download_url": "/uploads/2025/06/Conditii-de-acordare-a-tichetelor-de-gradinita.odt",
+        "available_locally": true,
+        "extension": "ODT"
+      }
+    },
+    {
+      "id": 172,
+      "title": "Declaratie Mama Icc",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Declaratie Mama Icc",
+        "download_url": "/uploads/2025/06/Declaratie-Mama-ICC.doc",
+        "available_locally": true,
+        "extension": "DOC"
+      }
+    },
+    {
+      "id": 173,
+      "title": "Declaratie Tata Icc",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Declaratie Tata Icc",
+        "download_url": "/uploads/2025/06/Declaratie-Tata-ICC.doc",
+        "available_locally": true,
+        "extension": "DOC"
+      }
+    },
+    {
+      "id": 174,
+      "title": "Declaratie Pe Propria Raspundere",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Declaratie Pe Propria Raspundere",
+        "download_url": "/uploads/2025/05/Declaratie-pe-propria-raspundere.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 175,
+      "title": "Declaratie Privind Modificarile Intervenite",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Declaratie Privind Modificarile Intervenite",
+        "download_url": "/uploads/2025/05/Declaratie-privind-modificarile-intervenite.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 176,
+      "title": "Declaratie Privind Prelucrarea Datelor Personale",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Declaratie Privind Prelucrarea Datelor Personale",
+        "download_url": "/uploads/2025/06/Declaratie-privind-prelucrarea-datelor-personale.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 177,
+      "title": "Definitii",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Definitii",
+        "download_url": "/uploads/2025/05/Definitii.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 178,
+      "title": "Formular Pentru Copii Nascuti In Spatiul Ue",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular Pentru Copii Nascuti In Spatiul Ue",
+        "download_url": "/uploads/2025/06/Formular-pentru-copii-nascuti-in-spatiul-UE.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 179,
+      "title": "Lista Bunurilor Care Conduc La Excluderea Acordarii Ajutorului De Incalzire",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Lista Bunurilor Care Conduc La Excluderea Acordarii Ajutorului De Incalzire",
+        "download_url": "/uploads/2025/06/Lista-bunurilor-care-conduc-la-excluderea-acordarii-ajutorului-de-incalzire.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 180,
+      "title": "Lista Bunurilor Ce Duc La Excluderea Acordarii Vmi",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Lista Bunurilor Ce Duc La Excluderea Acordarii Vmi",
+        "download_url": "/uploads/2025/05/Lista-bunurilor-ce-duc-la-excluderea-acordarii-VMI.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 181,
+      "title": "Formular: Model Cerere Ancheta Handicap Adulti",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Formular: Model Cerere Ancheta Handicap Adulti",
+        "download_url": "/uploads/2025/06/Model-cerere-ancheta-handicap-adulti.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 182,
+      "title": "Model Declaratie Venituri Si Bunurii",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Model Declaratie Venituri Si Bunurii",
+        "download_url": "/uploads/2025/06/Model-declaratie-venituri-si-bunurii.docx",
+        "available_locally": true,
+        "extension": "DOCX"
+      }
+    },
+    {
+      "id": 183,
+      "title": "Sprijin Pentru Cuplurile Mama – Nou Nascut Defavorizate",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Sprijin Pentru Cuplurile Mama – Nou Nascut Defavorizate",
+        "download_url": "/uploads/2025/06/Sprijin-pentru-cuplurile-mama-–-nou-nascut-defavorizate.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 184,
+      "title": "Anunț: Anunt5515",
+      "register": "diverse",
+      "year": 2025,
+      "number": "2025",
+      "issued_on": "2025-01-15",
+      "document": {
+        "title": "Anunț: Anunt5515",
+        "download_url": "/uploads/2025/07/anunt5515.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    },
+    {
+      "id": 185,
+      "title": "Anunț: Anunt Nr.97 Din 09.01.2026 Privind Examenul De Promovare In Grad Compartimentul Evidenta Populatiei",
+      "register": "diverse",
+      "year": 2026,
+      "number": "97",
+      "issued_on": "2026-01-15",
+      "document": {
+        "title": "Anunț: Anunt Nr.97 Din 09.01.2026 Privind Examenul De Promovare In Grad Compartimentul Evidenta Populatiei",
+        "download_url": "/uploads/2026/01/Anunt-Nr.97-din-09.01.2026-privind-examenul-de-promovare-in-grad-Compartimentul-Evidenta-populatiei.pdf",
+        "available_locally": true,
+        "extension": "PDF"
+      }
+    }
+  ]
+}

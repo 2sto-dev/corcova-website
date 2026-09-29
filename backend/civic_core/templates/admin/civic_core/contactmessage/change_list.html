@@ -1,0 +1,5 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+<h1>Mesaje de contact{% if contact_counts %} — {{ contact_counts.new }} necitite din {{ contact_counts.total }}{% endif %}</h1>
+{% endblock %}

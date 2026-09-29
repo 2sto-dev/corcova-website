@@ -1,0 +1,152 @@
+{
+  "hero": {
+    "eyebrow": "COMUNA CORCOVA, JUDEȚUL MEHEDINȚI",
+    "title": "O comunitate unită.",
+    "subtitle": "Tradiție și viitor în",
+    "accent": "Corcova.",
+    "description": "Bine ați venit pe pagina oficială a comunei Corcova. Informații publice, acte administrative, formulare și servicii pentru cetățeni.",
+    "primary": {
+      "label": "Informații pentru cetățeni",
+      "href": "#/tipizate"
+    },
+    "secondary": {
+      "label": "Descoperă comuna",
+      "href": "#/geografia"
+    },
+    "location": "Corcova • Mehedinți"
+  },
+  "quick_links": [
+    {
+      "icon": "file",
+      "title": "Formulare și tipizate",
+      "text": "Documentele necesare cetățenilor",
+      "href": "#/tipizate"
+    },
+    {
+      "icon": "users",
+      "title": "Asistență socială",
+      "text": "Sprijin și indemnizații comunitare",
+      "href": "#/compartimentul-de-asistenta-sociala"
+    },
+    {
+      "icon": "landmark",
+      "title": "Monitorul Oficial Local",
+      "text": "Hotărâri HCL și acte administrative",
+      "href": "#/monitorul-oficial-local"
+    },
+    {
+      "icon": "book",
+      "title": "Administrație & Conducere",
+      "text": "Organigrama și conducerea comunei",
+      "href": "#/administratia"
+    }
+  ],
+  "news": {
+    "eyebrow": "LA ZI CU PRIMĂRIA",
+    "title": "Anunțuri și documente oficiale",
+    "href": "#/anunturi"
+  },
+  "panel": {
+    "eyebrow": "ADMINISTRAȚIE DESCHISĂ",
+    "title": "Primăria în slujba comunității.",
+    "description": "Acces simplu și transparent la deciziile autorităților locale, hotărâri ale consiliului local, dispoziții și servicii publice.",
+    "links": [
+      {
+        "label": "Administrația comunei",
+        "href": "#/administratia"
+      },
+      {
+        "label": "Organigrama primăriei",
+        "href": "#/organigrama"
+      },
+      {
+        "label": "Declarații de avere și interese",
+        "href": "#/declaratii-de-avere"
+      },
+      {
+        "label": "Contactează primăria",
+        "href": "#/contact"
+      }
+    ],
+    "caption": "TRANSPARENȚĂ. DIALOG. IMPLICARE."
+  },
+  "community": {
+    "eyebrow": "RĂDĂCINI ISTORICE. ZONĂ VITICOLĂ PRIVILEGIATĂ.",
+    "title": "Descoperiți Comuna Corcova",
+    "description": "13 sate așezate între lunca râului Motru și lunca pârâului Coșuștea, cu un relief colinar pitoresc, renumită pentru tradiția seculară a viței-de-vie și spiritul gospodăresc al comunității.",
+    "link": {
+      "label": "Despre comuna noastră",
+      "href": "#/geografia"
+    }
+  },
+  "footer": {
+    "description": "Comuna Corcova, Județul Mehedinți. O administrație transparentă, modernă și eficientă în sprijinul tuturor locuitorilor.",
+    "location": "Comuna Corcova",
+    "caption": "În serviciul comunității locale.",
+    "groups": [
+      {
+        "title": "Primăria",
+        "links": [
+          {
+            "label": "Despre comună",
+            "href": "#/geografia"
+          },
+          {
+            "label": "Istoria",
+            "href": "#/istoria"
+          },
+          {
+            "label": "Administrația",
+            "href": "#/administratia"
+          },
+          {
+            "label": "Organigrama",
+            "href": "#/organigrama"
+          },
+          {
+            "label": "Contact",
+            "href": "#/contact"
+          }
+        ]
+      },
+      {
+        "title": "Informații utile",
+        "links": [
+          {
+            "label": "Formulare și tipizate",
+            "href": "#/tipizate"
+          },
+          {
+            "label": "Asistență socială",
+            "href": "#/compartimentul-de-asistenta-sociala"
+          },
+          {
+            "label": "Anunțuri și concursuri",
+            "href": "#/anunturi"
+          },
+          {
+            "label": "Declarații de avere (D.A.I.)",
+            "href": "#/declaratii-de-avere"
+          }
+        ]
+      },
+      {
+        "title": "Monitorul Oficial",
+        "links": [
+          {
+            "label": "Monitorul Oficial Local",
+            "href": "#/monitorul-oficial-local"
+          },
+          {
+            "label": "Hotărâri Consiliu Local",
+            "href": "#/monitorul-oficial-local"
+          },
+          {
+            "label": "Documente financiare",
+            "href": "#/2022-2"
+          }
+        ]
+      }
+    ]
+  }
+}
