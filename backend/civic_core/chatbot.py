@@ -348,11 +348,10 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
             doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
             sources.append({'title': d.title, 'url': d_url})
 
-        for d, snip in extra_docs[:2]:
+        for d, _ in extra_docs[:2]:
             d_url = get_doc_url(d)
             date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
-            snip_text = f"\n  > „{snip}”" if snip else ""
-            doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}{snip_text}")
+            doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
             sources.append({'title': d.title, 'url': d_url})
 
         if doc_lines:
@@ -385,28 +384,20 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         best_url = get_doc_url(best_doc)
         sources.append({'title': best_doc.title, 'url': best_url})
 
-        reply_sections = []
-        if best_snippet and (best_matched_text > 0 or best_doc.extracted_text):
-            reply_sections.append(
-                f"📄 **Informație identificată în documentul oficial — {best_doc.title}:**\n"
-                f"> „{best_snippet}”\n\n"
-                f"👉 **Descarcă documentul complet:** [{best_doc.title}]({best_url})"
-            )
-        else:
-            reply_sections.append(
-                f"📄 **Document oficial identificat:**\n"
-                f"👉 [{best_doc.title}]({best_url})"
-            )
+        reply_sections = [
+            f"📋 **Documente și formulare identificate:**\n"
+            f"Pentru solicitarea dumneavoastră, Primăria Comunei Corcova vă pune la dispoziție următorul document oficial:\n"
+            f"• 📄 [{best_doc.title}]({best_url})"
+        ]
 
         # Other matching documents
         other_docs = scored_docs[1:4]
         if other_docs:
             other_lines = []
-            for _, d, snip, _ in other_docs:
+            for _, d, _, _ in other_docs:
                 d_url = get_doc_url(d)
                 date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
-                snip_suffix = f"\n  > „{snip}”" if snip else ""
-                other_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}{snip_suffix}")
+                other_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
                 sources.append({'title': d.title, 'url': d_url})
             reply_sections.append("📂 **Alte documente conexe:**\n" + "\n".join(other_lines))
 
@@ -456,19 +447,28 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
             system_instruction = (
                 "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
-                "Răspunde întotdeauna prietenos și structurat în limba română, folosind cu prioritate informațiile din context:\n"
-                "1. 📋 Răspuns: prezintă clar informația solicitată.\n"
-                "2. 📂 Documente și formulare conexe: documentele oficiale relevante cu linkurile lor markdown.\n"
-                "3. 🔗 Unde puteți citi mai multe: linkuri utile către secțiunile site-ului.\n"
-                "Păstrează toate linkurile markdown [Text](url) intacte. Dacă contextul indică date specifice (ex: primar actual Adam Durac, program, contact), respectă-le cu strictețe."
+                "Oferă cetățenilor un răspuns călduros, clar, omenesc și profesionist în limba română.\n\n"
+                "Reguli importante:\n"
+                "• Răspunde direct, pe un ton politicos și natural de administrație publică deschisă.\n"
+                "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii pe înțelesul tuturor.\n"
+                "• NU reda NICIODATĂ fragmente brute sau ciudate din fișiere OCR (cum ar fi 'nu no da, yes, since...', coduri sau etichete de formular). "
+                "Când recomanzi documente, menționează-le curat doar prin titlu și link markdown: [Titlu Document](url).\n"
+                "• Păstrează toate linkurile markdown [Text](url) prezente în context exact așa cum sunt.\n"
+                "• Structurează răspunsul prietenos în 2-3 secțiuni aerisite (Răspuns / Documente conexe / Unde puteți citi mai multe sau Contact)."
             )
-            primary_model = os.environ.get('GEMINI_MODEL', 'gemini-3.5-flash')
-            candidate_models = list(dict.fromkeys([primary_model, 'gemini-flash-lite-latest', 'gemini-3.8-flash']))
+            candidate_models = list(dict.fromkeys([
+                os.environ.get('GEMINI_MODEL', '').strip(),
+                'gemini-flash-lite-latest',
+                'gemini-3.5-flash',
+                'gemini-3.8-flash'
+            ]))
+            candidate_models = [m for m in candidate_models if m]
+
             for model_name in candidate_models:
                 try:
                     response = client.models.generate_content(
                         model=model_name,
-                        contents=f"{system_instruction}\n\nContext:\n{context}\n\nÎntrebare cetățean: {question}"
+                        contents=f"{system_instruction}\n\nContext oficial:\n{context}\n\nÎntrebare cetățean: {question}"
                     )
                     if response and response.text:
                         return {'reply': response.text, 'sources': rag.get('sources', [])}
