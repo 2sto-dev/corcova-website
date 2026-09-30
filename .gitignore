@@ -18,3 +18,5 @@
 *.sqlite3-shm
 *.sql
 scratch/
+dist/
+**/dist/
