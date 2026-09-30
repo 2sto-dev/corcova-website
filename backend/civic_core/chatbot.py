@@ -2,12 +2,33 @@ import html
 import logging
 import os
 import re
+import time
 from django.urls import reverse
 from django.utils.html import strip_tags
 from .models import Institution, Page
 from documents.models import Document
 
 logger = logging.getLogger(__name__)
+
+# Performance in-memory caches
+_gemini_client = None
+_DOCS_CACHE = {}      # inst_id -> (timestamp, doc_items)
+_PAGES_CACHE = {}     # inst_id -> (timestamp, page_items)
+_RESPONSE_CACHE = {}  # (inst_id, clean_q, is_ongoing) -> (timestamp, response_dict)
+
+
+def get_gemini_client(api_key: str):
+    """Reuse singleton client instance to avoid 500ms SSL/handshake overhead per request."""
+    global _gemini_client
+    if _gemini_client is not None:
+        return _gemini_client
+    try:
+        from google import genai
+        _gemini_client = genai.Client(api_key=api_key)
+        return _gemini_client
+    except Exception as e:
+        logger.warning(f"Error creating genai.Client: {e}")
+        return None
 
 
 def normalize_ro(text: str) -> str:
@@ -53,6 +74,51 @@ def get_doc_url(doc: Document) -> str:
         except Exception:
             pass
     return doc.external_url or '#/documente'
+
+
+def get_cached_page_index(institution: Institution):
+    inst_id = institution.id
+    now = time.time()
+    if inst_id in _PAGES_CACHE:
+        cached_time, cached_items = _PAGES_CACHE[inst_id]
+        if now - cached_time < 300:
+            return cached_items
+
+    items = []
+    for page in institution.pages.filter(status='published').select_related('section'):
+        plain_body = clean_html_content(page.body)
+        items.append({
+            'page': page,
+            'plain_body': plain_body,
+            'norm_title': normalize_ro(page.title),
+            'norm_slug': normalize_ro(page.slug),
+            'norm_body': normalize_ro(plain_body),
+            'norm_summary': normalize_ro(page.summary),
+        })
+    _PAGES_CACHE[inst_id] = (now, items)
+    return items
+
+
+def get_cached_doc_index(institution: Institution):
+    inst_id = institution.id
+    now = time.time()
+    if inst_id in _DOCS_CACHE:
+        cached_time, cached_items = _DOCS_CACHE[inst_id]
+        if now - cached_time < 300:
+            return cached_items
+
+    items = []
+    for doc in Document.objects.filter(institution=institution).only(
+        'id', 'title', 'slug', 'description', 'file', 'external_url', 'issued_on', 'extracted_text'
+    ):
+        items.append({
+            'doc': doc,
+            'norm_title': normalize_ro(doc.title),
+            'norm_desc': normalize_ro(doc.description),
+            'norm_extracted': normalize_ro(doc.extracted_text),
+        })
+    _DOCS_CACHE[inst_id] = (now, items)
+    return items
 
 
 def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
@@ -269,16 +335,17 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
     if any(norm_q == g or norm_q.startswith(g + ' ') for g in greetings) and len(tokens) <= 2:
         return get_greeting_response(institution)
 
-    # 6. Search Published Pages
-    pages = list(institution.pages.filter(status='published'))
+    # 6. Search Published Pages (fast in-memory index)
+    cached_pages = get_cached_page_index(institution)
     scored_pages = []
 
-    for page in pages:
-        norm_title = normalize_ro(page.title)
-        norm_slug = normalize_ro(page.slug)
-        plain_body = clean_html_content(page.body)
-        norm_body = normalize_ro(plain_body)
-        norm_summary = normalize_ro(page.summary)
+    for item in cached_pages:
+        page = item['page']
+        norm_title = item['norm_title']
+        norm_slug = item['norm_slug']
+        norm_body = item['norm_body']
+        norm_summary = item['norm_summary']
+        plain_body = item['plain_body']
 
         score = 0
         matched_tokens = 0
@@ -309,13 +376,14 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
 
     scored_pages.sort(key=lambda x: (x[0], x[1]), reverse=True)
 
-    # 7. Search Documents (Title, Description, AND Extracted / OCR Text with word boundaries)
+    # 7. Search Documents (fast in-memory index with word boundaries)
     scored_docs = []
-    docs = list(Document.objects.filter(institution=institution))
-    for doc in docs:
-        norm_doc_title = normalize_ro(doc.title)
-        norm_doc_desc = normalize_ro(doc.description)
-        norm_extracted = normalize_ro(doc.extracted_text)
+    cached_docs = get_cached_doc_index(institution)
+    for item in cached_docs:
+        doc = item['doc']
+        norm_doc_title = item['norm_title']
+        norm_doc_desc = item['norm_desc']
+        norm_extracted = item['norm_extracted']
 
         d_score = 0
         matched_text_tokens = 0
@@ -339,8 +407,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
             d_score += 35
 
         if d_score > 0:
-            snippet = make_doc_snippet(doc, tokens, stems)
-            scored_docs.append((d_score, doc, snippet, matched_text_tokens))
+            scored_docs.append((d_score, doc, None, matched_text_tokens))
 
     scored_docs.sort(key=lambda x: x[0], reverse=True)
 
@@ -493,87 +560,108 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             'sources': []
         }
 
+    user_turns = [h for h in (history or []) if h.get('role') == 'user']
+    is_ongoing_conversation = len(user_turns) > 0
+
+    cache_key = (institution.id, clean_q, is_ongoing_conversation)
+    now = time.time()
+    if cache_key in _RESPONSE_CACHE:
+        cache_time, cached_res = _RESPONSE_CACHE[cache_key]
+        if now - cache_time < 600:
+            return cached_res
+
     # Check for optional Gemini API key
     gemini_key = os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
     if gemini_key:
-        try:
-            from google import genai
-            client = genai.Client(api_key=gemini_key)
-            rag = search_knowledge_base(institution, question)
-            context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
+        client = get_gemini_client(gemini_key)
+        if client:
+            try:
+                rag = search_knowledge_base(institution, question)
+                context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
 
-            user_turns = [h for h in (history or []) if h.get('role') == 'user']
-            is_ongoing_conversation = len(user_turns) > 0
-
-            if is_ongoing_conversation:
-                greeting_instruction = (
-                    "⚠️ REGULĂ OBLIGATORIE PENTRU CONVERSAȚIE ÎN DESFĂȘURARE:\n"
-                    "- Aceasta este o discuție deja începută (cetățeanul pune o întrebare ulterioară).\n"
-                    "- NU folosi niciun salut ('Bună ziua!', 'Bun găsit!', 'Bun venit!', 'Mă bucur...') și NU te mai prezenta ('Sunt asistentul virtual...').\n"
-                    "- Intră DIRECT în subiect și răspunde punctual la noua întrebare, fără introduceri repetitive și fără formule lungi de rămas-bun."
-                )
-            else:
-                greeting_instruction = (
-                    "⚠️ REGULĂ PENTRU PRIMUL MESAJ DIN CONVERSAȚIE:\n"
-                    "- Fereastra de chat a afișat deja mesajul de întâmpinare al asistentului.\n"
-                    "- NU mai spune 'Sunt asistentul virtual al Primăriei...' și NU repeta prezentarea oficială a robotului.\n"
-                    "- Poți începe politicos cu un scurt 'Bună ziua!' sau poți trece direct la răspunsul concret."
-                )
-
-            history_context = ""
-            if history:
-                prev_lines = []
-                for h in (history or [])[-4:]:
-                    role = h.get('role')
-                    txt = (h.get('text') or '').strip()
-                    if txt:
-                        if len(txt) > 200:
-                            txt = txt[:200] + "..."
-                        speaker = "Cetățean" if role == 'user' else "Asistent"
-                        prev_lines.append(f"{speaker}: {txt}")
-                if prev_lines:
-                    history_context = "Istoricul conversației recente:\n" + "\n".join(prev_lines) + "\n\n"
-
-            system_instruction = (
-                "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
-                "Oferă cetățenilor un răspuns clar, omenesc, concis și profesionist în limba română.\n\n"
-                f"{greeting_instruction}\n\n"
-                "Reguli importante de redactare:\n"
-                "• Răspunde direct și la obiect la întrebarea cetățeanului.\n"
-                "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii simplu și pe înțelesul tuturor.\n"
-                "• NU reda NICIODATĂ fragmente brute sau ciudate din fișiere OCR (cum ar fi 'nu no da, yes, since...', coduri sau etichete de formular). "
-                "Când recomanzi documente, menționează-le curat doar prin titlu și link markdown: [Titlu Document](url).\n"
-                "• Păstrează toate linkurile markdown [Text](url) prezente în context exact așa cum sunt.\n"
-                "• Structurează răspunsul aerisit (Răspuns / Documente conexe dacă există / Unde puteți citi mai multe sau Contact)."
-            )
-            candidate_models = list(dict.fromkeys([
-                os.environ.get('GEMINI_MODEL', '').strip(),
-                'gemini-flash-lite-latest',
-                'gemini-3.5-flash',
-                'gemini-3.8-flash'
-            ]))
-            candidate_models = [m for m in candidate_models if m]
-
-            prompt_content = (
-                f"{system_instruction}\n\n"
-                f"{history_context}"
-                f"Context din baza de date oficială:\n{context}\n\n"
-                f"Întrebare curentă cetățean: {question}"
-            )
-
-            for model_name in candidate_models:
-                try:
-                    response = client.models.generate_content(
-                        model=model_name,
-                        contents=prompt_content
+                if is_ongoing_conversation:
+                    greeting_instruction = (
+                        "⚠️ REGULĂ OBLIGATORIE PENTRU CONVERSAȚIE ÎN DESFĂȘURARE:\n"
+                        "- Aceasta este o discuție deja începută (cetățeanul pune o întrebare ulterioară).\n"
+                        "- NU folosi niciun salut ('Bună ziua!', 'Bun găsit!', 'Bun venit!', 'Mă bucur...') și NU te mai prezenta ('Sunt asistentul virtual...').\n"
+                        "- Intră DIRECT în subiect și răspunde punctual la noua întrebare, fără introduceri repetitive și fără formule lungi de rămas-bun."
                     )
-                    if response and response.text:
-                        return {'reply': response.text, 'sources': rag.get('sources', [])}
-                except Exception as model_err:
-                    logger.warning(f"Gemini model {model_name} failed: {model_err}")
-                    continue
-        except Exception as e:
-            logger.warning(f"Gemini client setup failed, falling back to local RAG search: {e}")
+                else:
+                    greeting_instruction = (
+                        "⚠️ REGULĂ PENTRU PRIMUL MESAJ DIN CONVERSAȚIE:\n"
+                        "- Fereastra de chat a afișat deja mesajul de întâmpinare al asistentului.\n"
+                        "- NU mai spune 'Sunt asistentul virtual al Primăriei...' și NU repeta prezentarea oficială a robotului.\n"
+                        "- Poți începe politicos cu un scurt 'Bună ziua!' sau poți trece direct la răspunsul concret."
+                    )
 
-    return search_knowledge_base(institution, question)
+                history_context = ""
+                if history:
+                    prev_lines = []
+                    for h in (history or [])[-4:]:
+                        role = h.get('role')
+                        txt = (h.get('text') or '').strip()
+                        if txt:
+                            if len(txt) > 200:
+                                txt = txt[:200] + "..."
+                            speaker = "Cetățean" if role == 'user' else "Asistent"
+                            prev_lines.append(f"{speaker}: {txt}")
+                    if prev_lines:
+                        history_context = "Istoricul conversației recente:\n" + "\n".join(prev_lines) + "\n\n"
+
+                system_instruction = (
+                    "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
+                    "Oferă cetățenilor un răspuns clar, omenesc, concis și profesionist în limba română.\n\n"
+                    f"{greeting_instruction}\n\n"
+                    "Reguli importante de redactare:\n"
+                    "• Răspunde direct și la obiect la întrebarea cetățeanului.\n"
+                    "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii simplu și pe înțelesul tuturor.\n"
+                    "• NU reda NICIODATĂ fragmente brute sau ciudate din fișiere OCR (cum ar fi 'nu no da, yes, since...', coduri sau etichete de formular). "
+                    "Când recomanzi documente, menționează-le curat doar prin titlu și link markdown: [Titlu Document](url).\n"
+                    "• Păstrează toate linkurile markdown [Text](url) prezente în context exact așa cum sunt.\n"
+                    "• Structurează răspunsul aerisit (Răspuns / Documente conexe dacă există / Unde puteți citi mai multe sau Contact)."
+                )
+                candidate_models = list(dict.fromkeys([
+                    os.environ.get('GEMINI_MODEL', '').strip(),
+                    'gemini-flash-lite-latest',
+                    'gemini-3.5-flash',
+                ]))
+                candidate_models = [m for m in candidate_models if m]
+
+                prompt_content = (
+                    f"{system_instruction}\n\n"
+                    f"{history_context}"
+                    f"Context din baza de date oficială:\n{context}\n\n"
+                    f"Întrebare curentă cetățean: {question}"
+                )
+
+                from google.genai import types
+                gen_config = types.GenerateContentConfig(
+                    max_output_tokens=450,
+                    temperature=0.2,
+                )
+
+                for model_name in candidate_models:
+                    try:
+                        response = client.models.generate_content(
+                            model=model_name,
+                            contents=prompt_content,
+                            config=gen_config
+                        )
+                        if response and response.text:
+                            result = {'reply': response.text, 'sources': rag.get('sources', [])}
+                            if len(_RESPONSE_CACHE) > 300:
+                                _RESPONSE_CACHE.clear()
+                            _RESPONSE_CACHE[cache_key] = (now, result)
+                            return result
+                    except Exception as model_err:
+                        logger.warning(f"Gemini model {model_name} failed: {model_err}")
+                        continue
+            except Exception as e:
+                logger.warning(f"Gemini processing failed, falling back to local RAG search: {e}")
+
+    result = search_knowledge_base(institution, question)
+    if len(_RESPONSE_CACHE) > 300:
+        _RESPONSE_CACHE.clear()
+    _RESPONSE_CACHE[cache_key] = (now, result)
+    return result
 
