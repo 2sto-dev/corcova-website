@@ -224,9 +224,9 @@ export default function Chatbot({ site }) {
         text: m.text
       }));
 
-      // Try calling backend API first
+      // Try calling backend API first (allow enough time for LLM generation)
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 1500);
+      const timeout = setTimeout(() => controller.abort(), 20000);
 
       const res = await fetch(`${siteApi}/chatbot/`, {
         method: 'POST',
