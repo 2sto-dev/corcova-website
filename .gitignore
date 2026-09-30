@@ -1,9 +1,10 @@
 .env
 .env.*
+**/.env
+**/.env.*
 !.env.example
-# Included intentionally for this private repository.
-!backend/.env
-!frontend/.env
+!backend/.env.example
+!frontend/.env.example
 .local-admin.json
 .development-key
 **/__pycache__/
