@@ -347,8 +347,10 @@ export default function Chatbot({ site }) {
             {loading && (
               <div className="chat-msg bot">
                 <div className="chat-msg-avatar"><Bot size={16}/></div>
-                <div className="chat-msg-bubble chat-loading-dots">
-                  <span/><span/><span/>
+                <div className="chat-msg-bubble chat-typing-bubble" aria-label="Se generează răspunsul...">
+                  <span className="chat-dot" />
+                  <span className="chat-dot" />
+                  <span className="chat-dot" />
                 </div>
               </div>
             )}
