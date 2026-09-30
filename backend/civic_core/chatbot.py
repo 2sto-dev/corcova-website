@@ -1,10 +1,13 @@
 import html
+import logging
 import os
 import re
 from django.urls import reverse
 from django.utils.html import strip_tags
 from .models import Institution, Page
 from documents.models import Document
+
+logger = logging.getLogger(__name__)
 
 
 def normalize_ro(text: str) -> str:
@@ -453,20 +456,27 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
             system_instruction = (
                 "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
-                "Răspunde întotdeauna structurat în secțiuni clare în limba română:\n"
-                "1. 📋 Rezumat / Răspuns: un răspuns concis și la obiect al informațiilor solicitate.\n"
-                "2. 📂 Documente și formulare conexe: documentele oficiale menționate cu linkurile lor.\n"
-                "3. 🔗 Unde puteți citi mai multe: link către pagina completă din site și pagini conexe.\n"
-                "Păstrează toate linkurile markdown [Text](url) exact așa cum sunt."
+                "Răspunde întotdeauna prietenos și structurat în limba română, folosind cu prioritate informațiile din context:\n"
+                "1. 📋 Răspuns: prezintă clar informația solicitată.\n"
+                "2. 📂 Documente și formulare conexe: documentele oficiale relevante cu linkurile lor markdown.\n"
+                "3. 🔗 Unde puteți citi mai multe: linkuri utile către secțiunile site-ului.\n"
+                "Păstrează toate linkurile markdown [Text](url) intacte. Dacă contextul indică date specifice (ex: primar actual Adam Durac, program, contact), respectă-le cu strictețe."
             )
-            response = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=f"{system_instruction}\n\nContext:\n{context}\n\nÎntrebare cetățean: {question}"
-            )
-            if response and response.text:
-                return {'reply': response.text, 'sources': rag.get('sources', [])}
-        except Exception:
-            pass
+            primary_model = os.environ.get('GEMINI_MODEL', 'gemini-3.5-flash')
+            candidate_models = list(dict.fromkeys([primary_model, 'gemini-flash-lite-latest', 'gemini-3.8-flash']))
+            for model_name in candidate_models:
+                try:
+                    response = client.models.generate_content(
+                        model=model_name,
+                        contents=f"{system_instruction}\n\nContext:\n{context}\n\nÎntrebare cetățean: {question}"
+                    )
+                    if response and response.text:
+                        return {'reply': response.text, 'sources': rag.get('sources', [])}
+                except Exception as model_err:
+                    logger.warning(f"Gemini model {model_name} failed: {model_err}")
+                    continue
+        except Exception as e:
+            logger.warning(f"Gemini client setup failed, falling back to local RAG search: {e}")
 
     return search_knowledge_base(institution, question)
 
