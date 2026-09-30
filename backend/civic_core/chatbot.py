@@ -109,7 +109,7 @@ def get_cached_doc_index(institution: Institution):
 
     items = []
     for doc in Document.objects.filter(institution=institution).only(
-        'id', 'title', 'slug', 'description', 'file', 'external_url', 'issued_on', 'extracted_text'
+        'id', 'title', 'description', 'file', 'external_url', 'issued_on', 'extracted_text'
     ):
         items.append({
             'doc': doc,
