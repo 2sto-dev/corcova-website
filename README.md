@@ -1,15 +1,14 @@
 # Corcova website
 
 Site React/Vite și API Django, cu baza SQLite și arhiva de documente incluse.
-Repository privat: fișierele `backend/.env` și `frontend/.env` sunt incluse intenționat pentru transferul proiectului.
+Pentru configurarea variabilelor de mediu și parole, creați fișierele `.env` pe baza șabloanelor `backend/.env.example` și `frontend/.env.example`.
 
 ## Conținut
 
-- `frontend/`: surse, resurse publice și versiunea compilată în `dist/`.
-- `backend/`: aplicația Django, `db.sqlite3` și documentele din `media/`.
-- `dosare/`, `uploads/`: arhiva originală.
-- Fișierul `.sql` din rădăcină: export WordPress pentru recuperare/reimport; aplicația folosește SQLite.
-- Dependențele instalate și cache-urile nu sunt incluse; se reinstalează.
+- `frontend/`: surse React/Vite, componente administrative, căutare și prezentare modernă.
+- `backend/`: aplicația Django, motor RAG & OCR, `db.sqlite3` și documentele din `media/`.
+- `dosare/`, `uploads/`: arhiva media și documente publice.
+- Dependențele instalate și fișierele `.env` cu parole nu sunt incluse în Git; se configurează local conform instrucțiunilor de mai jos.
 
 ## Instalare pe Linux
 
