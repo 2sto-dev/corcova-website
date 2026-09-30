@@ -1,0 +1,299 @@
+/* Stiluri pentru Secțiunea de Anunțuri Publice & Concursuri */
+.announcements-view {
+  margin-top: 10px;
+}
+
+.announcements-header {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.announcements-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #17477d;
+  background: #eef4fb;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.announcements-header h1 {
+  font-size: 32px;
+  color: #17324d;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin: 0 0 10px 0;
+}
+
+.announcements-intro {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #556779;
+  max-width: 800px;
+  margin: 0;
+}
+
+/* Filtre & Căutare */
+.announcements-controls {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.announcements-search-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.announcements-search-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.announcements-search-box svg {
+  position: absolute;
+  left: 14px;
+  color: #718096;
+}
+
+.announcements-search-box input {
+  width: 100%;
+  height: 44px;
+  padding: 8px 16px 8px 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #1e293b;
+  background: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.announcements-search-box input:focus {
+  outline: none;
+  border-color: #17477d;
+  box-shadow: 0 0 0 3px rgba(23, 71, 125, 0.1);
+}
+
+.announcements-year-select {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  background: #ffffff;
+  min-width: 130px;
+}
+
+/* Tab-uri categorii */
+.announcements-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.announcements-tab-btn {
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.announcements-tab-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.announcements-tab-btn.is-active {
+  background: #17477d;
+  border-color: #17477d;
+  color: #ffffff;
+}
+
+.announcements-tab-btn .badge-count {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.announcements-tab-btn.is-active .badge-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Lista de anunțuri */
+.announcements-count-bar {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.announcement-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(18, 54, 96, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.announcement-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(23, 71, 125, 0.09);
+  border-color: #cbd5e1;
+}
+
+.announcement-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.announcement-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.announcement-type-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.announcement-type-badge.concurs {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.announcement-type-badge.examen {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.announcement-type-badge.rezultat {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.announcement-type-badge.anunt {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.announcement-year-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.announcement-title {
+  margin: 0 0 6px 0;
+  font-size: 17px;
+  color: #17324d;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.35;
+}
+
+.announcement-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.announcement-action {
+  flex-shrink: 0;
+}
+
+.announcement-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: #17477d;
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.announcement-btn:hover {
+  background: #0f325a;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.announcements-empty {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+}
+
+.announcements-empty p {
+  color: #64748b;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .announcement-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .announcement-action {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .announcement-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

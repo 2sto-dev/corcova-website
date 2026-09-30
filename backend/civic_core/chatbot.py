@@ -54,7 +54,6 @@ def get_doc_url(doc: Document) -> str:
 
 def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
     """Extract or synthesize a short, informative summary (2-3 sentences) from a page."""
-    # 1. Use page summary if already clean and informative
     if page.summary and len(page.summary.strip()) >= 35:
         return page.summary.strip()
 
@@ -64,7 +63,6 @@ def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
             return plain_body[:250] + ('…' if len(plain_body) > 250 else '')
         return f"Pagina oficială conține detalii administrative despre {page.title}."
 
-    # Score paragraphs based on stem matches + early position bonus
     scored = []
     for idx, p in enumerate(paragraphs):
         norm_p = normalize_ro(p)
@@ -75,7 +73,6 @@ def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
 
     scored.sort(key=lambda x: (x[0], -x[1]), reverse=True)
 
-    # Combine top 1-2 coherent paragraphs
     picked = [scored[0][2]]
     curr_len = len(picked[0])
     for _, _, p in scored[1:]:
@@ -86,7 +83,6 @@ def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
             break
 
     summary = ' '.join(picked)
-    # Truncate cleanly at sentence boundary if too long
     if len(summary) > 420:
         sentences = re.split(r'(?<=[.!?])\s+', summary)
         shortened = ''
@@ -100,10 +96,51 @@ def make_page_summary(page: Page, plain_body: str, stems: list) -> str:
     return summary
 
 
+def make_doc_snippet(doc: Document, tokens: list, stems: list) -> str:
+    """Extract a concise context excerpt (1-2 sentences) from the document's extracted or OCR text."""
+    text = doc.extracted_text or doc.description or ''
+    if not text:
+        return ''
+
+    # Clean text
+    clean_text = ' '.join(text.split())
+    if len(clean_text) <= 220:
+        return clean_text
+
+    # Search by sentences/clauses
+    sentences = re.split(r'(?<=[.!?;\n])\s+', text)
+    sentences = [s.strip() for s in sentences if len(s.strip()) > 20]
+    if not sentences:
+        return clean_text[:220] + '…'
+
+    scored_sentences = []
+    for idx, s in enumerate(sentences):
+        norm_s = normalize_ro(s)
+        match_count = sum(1 for stem in stems if stem in norm_s)
+        if match_count > 0:
+            scored_sentences.append((match_count, idx, s))
+
+    if scored_sentences:
+        scored_sentences.sort(key=lambda x: (x[0], -x[1]), reverse=True)
+        best_idx = scored_sentences[0][1]
+        best_sent = sentences[best_idx]
+        
+        # Optionally attach next sentence if short
+        if len(best_sent) < 140 and best_idx + 1 < len(sentences):
+            best_sent += ' ' + sentences[best_idx + 1]
+
+        clean_excerpt = ' '.join(best_sent.split())
+        if len(clean_excerpt) > 280:
+            return clean_excerpt[:260] + '…'
+        return clean_excerpt
+
+    return clean_text[:220] + '…'
+
+
 def get_contact_response(institution: Institution) -> dict:
-    phone = institution.phone or '0252 391 049'
-    email = institution.email or 'clvinatori@pejmh.ro'
-    address = institution.address or 'Comuna Vânători, Județul Mehedinți'
+    phone = institution.phone or '0252 383 464'
+    email = institution.email or 'primaria.corcova@gmail.com'
+    address = institution.address or 'Sat Corcova, Comuna Corcova, Județul Mehedinți, Cod Poștal 227125'
 
     reply = (
         f"📋 **Date oficiale de contact — {institution.name}:**\n"
@@ -119,16 +156,43 @@ def get_contact_response(institution: Institution) -> dict:
     }
 
 
+def get_leadership_response(institution: Institution) -> dict:
+    reply = (
+        f"🏛️ **Conducerea Executivă și Administrația — {institution.name}:**\n\n"
+        f"• 🎖️ **Primar:** Adam DURAC *(Demnitar ales)*\n"
+        f"• 🎖️ **Viceprimar:** Gheorghe GOLOGAN *(Protecția mediului)*\n"
+        f"• 📜 **Secretar General:** George Marian COARDĂ *(Achiziții publice & Resurse umane)*\n"
+        f"• 💼 **Contabil Șef:** Camelia ENESCU *(Contabilitate, Finanțe & Informatică)*\n\n"
+        f"👥 **Aparatul de Specialitate & Servicii Publice:**\n"
+        f"• **Administrație publică:** Emanoil ROȘU\n"
+        f"• **Urbanism & Cadastru:** Aurica MÎNDRUȚ\n"
+        f"• **Stare civilă & Evidența persoanelor:** Emil Octavian MOGOȘANU\n"
+        f"• **Protecție civilă & Situații de urgență:** Constantin BĂRBULESCU\n"
+        f"• **Asistență socială:** Ana ȘERBAN, Victoria VLAD\n\n"
+        f"🔗 **Unde puteți citi mai multe:**\n"
+        f"👉 [Organigrama Primăriei Corcova](#/organigrama)\n"
+        f"👉 [Administrația Locală](#/administratia)"
+    )
+    return {
+        'reply': reply,
+        'sources': [
+            {'title': 'Organigrama', 'url': '#/organigrama'},
+            {'title': 'Administrația Locală', 'url': '#/administratia'}
+        ]
+    }
+
+
 def get_greeting_response(institution: Institution) -> dict:
     reply = (
         f"Bună ziua! Sunt asistentul virtual al **{institution.name}**.\n\n"
         f"Vă pot oferi rezumate rapide, documente descărcabile și linkuri utile despre:\n"
         f"• Date de contact, telefon și e-mail primărie\n"
         f"• Prezentarea comunei (istoric, așezare geografică, sate)\n"
-        f"• Conducere (Primar, Consiliul Local)\n"
+        f"• Conducerea Primăriei (Primar, Viceprimar, Organigramă)\n"
         f"• Asistență socială, ajutoare și formulare tipizate\n"
-        f"• Hotărâri și acte în Monitorul Oficial Local\n\n"
+        f"• Hotărâri și acte în Monitorul Oficial Local și Arhiva de Documente\n\n"
         f"🔗 **Unde puteți citi mai multe:**\n"
+        f"👉 [Organigrama Primăriei](#/organigrama)\n"
         f"👉 [Informații publice](#/informatii-publice)\n"
         f"👉 [Monitorul Oficial Local](#/monitorul-oficial-local)\n"
         f"👉 [Date de contact](#/contact)"
@@ -136,6 +200,7 @@ def get_greeting_response(institution: Institution) -> dict:
     return {
         'reply': reply,
         'sources': [
+            {'title': 'Organigrama', 'url': '#/organigrama'},
             {'title': 'Contact', 'url': '#/contact'},
             {'title': 'Informații publice', 'url': '#/informatii-publice'},
             {'title': 'Monitorul Oficial', 'url': '#/monitorul-oficial-local'}
@@ -150,20 +215,35 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
     }]
     stems = [get_stem(t) for t in tokens]
 
-    # 1. Contact Intent
+    # 1. Leadership Intent (high priority)
+    leadership_keywords = [
+        'conducere', 'conducerea', 'conduce', 'primar', 'primarul', 'viceprimar',
+        'viceprimarul', 'secretar', 'secretarul', 'consiliu', 'consiliul', 'consilier',
+        'consilieri', 'organigrama', 'aparat de specialitate', 'aparatul de specialitate',
+        'cine este primar', 'cine e primar', 'cine conduce', 'cine e la conducere',
+        'cine este la conducere', 'cine este la carma', 'cum il cheama pe primar',
+        'cine este viceprimar', 'cine e viceprimar', 'durac', 'gologan'
+    ]
+    is_asking_leadership = any(k in norm_q for k in leadership_keywords) or (
+        ('cine' in norm_q or 'care' in norm_q) and any(w in norm_q for w in ['conduc', 'primar', 'viceprimar', 'executiv'])
+    )
+    if is_asking_leadership:
+        return get_leadership_response(institution)
+
+    # 2. Contact Intent
     contact_keywords = {'contact', 'telefon', 'mail', 'email', 'numar de telefon', 'adresa de mail', 'adresa primariei', 'sediu', 'programul'}
     is_asking_contact = any(k in norm_q for k in contact_keywords) or (
         ('adresa' in norm_q or 'unde se afla' in norm_q) and ('primaria' in norm_q or 'sediul' in norm_q)
     )
-    if is_asking_contact and not any(k in norm_q for k in {'geografia', 'populatia', 'relief', 'comuna vanatori'}):
+    if is_asking_contact and not any(k in norm_q for k in {'geografia', 'populatia', 'relief', 'comuna corcova'}):
         return get_contact_response(institution)
 
-    # 2. Greeting Intent
+    # 3. Greeting Intent
     greetings = {'buna', 'salut', 'buna ziua', 'buna dimineata', 'buna seara', 'hello', 'servus'}
     if any(norm_q == g or norm_q.startswith(g + ' ') for g in greetings) and len(tokens) <= 2:
         return get_greeting_response(institution)
 
-    # 3. Search Published Pages
+    # 4. Search Published Pages
     pages = list(institution.pages.filter(status='published'))
     scored_pages = []
 
@@ -203,58 +283,83 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
 
     scored_pages.sort(key=lambda x: (x[0], x[1]), reverse=True)
 
-    # 4. Search Documents
+    # 5. Search Documents (Title, Description, AND Extracted / OCR Text)
     scored_docs = []
     docs = list(Document.objects.filter(institution=institution))
     for doc in docs:
         norm_doc_title = normalize_ro(doc.title)
+        norm_doc_desc = normalize_ro(doc.description)
+        norm_extracted = normalize_ro(doc.extracted_text)
+
         d_score = 0
+        matched_text_tokens = 0
+
+        # Exact title match
+        if norm_q in norm_doc_title:
+            d_score += 45
+
         for t, s in zip(tokens, stems):
             if t in norm_doc_title or s in norm_doc_title:
+                d_score += 25
+            elif t in norm_doc_desc or s in norm_doc_desc:
                 d_score += 15
+            elif norm_extracted and (t in norm_extracted or s in norm_extracted):
+                d_score += 8
+                matched_text_tokens += 1
+
+        if matched_text_tokens >= 2:
+            d_score += 18
+        if norm_extracted and norm_q in norm_extracted:
+            d_score += 35
+
         if d_score > 0:
-            scored_docs.append((d_score, doc))
+            snippet = make_doc_snippet(doc, tokens, stems)
+            scored_docs.append((d_score, doc, snippet, matched_text_tokens))
+
     scored_docs.sort(key=lambda x: x[0], reverse=True)
 
-    # Structure response when a page is found
+    # Response Case A: Strongly matching page found
     if scored_pages and scored_pages[0][0] >= 10:
         best_score, _, best_page, plain_body = scored_pages[0]
 
-        # 1. Concise Summary from page
         summary = make_page_summary(best_page, plain_body, stems)
-
         reply_sections = [
             f"📋 **Rezumat — {best_page.title}:**\n{summary}"
         ]
 
-        # 2. Associated and Relevant Documents
-        # Attached directly to this page or matched by search
-        page_docs = list(best_page.documents.filter(status='published')[:4])
+        # Associated and Relevant Documents
+        page_docs = list(best_page.documents.filter(status='published')[:3])
         extra_docs = []
         seen_doc_ids = {d.id for d in page_docs}
-        for _, d in scored_docs[:4]:
+        for _, d, snip, _ in scored_docs[:3]:
             if d.id not in seen_doc_ids:
-                extra_docs.append(d)
+                extra_docs.append((d, snip))
                 seen_doc_ids.add(d.id)
 
-        all_docs = page_docs + extra_docs[:2]
         sources = [{'title': best_page.title, 'url': f"#/{best_page.slug}"}]
 
-        if all_docs:
-            doc_lines = []
-            for d in all_docs[:3]:
-                d_url = get_doc_url(d)
-                date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
-                doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
-                sources.append({'title': d.title, 'url': d_url})
+        doc_lines = []
+        for d in page_docs:
+            d_url = get_doc_url(d)
+            date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
+            doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
+            sources.append({'title': d.title, 'url': d_url})
+
+        for d, snip in extra_docs[:2]:
+            d_url = get_doc_url(d)
+            date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
+            snip_text = f"\n  > „{snip}”" if snip else ""
+            doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}{snip_text}")
+            sources.append({'title': d.title, 'url': d_url})
+
+        if doc_lines:
             reply_sections.append("📂 **Documente și formulare conexe:**\n" + "\n".join(doc_lines))
 
-        # 3. Where to Read More / Related Suggestions
+        # Where to Read More
         read_more = [
             f"👉 **Pagina completă:** [{best_page.title}](#/{best_page.slug})"
         ]
 
-        # Sibling pages in the same section or next scored page
         siblings = []
         if best_page.section_id:
             siblings = list(best_page.section.pages.filter(status='published').exclude(id=best_page.id)[:2])
@@ -270,23 +375,43 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         reply = "\n\n".join(reply_sections)
         return {'reply': reply, 'sources': sources}
 
-    # If only documents matched
-    if scored_docs:
-        top_docs = [d for _, d in scored_docs[:4]]
-        doc_lines = []
+    # Response Case B: Relevant document(s) found via title, description, or OCR/extracted text
+    if scored_docs and scored_docs[0][0] >= 8:
+        best_d_score, best_doc, best_snippet, best_matched_text = scored_docs[0]
         sources = []
-        for d in top_docs:
-            d_url = get_doc_url(d)
-            date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
-            doc_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}")
-            sources.append({'title': d.title, 'url': d_url})
+        best_url = get_doc_url(best_doc)
+        sources.append({'title': best_doc.title, 'url': best_url})
 
-        reply_sections = [
-            "📂 **Documente oficiale găsite în baza de date:**\n" + "\n".join(doc_lines),
-            "🔗 **Unde puteți căuta și citi mai multe:**\n"
+        reply_sections = []
+        if best_snippet and (best_matched_text > 0 or best_doc.extracted_text):
+            reply_sections.append(
+                f"📄 **Informație identificată în documentul oficial — {best_doc.title}:**\n"
+                f"> „{best_snippet}”\n\n"
+                f"👉 **Descarcă documentul complet:** [{best_doc.title}]({best_url})"
+            )
+        else:
+            reply_sections.append(
+                f"📄 **Document oficial identificat:**\n"
+                f"👉 [{best_doc.title}]({best_url})"
+            )
+
+        # Other matching documents
+        other_docs = scored_docs[1:4]
+        if other_docs:
+            other_lines = []
+            for _, d, snip, _ in other_docs:
+                d_url = get_doc_url(d)
+                date_str = f" *(emis la {d.issued_on})*" if d.issued_on else ""
+                snip_suffix = f"\n  > „{snip}”" if snip else ""
+                other_lines.append(f"• 📄 [{d.title}]({d_url}){date_str}{snip_suffix}")
+                sources.append({'title': d.title, 'url': d_url})
+            reply_sections.append("📂 **Alte documente conexe:**\n" + "\n".join(other_lines))
+
+        reply_sections.append(
+            "🔗 **Unde puteți citi mai multe:**\n"
             "👉 [Monitorul Oficial Local](#/monitorul-oficial-local)\n"
             "👉 [Informații publice](#/informatii-publice)"
-        ]
+        )
         sources.append({'title': 'Monitorul Oficial', 'url': '#/monitorul-oficial-local'})
         sources.append({'title': 'Informații publice', 'url': '#/informatii-publice'})
 
@@ -298,7 +423,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         f"🔗 **Unde puteți căuta mai multe informații:**\n"
         f"👉 [Informații publice](#/informatii-publice)\n"
         f"👉 [Monitorul Oficial Local](#/monitorul-oficial-local)\n"
-        f"👉 [Formular de Contact direct cu primăria](#/contact) sau telefon **{institution.phone or '0252 391 049'}**"
+        f"👉 [Formular de Contact direct cu primăria](#/contact) sau telefon **{institution.phone or '0252 383 464'}**"
     )
     return {
         'reply': reply,
@@ -327,9 +452,9 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             rag = search_knowledge_base(institution, question)
             context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
             system_instruction = (
-                "Ești asistentul virtual oficial al Primăriei Vânători, județul Mehedinți. "
-                "Răspunde întotdeauna structurat în 3 secțiuni clare în limba română:\n"
-                "1. 📋 Rezumat: un rezumat concis (2-3 propoziții) al informațiilor din pagina/baza de date.\n"
+                "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
+                "Răspunde întotdeauna structurat în secțiuni clare în limba română:\n"
+                "1. 📋 Rezumat / Răspuns: un răspuns concis și la obiect al informațiilor solicitate.\n"
                 "2. 📂 Documente și formulare conexe: documentele oficiale menționate cu linkurile lor.\n"
                 "3. 🔗 Unde puteți citi mai multe: link către pagina completă din site și pagini conexe.\n"
                 "Păstrează toate linkurile markdown [Text](url) exact așa cum sunt."
@@ -344,3 +469,4 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             pass
 
     return search_knowledge_base(institution, question)
+

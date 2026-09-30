@@ -20,7 +20,7 @@ class DocumentPageInline(admin.TabularInline):
 class DocumentAdmin(admin.ModelAdmin):
     list_display = ['title', 'institution', 'category', 'year', 'status', 'size_bytes']
     list_filter = ['institution', 'status', 'category', 'year']
-    search_fields = ['title', 'description', 'number', 'original_filename']
+    search_fields = ['title', 'description', 'number', 'original_filename', 'extracted_text']
     autocomplete_fields = ['institution', 'category']
     readonly_fields = ['original_filename', 'checksum', 'size_bytes', 'source_key', 'created_at', 'updated_at']
     inlines = [DocumentPageInline]

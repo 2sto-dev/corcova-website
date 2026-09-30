@@ -63,6 +63,7 @@ class Document(Publishable):
     year = models.PositiveSmallIntegerField(verbose_name='An', null=True, blank=True, db_index=True)
     size_bytes = models.PositiveBigIntegerField(verbose_name='Dimensiune în octeți', default=0, editable=False)
     checksum = models.CharField(verbose_name='Amprentă SHA-256', max_length=64, blank=True, editable=False)
+    extracted_text = models.TextField(verbose_name='Text extras / OCR', blank=True, help_text='Text extras automat sau prin OCR din fișier.')
     pages = models.ManyToManyField(Page, verbose_name='Pagini asociate', through='PageDocument', related_name='documents')
 
     class Meta:
@@ -80,6 +81,7 @@ class Document(Publishable):
             raise ValidationError('Încărcați un fișier sau specificați adresa documentului extern.')
 
     def save(self, *args, **kwargs):
+        is_new_file = False
         if self.file and not self.file._committed:
             validate_file(self.file)
             self.original_filename = Path(self.file.name).name
@@ -89,7 +91,18 @@ class Document(Publishable):
                 digest.update(chunk)
             self.checksum = digest.hexdigest()
             self.file.seek(0)
-        return super().save(*args, **kwargs)
+            is_new_file = True
+        result = super().save(*args, **kwargs)
+        if is_new_file and not self.extracted_text and self.file:
+            try:
+                from .ocr_engine import extract_text_from_pdf
+                if Path(self.file.path).suffix.lower() == '.pdf':
+                    text = extract_text_from_pdf(self.file.path, max_ocr_pages=6)
+                    if text:
+                        Document.objects.filter(pk=self.pk).update(extracted_text=text)
+            except Exception:
+                pass
+        return result
 
     def __str__(self):
         return self.title

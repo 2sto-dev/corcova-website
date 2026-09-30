@@ -293,14 +293,79 @@ export const HOMEPAGE_MEDIA = {
     }
   ],
   leadership: [
-    { id: 1, image: '/dosare/imagini/design/frontpage/conducerea/1.jpg', name: 'Adam Durac', role: 'Primar' },
-    { id: 2, image: '/dosare/imagini/design/frontpage/conducerea/2.jpg', name: 'Gheorghe Gologan', role: 'Viceprimar' },
-    { id: 3, image: '/dosare/imagini/design/frontpage/conducerea/3.jpg', name: 'George Marian Coarda', role: 'Secretar' },
-    { id: 4, image: '/dosare/imagini/design/frontpage/conducerea/4.jpg', name: 'Consiliul Local', role: 'Consilier Local' },
-    { id: 5, image: '/dosare/imagini/design/frontpage/conducerea/5.jpg', name: 'Consiliul Local', role: 'Consilier Local' },
-    { id: 6, image: '/dosare/imagini/design/frontpage/conducerea/6.jpg', name: 'Consiliul Local', role: 'Consilier Local' },
-    { id: 7, image: '/dosare/imagini/design/frontpage/conducerea/7.jpg', name: 'Consiliul Local', role: 'Consilier Local' },
-    { id: 8, image: '/dosare/imagini/design/frontpage/conducerea/8.jpg', name: 'Consiliul Local', role: 'Consilier Local' },
-    { id: 9, image: '/dosare/imagini/design/frontpage/conducerea/9.jpg', name: 'Consiliul Local', role: 'Consilier Local' }
+    {
+      id: 1,
+      image: '/dosare/imagini/design/frontpage/conducerea/1.jpg',
+      name: 'Adam DURAC',
+      role: 'Primar',
+      status: 'DEMNITAR ALES',
+      dept: 'Conducere Executivă',
+      initials: 'AD',
+      isMayor: true
+    },
+    {
+      id: 2,
+      name: 'Gheorghe GOLOGAN',
+      role: 'Viceprimar',
+      status: 'DEMNITAR ALES',
+      dept: 'Protecția Mediului & Executiv',
+      initials: 'GG'
+    },
+    {
+      id: 3,
+      name: 'George Marian COARDĂ',
+      role: 'Secretar General',
+      status: 'FUNCȚIONAR PUBLIC DE CONDUCERE',
+      dept: 'Achiziții Publice & Resurse Umane',
+      initials: 'GC'
+    },
+    {
+      id: 4,
+      name: 'Camelia ENESCU',
+      role: 'Contabil Șef',
+      status: 'COMPARTIMENT FINANCIAR',
+      dept: 'Contabilitate, Finanțe & Informatică',
+      initials: 'CE'
+    },
+    {
+      id: 5,
+      name: 'Emanoil ROȘU',
+      role: 'Inspector',
+      status: 'APARATUL DE SPECIALITATE',
+      dept: 'Administrație Publică Locală',
+      initials: 'ER'
+    },
+    {
+      id: 6,
+      name: 'Aurica MÎNDRUȚ',
+      role: 'Inspector Urbanism',
+      status: 'APARATUL DE SPECIALITATE',
+      dept: 'Urbanism & Amenajarea Teritoriului',
+      initials: 'AM'
+    },
+    {
+      id: 7,
+      name: 'Emil Octavian MOGOȘANU',
+      role: 'Ofițer Stare Civilă',
+      status: 'SERVICIUL PUBLIC COMUNITAR',
+      dept: 'Stare Civilă & Evidența Persoanelor',
+      initials: 'EM'
+    },
+    {
+      id: 8,
+      name: 'Constantin BĂRBULESCU',
+      role: 'Responsabil SVSU',
+      status: 'SITUAȚII DE URGENȚĂ',
+      dept: 'Protecție Civilă, Situații Urgență & Pompieri',
+      initials: 'CB'
+    },
+    {
+      id: 9,
+      name: 'Ana ȘERBAN & Victoria VLAD',
+      role: 'Referenți Sociali',
+      status: 'ASISTENȚĂ SOCIALĂ',
+      dept: 'Servicii Sociale & Sprijin Comunitar',
+      initials: 'AS'
+    }
   ]
 };

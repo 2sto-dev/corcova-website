@@ -67,25 +67,54 @@ export default function CommunityPillars() {
         </div>
       </section>
 
-      {/* 3. Conducerea și Reprezentanții Locali */}
+      {/* 3. Conducerea Executivă & Aparatul de Specialitate */}
       <section className="container leadership-section" aria-label="Echipa administrativă">
-        <div className="section-title-wrap">
-          <span className="eyebrow"><Users size={14} style={{ display: 'inline', marginRight: 6 }} />ADMINISTRAȚIA LOCALĂ</span>
-          <h2>Echipa Administrativă &amp; Consiliul Local</h2>
-          <p className="section-subtext">
-            Reprezentanții aleși și aparatul de specialitate dedicat bunei administrări a comunității Corcova.
-          </p>
+        <div className="leadership-header-flex">
+          <div className="section-title-wrap">
+            <span className="eyebrow">
+              <Users size={14} style={{ display: 'inline', marginRight: 6 }} />
+              ADMINISTRAȚIA LOCALĂ
+            </span>
+            <h2>Conducerea Executivă &amp; Aparatul de Specialitate</h2>
+            <p className="section-subtext">
+              Reprezentanții aleși și corpul administrativ al Primăriei Comunei Corcova, responsabili de buna administrare și dezvoltarea comunității.
+            </p>
+          </div>
+          <div className="leadership-header-action">
+            <a href="#/organigrama" className="button outline organigrama-link">
+              <span>Organigramă completă</span>
+              <ArrowRight size={16} />
+            </a>
+          </div>
         </div>
 
         <div className="leadership-grid">
           {leadership.map((member) => (
-            <div key={member.id} className="leadership-card">
-              <div className="leadership-avatar">
-                <img src={member.image} alt={member.name} loading="lazy" />
+            <div
+              key={member.id}
+              className={`leadership-card ${member.isMayor ? 'is-mayor' : ''}`}
+            >
+              <div className="leadership-avatar-col">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="leadership-photo"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="leadership-monogram" aria-hidden="true">
+                    {member.initials}
+                  </div>
+                )}
               </div>
-              <div className="leadership-info">
-                <span>{member.role}</span>
-                <strong>{member.name}</strong>
+              <div className="leadership-info-col">
+                <span className={`leadership-status-badge ${member.isMayor ? 'badge-mayor' : ''}`}>
+                  {member.status}
+                </span>
+                <h3 className="leadership-name">{member.name}</h3>
+                <div className="leadership-role">{member.role}</div>
+                <div className="leadership-dept">{member.dept}</div>
               </div>
             </div>
           ))}

@@ -4,7 +4,8 @@ import { ArrowRight, ArrowUpRight, ChevronDown, ChevronUp, FileText, Search, X }
 import { apiBase, siteApi, siteSlug, useApi, useDebounce } from './api';
 import MonitorLocal from './components/MonitorLocal';
 import PageGallery from './components/PageGallery';
-import { PAGE_GALLERIES } from './mediaData';
+import AnnouncementsView from './components/AnnouncementsView';
+import { PAGE_GALLERIES, HOMEPAGE_MEDIA } from './mediaData';
 
 export function ApiSearch({ close }) {
   const [query, setQuery] = useState('');
@@ -129,6 +130,8 @@ export function ExpandableArticle({ html }) {
 
 export function CmsPage({ slug }) {
   const monitor = slug === 'monitorul-oficial-local';
+  const isAnnouncements = slug === 'anunturi' || slug === 'anunturi-concursuri-si-examene';
+  const isLeadership = slug === 'organigrama' || slug === 'administratia' || slug === 'conducerea-primariei';
   const resource = useApi(monitor ? null : `${siteApi}/pages/${encodeURIComponent(slug)}/`);
   const [documentPage, setDocumentPage] = useState(1);
   const [childrenPage, setChildrenPage] = useState(1);
@@ -172,6 +175,8 @@ export function CmsPage({ slug }) {
 
         {monitor ? (
           <MonitorLocal apiBase={apiBase} siteSlug={siteSlug} />
+        ) : isAnnouncements ? (
+          <AnnouncementsView page={page} />
         ) : resource.loading ? (
           <p role="status">Se încarcă pagina…</p>
         ) : resource.error ? (
@@ -202,6 +207,45 @@ export function CmsPage({ slug }) {
             )}
 
             {sanitized.trim() && <ExpandableArticle html={sanitized} />}
+
+            {isLeadership && (
+              <section className="leadership-subpage-section" style={{ marginTop: 32, marginBottom: 32 }}>
+                <h2 style={{ fontSize: '1.25rem', marginBottom: 16, color: '#17477d' }}>
+                  Conducerea Executivă &amp; Aparatul de Specialitate
+                </h2>
+                <div className="leadership-grid">
+                  {HOMEPAGE_MEDIA.leadership.map((member) => (
+                    <div
+                      key={member.id}
+                      className={`leadership-card ${member.isMayor ? 'is-mayor' : ''}`}
+                    >
+                      <div className="leadership-avatar-col">
+                        {member.image ? (
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="leadership-photo"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="leadership-monogram" aria-hidden="true">
+                            {member.initials}
+                          </div>
+                        )}
+                      </div>
+                      <div className="leadership-info-col">
+                        <span className={`leadership-status-badge ${member.isMayor ? 'badge-mayor' : ''}`}>
+                          {member.status}
+                        </span>
+                        <h3 className="leadership-name">{member.name}</h3>
+                        <div className="leadership-role">{member.role}</div>
+                        <div className="leadership-dept">{member.dept}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {PAGE_GALLERIES[slug] && (
               <PageGallery gallery={PAGE_GALLERIES[slug]} />
