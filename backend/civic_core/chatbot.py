@@ -241,12 +241,35 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
     if is_asking_contact and not any(k in norm_q for k in {'geografia', 'populatia', 'relief', 'comuna corcova'}):
         return get_contact_response(institution)
 
-    # 3. Greeting Intent
+    # 3. Farewell Intent
+    farewells = [
+        'la revedere', 'revedere', 'pa', 'pa pa', 'o zi buna', 'o zi frumoasa',
+        'o zi usoara', 'numai bine', 'sanatate', 'spor la treaba', 'pe curand',
+        'seara buna', 'weekend placut', 'ne mai auzim'
+    ]
+    if any(norm_q == f or norm_q.startswith(f + ' ') or norm_q.endswith(' ' + f) for f in farewells) and len(tokens) <= 3:
+        return {
+            'reply': 'La revedere! Vă dorim o zi frumoasă și vă stăm cu plăcere la dispoziție oricând aveți nevoie de sprijinul Primăriei Comunei Corcova.',
+            'sources': []
+        }
+
+    # 4. Thanks Intent
+    thanks_words = [
+        'multumesc', 'mersi', 'multumim', 'multam', 'sarumana', 'sarut mana',
+        'multumesc mult', 'multumesc frumos', 'va multumesc', 'iti multumesc'
+    ]
+    if any(norm_q == t or norm_q.startswith(t + ' ') or norm_q.endswith(' ' + t) for t in thanks_words) and len(tokens) <= 3:
+        return {
+            'reply': 'Cu mult drag! Mă bucur că v-am putut fi de folos. Dacă mai aveți și alte întrebări, suntem aici să vă ajutăm.',
+            'sources': []
+        }
+
+    # 5. Greeting Intent
     greetings = {'buna', 'salut', 'buna ziua', 'buna dimineata', 'buna seara', 'hello', 'servus'}
     if any(norm_q == g or norm_q.startswith(g + ' ') for g in greetings) and len(tokens) <= 2:
         return get_greeting_response(institution)
 
-    # 4. Search Published Pages
+    # 6. Search Published Pages
     pages = list(institution.pages.filter(status='published'))
     scored_pages = []
 
@@ -286,7 +309,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
 
     scored_pages.sort(key=lambda x: (x[0], x[1]), reverse=True)
 
-    # 5. Search Documents (Title, Description, AND Extracted / OCR Text)
+    # 7. Search Documents (Title, Description, AND Extracted / OCR Text with word boundaries)
     scored_docs = []
     docs = list(Document.objects.filter(institution=institution))
     for doc in docs:
@@ -306,7 +329,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
                 d_score += 25
             elif t in norm_doc_desc or s in norm_doc_desc:
                 d_score += 15
-            elif norm_extracted and (t in norm_extracted or s in norm_extracted):
+            elif norm_extracted and (re.search(r'\b' + re.escape(t), norm_extracted) or (len(s) >= 4 and re.search(r'\b' + re.escape(s), norm_extracted))):
                 d_score += 8
                 matched_text_tokens += 1
 
@@ -429,11 +452,44 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
 
 
 def ask_chatbot(institution: Institution, question: str, history: list = None) -> dict:
-    """Entry point for the chatbot. Uses LLM if API key is provided, otherwise SQL retrieval engine."""
     question = (question or '').strip()
     if not question:
         return {
             'reply': 'Vă rugăm să introduceți o întrebare.',
+            'sources': []
+        }
+
+    clean_q = re.sub(r'[^\w\s]', ' ', normalize_ro(question))
+    clean_q = ' '.join(clean_q.split())
+
+    # Fast-path Conversational Farewell Intent
+    farewells = [
+        'la revedere', 'revedere', 'pa', 'pa pa', 'o zi buna', 'o zi frumoasa',
+        'o zi usoara', 'numai bine', 'sanatate', 'spor la treaba', 'pe curand',
+        'seara buna', 'weekend placut', 'ne mai auzim'
+    ]
+    if any(clean_q == f or clean_q.startswith(f + ' ') or clean_q.endswith(' ' + f) for f in farewells) and len(clean_q.split()) <= 4:
+        return {
+            'reply': 'La revedere! Vă dorim o zi frumoasă și vă stăm cu drag la dispoziție oricând aveți nevoie de sprijinul Primăriei Comunei Corcova.',
+            'sources': []
+        }
+
+    # Fast-path Conversational Thanks Intent
+    thanks_words = [
+        'multumesc', 'mersi', 'multumim', 'multam', 'sarumana', 'sarut mana',
+        'multumesc mult', 'multumesc frumos', 'va multumesc', 'iti multumesc'
+    ]
+    if any(clean_q == t or clean_q.startswith(t + ' ') or clean_q.endswith(' ' + t) for t in thanks_words) and len(clean_q.split()) <= 4:
+        return {
+            'reply': 'Cu mult drag! Mă bucur că v-am putut fi de folos. Dacă mai aveți și alte întrebări, suntem aici să vă ajutăm.',
+            'sources': []
+        }
+
+    # Fast-path Conversational Acknowledgement Intent
+    acks = {'ok', 'bine', 'am inteles', 'perfect', 'in regula', 'super', 'clar', 'gata', 'ok multumesc', 'ok mersi'}
+    if clean_q in acks or (any(clean_q.startswith(a + ' ') for a in acks) and len(clean_q.split()) <= 3):
+        return {
+            'reply': 'Mă bucur! Vă stau la dispoziție dacă mai aveți nevoie de orice informație.',
             'sources': []
         }
 
