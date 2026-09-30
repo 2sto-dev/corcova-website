@@ -445,16 +445,50 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             client = genai.Client(api_key=gemini_key)
             rag = search_knowledge_base(institution, question)
             context = f"Instituție: {institution.name}\nAdresă: {institution.address}\nTelefon: {institution.phone}\nEmail: {institution.email}\nInformații găsite în baza de date:\n{rag['reply']}"
+
+            user_turns = [h for h in (history or []) if h.get('role') == 'user']
+            is_ongoing_conversation = len(user_turns) > 0
+
+            if is_ongoing_conversation:
+                greeting_instruction = (
+                    "⚠️ REGULĂ OBLIGATORIE PENTRU CONVERSAȚIE ÎN DESFĂȘURARE:\n"
+                    "- Aceasta este o discuție deja începută (cetățeanul pune o întrebare ulterioară).\n"
+                    "- NU folosi niciun salut ('Bună ziua!', 'Bun găsit!', 'Bun venit!', 'Mă bucur...') și NU te mai prezenta ('Sunt asistentul virtual...').\n"
+                    "- Intră DIRECT în subiect și răspunde punctual la noua întrebare, fără introduceri repetitive și fără formule lungi de rămas-bun."
+                )
+            else:
+                greeting_instruction = (
+                    "⚠️ REGULĂ PENTRU PRIMUL MESAJ DIN CONVERSAȚIE:\n"
+                    "- Fereastra de chat a afișat deja mesajul de întâmpinare al asistentului.\n"
+                    "- NU mai spune 'Sunt asistentul virtual al Primăriei...' și NU repeta prezentarea oficială a robotului.\n"
+                    "- Poți începe politicos cu un scurt 'Bună ziua!' sau poți trece direct la răspunsul concret."
+                )
+
+            history_context = ""
+            if history:
+                prev_lines = []
+                for h in (history or [])[-4:]:
+                    role = h.get('role')
+                    txt = (h.get('text') or '').strip()
+                    if txt:
+                        if len(txt) > 200:
+                            txt = txt[:200] + "..."
+                        speaker = "Cetățean" if role == 'user' else "Asistent"
+                        prev_lines.append(f"{speaker}: {txt}")
+                if prev_lines:
+                    history_context = "Istoricul conversației recente:\n" + "\n".join(prev_lines) + "\n\n"
+
             system_instruction = (
                 "Ești asistentul virtual oficial al Primăriei Comunei Corcova, județul Mehedinți. "
-                "Oferă cetățenilor un răspuns călduros, clar, omenesc și profesionist în limba română.\n\n"
-                "Reguli importante:\n"
-                "• Răspunde direct, pe un ton politicos și natural de administrație publică deschisă.\n"
-                "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii pe înțelesul tuturor.\n"
+                "Oferă cetățenilor un răspuns clar, omenesc, concis și profesionist în limba română.\n\n"
+                f"{greeting_instruction}\n\n"
+                "Reguli importante de redactare:\n"
+                "• Răspunde direct și la obiect la întrebarea cetățeanului.\n"
+                "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii simplu și pe înțelesul tuturor.\n"
                 "• NU reda NICIODATĂ fragmente brute sau ciudate din fișiere OCR (cum ar fi 'nu no da, yes, since...', coduri sau etichete de formular). "
                 "Când recomanzi documente, menționează-le curat doar prin titlu și link markdown: [Titlu Document](url).\n"
                 "• Păstrează toate linkurile markdown [Text](url) prezente în context exact așa cum sunt.\n"
-                "• Structurează răspunsul prietenos în 2-3 secțiuni aerisite (Răspuns / Documente conexe / Unde puteți citi mai multe sau Contact)."
+                "• Structurează răspunsul aerisit (Răspuns / Documente conexe dacă există / Unde puteți citi mai multe sau Contact)."
             )
             candidate_models = list(dict.fromkeys([
                 os.environ.get('GEMINI_MODEL', '').strip(),
@@ -464,11 +498,18 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
             ]))
             candidate_models = [m for m in candidate_models if m]
 
+            prompt_content = (
+                f"{system_instruction}\n\n"
+                f"{history_context}"
+                f"Context din baza de date oficială:\n{context}\n\n"
+                f"Întrebare curentă cetățean: {question}"
+            )
+
             for model_name in candidate_models:
                 try:
                     response = client.models.generate_content(
                         model=model_name,
-                        contents=f"{system_instruction}\n\nContext oficial:\n{context}\n\nÎntrebare cetățean: {question}"
+                        contents=prompt_content
                     )
                     if response and response.text:
                         return {'reply': response.text, 'sources': rag.get('sources', [])}
