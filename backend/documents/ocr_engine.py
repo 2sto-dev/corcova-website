@@ -46,8 +46,6 @@ def extract_text_from_pdf(pdf_path: str, max_ocr_pages: int = 6) -> str:
             for page_idx in range(min(len(doc), max_ocr_pages)):
                 page = doc[page_idx]
                 try:
-                    # PyMuPDF built-in OCR if Tesseract available, or Windows Media OCR
-                    pix = page.get_pixmap(dpi=150)
                     # Attempt PyMuPDF get_textpage_ocr if available
                     try:
                         textpage = page.get_textpage_ocr(language='ron', dpi=150)

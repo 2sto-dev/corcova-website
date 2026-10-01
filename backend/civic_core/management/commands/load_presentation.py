@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
+
 from django.core.management.base import BaseCommand, CommandError
+
 from civic_core.models import Institution
 
 
@@ -16,7 +18,7 @@ class Command(BaseCommand):
         try:
             site = Institution.objects.get(slug=options['site'])
         except Institution.DoesNotExist:
-            raise CommandError('Site not found.')
+            raise CommandError('Site not found.') from None
         if site.presentation and not options['replace']:
             self.stdout.write('Existing presentation preserved.')
             return

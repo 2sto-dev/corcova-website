@@ -1,10 +1,12 @@
 import hashlib
 import uuid
 from pathlib import Path
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
-from civic_core.models import Institution, Page, Publishable, Section, ValidatedModel
+
+from civic_core.models import Institution, Page, Publishable, ValidatedModel
 
 
 def document_path(instance, filename):

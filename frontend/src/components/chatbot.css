@@ -24,6 +24,23 @@
   transform:scale(.95);
 }
 
+.chatbot-bubble-btn svg{
+  color:#dc2626 !important;
+  stroke:#dc2626 !important;
+}
+
+.chatbot-ai-label{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#fff !important;
+  font-size:12px;
+  font-weight:700;
+  line-height:1;
+  pointer-events:none;
+}
+
 .chatbot-window{
   position:fixed;
   bottom:96px;
@@ -225,6 +242,24 @@
   background:#e0f2fe;
   border-color:#38bdf8;
   color:#0369a1;
+}
+.chat-contact-action{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  width:fit-content;
+  margin-top:12px;
+  color:#17477d;
+  font-size:12px;
+  font-weight:700;
+  text-decoration:none;
+}
+.chat-contact-action:hover{
+  color:#0f4c81;
+  text-decoration:underline;
+}
+.chat-contact-action svg:last-child{
+  margin-left:1px;
 }
 
 .chat-quick-suggestions{

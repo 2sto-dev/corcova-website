@@ -4,8 +4,10 @@ from django.urls import reverse
 from rest_framework import filters, generics, serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework.views import APIView
+
 from civic_core.api import SiteScoped
 from civic_core.models import Page
+
 from .models import Category, Document
 
 
@@ -60,7 +62,7 @@ class DocumentList(SiteScoped, generics.ListAPIView):
                 if not 1 <= year <= 9999:
                     raise ValueError
             except ValueError:
-                raise ValidationError({'year': 'Anul trebuie să fie între 1 și 9999.'})
+                raise ValidationError({'year': 'Anul trebuie să fie între 1 și 9999.'}) from None
             qs = qs.filter(year=year)
         if params.get('page_slug'):
             page = get_object_or_404(Page.objects.published(), institution=self.get_institution(), slug=params['page_slug'])
@@ -83,7 +85,7 @@ class DownloadView(SiteScoped, APIView):
         try:
             stream = document.file.open('rb')
         except FileNotFoundError:
-            raise Http404('Fișierul nu este disponibil.')
+            raise Http404('Fișierul nu este disponibil.') from None
         response = FileResponse(stream, as_attachment=True, filename=document.original_filename or document.file.name.rsplit('/', 1)[-1])
         response['X-Content-Type-Options'] = 'nosniff'
         response['Cache-Control'] = 'private, no-store'

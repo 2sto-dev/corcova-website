@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, BookOpen, FileText, Landmark, Mail, MapPin, P
 import { siteApi, useApi } from './api';
 import HeroShowcase from './components/HeroShowcase';
 import CommunityPillars from './components/CommunityPillars';
+import { cleanInternalHref } from './routing';
 
 const icons = {
   file: FileText,
@@ -11,7 +12,7 @@ const icons = {
   book: BookOpen
 };
 
-export const safeHref = value => typeof value === 'string' && /^(#\/|\/(?!\/)|https?:\/\/|mailto:|tel:)/i.test(value) ? value : '#/';
+export const safeHref = value => cleanInternalHref(value);
 
 export default function Home({ presentation = {}, site = {}, illustration }) {
   const latest = useApi(`${siteApi}/documents/?page_size=4&ordering=-published_at`);
@@ -21,25 +22,25 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
   const phoneClean = phone.replace(/[\s.]/g, '');
 
   return (
-    <>
-      <section className="hero">
-        <div className="container hero-inner">
+    <div className="home-page">
+      <section className="hero relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-sky-50">
+        <div className="container hero-inner relative">
           <div className="hero-copy">
-            <div className="eyebrow">
+            <div className="eyebrow text-sky-800">
               <span/>{hero.eyebrow || 'COMUNA CORCOVA, JUDEȚUL MEHEDINȚI'}
             </div>
             <h1>
               {hero.title}<br/>{hero.subtitle} <em>{hero.accent}</em>
             </h1>
             <p>{hero.description}</p>
-            <div className="hero-actions">
+            <div className="hero-actions mt-8">
               {hero.primary && (
-                <a className="button primary" href={safeHref(hero.primary.href)}>
+                <a className="button primary rounded-lg px-6 shadow-md shadow-blue-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg" href={safeHref(hero.primary.href)}>
                   {hero.primary.label} <ArrowRight size={18}/>
                 </a>
               )}
               {hero.secondary && (
-                <a className="text-link" href={safeHref(hero.secondary.href)}>
+                <a className="text-link rounded-lg px-2 py-2 transition-colors hover:bg-white/80" href={safeHref(hero.secondary.href)}>
                   {hero.secondary.label} <ArrowUpRight size={17}/>
                 </a>
               )}
@@ -52,12 +53,12 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
       </section>
 
       {quick_links.length > 0 && (
-        <section className="container quick-access" aria-label="Acces rapid">
+        <section className="container quick-access relative z-10 -mt-6 rounded-2xl border-slate-200 bg-white shadow-xl shadow-slate-900/5" aria-label="Acces rapid">
           {quick_links.map((item, index) => {
             const Icon = icons[item.icon] || FileText;
             return (
-              <a href={safeHref(item.href)} className="shortcut" key={index}>
-                <span className="shortcut-icon"><Icon size={24}/></span>
+              <a href={safeHref(item.href)} className="shortcut group rounded-xl border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-sky-200 hover:bg-slate-50 hover:shadow-lg" key={index}>
+                <span className="shortcut-icon transition-colors duration-200 group-hover:bg-sky-100 group-hover:text-sky-800"><Icon size={24}/></span>
                 <span>
                   <strong>{item.title}</strong>
                   <small>{item.text}</small>
@@ -72,14 +73,14 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
       {/* Domenii principale, inițiative strategice și conducerea comunei */}
       <CommunityPillars />
 
-      <section className="container news-layout">
-        <div>
+      <section className="container news-layout items-start">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <div className="section-heading">
             <div>
               <span className="eyebrow">{news.eyebrow || 'LA ZI CU PRIMĂRIA'}</span>
               <h2>{news.title || 'Anunțuri și documente oficiale'}</h2>
             </div>
-            <a className="text-link" href={safeHref(news.href || '#/anunturi')}>
+            <a className="text-link rounded-lg px-3 py-2 text-sky-800 transition-colors hover:bg-sky-50" href={safeHref(news.href || '/anunturi')}>
               Vezi toate <ArrowRight size={17}/>
             </a>
           </div>
@@ -88,7 +89,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
             {latest.loading && <p role="status">Se încarcă documentele…</p>}
             {latest.error && <p role="alert">{latest.error}</p>}
             {latest.data?.results?.map(doc => (
-              <a className="news-row" key={doc.id} href={doc.download_url} target="_blank" rel="noopener noreferrer">
+              <a className="news-row rounded-lg px-3 transition-colors hover:bg-slate-50" key={doc.id} href={doc.download_url} target="_blank" rel="noopener noreferrer">
                 <span className="news-date">
                   <strong>
                     {doc.year ? doc.year : 'DOC'}
@@ -108,7 +109,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
           </div>
         </div>
 
-        <aside className="citizen-panel">
+        <aside className="citizen-panel rounded-2xl border-slate-200 bg-gradient-to-b from-sky-50 to-white shadow-sm lg:sticky lg:top-6">
           <span className="panel-icon"><Landmark size={28}/></span>
           <span className="eyebrow">{panel.eyebrow || 'ADMINISTRAȚIE DESCHISĂ'}</span>
           <h2>{panel.title || 'Primăria în slujba comunității.'}</h2>
@@ -132,7 +133,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
         </aside>
       </section>
 
-      <section className="community-strip">
+      <section className="community-strip bg-gradient-to-r from-slate-50 via-emerald-50/60 to-slate-50">
         <div className="container community-inner">
           <span className="community-icon"><Sprout size={37}/></span>
           <div>
@@ -141,12 +142,12 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
             <p>{community.description}</p>
           </div>
           {community.link && (
-            <a className="button outline" href={safeHref(community.link.href)}>
+            <a className="button outline rounded-lg bg-white px-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md" href={safeHref(community.link.href)}>
               {community.link.label} <ArrowUpRight size={18}/>
             </a>
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 }

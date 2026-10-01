@@ -1,13 +1,20 @@
 import { test, expect } from '@playwright/test';
+import { loadEnvFile } from 'node:process';
+import { fileURLToPath } from 'node:url';
+
+loadEnvFile(fileURLToPath(new URL('../../backend/.env', import.meta.url)));
+const adminUsername = process.env.DJANGO_ADMIN_USERNAME;
+const adminPassword = process.env.DJANGO_ADMIN_PASSWORD;
 
 test('admin dashboard contact table layout is spacious and clean', async ({ page }) => {
+  test.skip(!adminUsername || !adminPassword, 'Set DJANGO_ADMIN_USERNAME and DJANGO_ADMIN_PASSWORD in backend/.env');
   await page.setViewportSize({ width: 1400, height: 900 });
   await page.goto('http://127.0.0.1:8000/gestionare-primarie/login/');
-  await page.locator('input[name="username"]').fill('primariacorcova');
-  await page.locator('input[name="password"]').fill('Corcova2026!');
+  await page.locator('input[name="username"]').fill(adminUsername);
+  await page.locator('input[name="password"]').fill(adminPassword);
   await page.locator('input[type="submit"]').click();
 
-  await expect(page).toHaveURL(/.*\/gestionare-primarie\//);
+  await expect(page).toHaveURL(/.*\/gestionare-primarie\/$/);
   await expect(page.locator('#tab-messages-panel')).toBeVisible();
 
   // Check table header and cells

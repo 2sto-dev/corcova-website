@@ -1,0 +1,230 @@
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/lora-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/lora-500.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/lora-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/lora-700.ttf') format('truetype');
+}
+
+:root {
+  --font-sans: "Lora", Cambria, Georgia, "Times New Roman", serif;
+  --font-display: "Lora", Cambria, Georgia, "Times New Roman", serif;
+  --text-body: 17px;
+  --text-small: 15px;
+  --text-caption: 13px;
+  --title-page: clamp(32px, 3.5vw, 44px);
+  --title-section: clamp(25px, 2.5vw, 30px);
+  --title-card: 18px;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.local-monitor,
+.announcements-view,
+.chatbot-window {
+  font-family: var(--font-sans);
+}
+
+.site-menu,
+footer {
+  font-family: var(--font-display);
+}
+
+footer .footer-main p,
+footer .footer-main h3,
+footer .footer-main a,
+footer .footer-contact-item,
+footer .footer-contact-item small,
+footer .footer-contact-item svg,
+footer .footer-bottom {
+  color: #fff !important;
+}
+
+footer .footer-main p,
+footer .footer-main a,
+footer .footer-contact-item,
+footer .footer-contact-item small,
+footer .footer-bottom {
+  opacity: 0.82;
+}
+
+body,
+body * {
+  font-family: var(--font-display) !important;
+}
+
+body svg:not(.community-art) {
+  width: 34px !important;
+  height: 34px !important;
+  color: #312e81 !important;
+}
+
+body nav.site-menu svg {
+  width: 18px !important;
+  height: 18px !important;
+  color: #fff !important;
+}
+
+:where([class*="card"], .shortcut, .quick-access, .citizen-panel, .contact-location, .message-preview) {
+  border: 1px solid #312e81 !important;
+}
+
+:where([class*="card"], .section-card) svg {
+  width: 34px !important;
+  height: 34px !important;
+  color: #312e81 !important;
+}
+
+:where([class*="card"], .section-card) h2,
+:where([class*="card"], .section-card) h3,
+:where([class*="card"], .section-card) p,
+:where([class*="card"], .section-card) span {
+  color: #312e81 !important;
+}
+
+body :where([class*="card"], .shortcut) h2,
+body :where([class*="card"], .shortcut) h3,
+body :where([class*="card"], .shortcut) strong {
+  font-size: 21px !important;
+  line-height: 1.3 !important;
+}
+
+body .section-card h3,
+body .section-card p,
+body .section-card span,
+body .section-card svg,
+body .forms-toggle summary,
+body .forms-toggle summary span,
+body .forms-toggle summary svg {
+  color: #0f172a !important;
+}
+
+body .forms-category h3,
+body .forms-category p {
+  color: #0f172a !important;
+}
+
+body .forms-category svg {
+  color: #312e81 !important;
+}
+
+body {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+.masthead-lettering > strong,
+.masthead-county,
+.brand strong,
+.hero h1,
+.page-main h1,
+.announcements-header h1,
+.hero-photo-title,
+.gallery-section-title,
+.local-monitor h1,
+.local-monitor h2 {
+  font-family: var(--font-display);
+}
+
+.page-main h1,
+.announcements-header h1 {
+  font-size: var(--title-page);
+  line-height: 1.18;
+}
+
+h2,
+.section-heading h2,
+.community-inner h2,
+.citizen-panel h2,
+.gallery-section-title,
+.announcements-section-title {
+  font-size: var(--title-section);
+  line-height: 1.25;
+}
+
+h3,
+.news-content h3,
+.monitor-document-content h3,
+.announcements-card-title,
+.gallery-card-title {
+  font-size: var(--title-card);
+  line-height: 1.45;
+}
+
+p,
+.archive-content,
+.page-intro,
+.announcements-intro,
+.hero-copy > p,
+.citizen-panel p,
+.community-inner p {
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+.eyebrow,
+.monitor-kicker,
+.announcements-eyebrow,
+.tag,
+.hero-photo-badge {
+  font-size: var(--text-caption);
+}
+
+.button,
+.text-link,
+.menu-link,
+.monitor-registers button,
+.monitor-pagination,
+.contact-form label,
+.footer-main > div > a:not(.brand) {
+  font-size: var(--text-small);
+}
+
+.container {
+  width: min(80rem, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --text-body: 16px;
+    --text-small: 15px;
+    --title-page: 32px;
+    --title-section: 25px;
+    --title-card: 17px;
+  }
+
+  .container {
+    width: calc(100% - 2rem);
+  }
+}

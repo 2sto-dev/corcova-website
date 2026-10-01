@@ -6,6 +6,7 @@ from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
+
 from django.core.exceptions import ValidationError
 from django.core.files import File
 from django.core.management.base import BaseCommand, CommandError
@@ -13,11 +14,12 @@ from django.db import transaction
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+
 from civic_core.models import Institution, Menu, MenuItem, Page, Section
 from documents.models import Category, Document, PageDocument
-from local_monitor.models import Register, Entry
-from wordpress_import.sql_reader import read_tables
+from local_monitor.models import Entry, Register
 from wordpress_import.metadata import fill_title_metadata
+from wordpress_import.sql_reader import read_tables
 
 
 class Links(HTMLParser):
@@ -174,13 +176,13 @@ class Command(BaseCommand):
                 source_hosts = {urlparse(p['guid']).hostname for p in public}
                 source_hosts |= {h[4:] if h.startswith('www.') else 'www.' + h for h in list(source_hosts) if h}
                 by_slug = {p.slug: p for p in pages.values()}
-                def rewrite(match):
+                def rewrite(match, replacements=replacements, source_hosts=source_hosts, by_slug=by_slug):
                     url = html.unescape(match[2])
                     parsed = urlparse(url)
                     if url in replacements:
                         url = replacements[url]
                     elif parsed.hostname in source_hosts and parsed.path.strip('/') in by_slug:
-                        url = '#/' + parsed.path.strip('/')
+                        url = '/' + parsed.path.strip('/')
                     elif url.startswith('#'):
                         return ''
                     return 'href="' + html.escape(url, quote=True) + '"'
@@ -213,7 +215,7 @@ class Command(BaseCommand):
             if url == '#':
                 url = ''
             elif url and not urlparse(url).path.strip('/'):
-                url = '#/'
+                url = '/'
             item, _ = self.upsert(MenuItem, {'menu': menu, 'source_id': post['ID']}, {'label': post['post_title'] or (page.title if page else post['post_name']),
                 'page': page, 'url': '' if page else url, 'position': max(0, post['menu_order'])})
             items[post['ID']] = item
@@ -263,7 +265,7 @@ class Command(BaseCommand):
         def create_nodes(nodes, parent=None):
             for position, node in enumerate(nodes):
                 href = node.get('href', '')
-                page = Page.objects.filter(institution=site, slug=href.removeprefix('#/')).first() if href.startswith('#/') else None
+                page = Page.objects.filter(institution=site, slug=href.removeprefix('/')).first() if href.startswith('/') else None
                 item = MenuItem.objects.create(menu=menu, parent=parent, label=node['label'], page=page, url='' if page else href, position=position)
                 create_nodes(node.get('children', []), item)
         create_nodes(data['items'])

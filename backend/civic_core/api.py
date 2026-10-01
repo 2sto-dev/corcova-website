@@ -1,11 +1,12 @@
-from django.shortcuts import get_object_or_404
 from django.db.models import CharField, Q, Value
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from rest_framework import filters, generics, serializers
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.throttling import AnonRateThrottle
 from rest_framework.views import APIView
+
 from .chatbot import ask_chatbot
 from .models import ContactMessage, Institution, Menu, Page, Section
 from .pagination import StandardPagination
@@ -94,8 +95,12 @@ class NavigationView(SiteScoped, APIView):
             if item.page_id and item.page_id not in public_pages:
                 continue
             by_parent.setdefault(item.parent_id, []).append(item)
+        def href(item):
+            destination = f'/{item.page.slug}' if item.page_id else item.url
+            return destination[1:] if destination.startswith('#/') else destination
+
         def tree(parent=None):
-            return [{'id': item.id, 'label': item.label, 'href': f'#/{item.page.slug}' if item.page_id else item.url,
+            return [{'id': item.id, 'label': item.label, 'href': href(item),
                      'children': tree(item.id)} for item in by_parent.get(parent, [])]
         return Response({'menu': menu.slug, 'items': tree()})
 
@@ -119,7 +124,7 @@ class SearchView(SiteScoped, generics.GenericAPIView):
         entries = self.paginate_queryset(results)
         response = []
         for item in entries:
-            href = '#/' + item['slug'] if item['kind'] == 'page' else request.build_absolute_uri(reverse('documents:download', kwargs={'site_slug': site.slug, 'pk': item['id']})) if item['file'] else item['external_url']
+            href = '/' + item['slug'] if item['kind'] == 'page' else request.build_absolute_uri(reverse('documents:download', kwargs={'site_slug': site.slug, 'pk': item['id']})) if item['file'] else item['external_url']
             response.append({'title': item['title'], 'href': href, 'kind': item['kind']})
         return self.get_paginated_response(response)
 
@@ -175,4 +180,8 @@ class ChatbotView(SiteScoped, APIView):
             return Response({'error': 'Vă rugăm să introduceți un mesaj.'}, status=400)
         history = request.data.get('history', [])
         result = ask_chatbot(institution, message, history=history)
+        result['reply'] = result.get('reply', '').replace('](#/', '](/')
+        for source in result.get('sources', []):
+            if source.get('url', '').startswith('#/'):
+                source['url'] = source['url'][1:]
         return Response(result)

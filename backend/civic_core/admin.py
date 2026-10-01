@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import ContactMessage, Institution, Menu, MenuItem, Page, Section
+
 from documents.models import PageDocument
+
+from .models import ContactMessage, Institution, Menu, MenuItem, Page, Section
 
 
 @admin.register(Institution)

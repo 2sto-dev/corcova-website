@@ -9,6 +9,10 @@
   border-bottom: 1px solid #e2e8f0;
 }
 
+.announcements-header > * {
+  display: none;
+}
+
 .announcements-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -97,6 +101,36 @@
   color: #1e293b;
   background: #ffffff;
   min-width: 130px;
+}
+
+.announcements-search-submit {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 18px;
+  border: 1px solid #12447d;
+  border-radius: 6px;
+  background: #12447d;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.announcements-search-submit:hover {
+  background: #0f3766;
+  border-color: #0f3766;
+}
+
+.announcements-search-submit svg {
+  width: 18px !important;
+  height: 18px !important;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 /* Tab-uri categorii */
@@ -231,7 +265,7 @@
 
 .announcement-title {
   margin: 0 0 6px 0;
-  font-size: 17px;
+  font-size: 32px;
   color: #17324d;
   font-family: Georgia, 'Times New Roman', serif;
   line-height: 1.35;

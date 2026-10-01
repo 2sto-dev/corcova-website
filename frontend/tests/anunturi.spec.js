@@ -15,8 +15,8 @@ test('homepage "Vezi toate" button navigates to anunturi and displays all announ
   await expect(seeAllBtn).toBeVisible();
   await seeAllBtn.click();
 
-  // URL should now be #/anunturi
-  await page.waitForURL(/#\/anunturi/);
+  // URL should now be /anunturi
+  await page.waitForURL(/\/anunturi(?:\/)?$/);
 
   // The announcements view should be displayed and NOT empty
   const announcementsView = page.locator('.announcements-view');
@@ -32,6 +32,10 @@ test('homepage "Vezi toate" button navigates to anunturi and displays all announ
   // Verify cards are rendered
   const cards = announcementsView.locator('.announcement-card');
   await expect(cards.first()).toBeVisible({ timeout: 10000 });
+  const continueButton = announcementsView.getByRole('button', { name: 'Continuă' });
+  while (await cards.count() < 15 && await continueButton.isVisible()) {
+    await continueButton.click();
+  }
   const count = await cards.count();
   expect(count).toBeGreaterThanOrEqual(15);
 

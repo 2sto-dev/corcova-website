@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+
 from civic_core.models import Institution, Page, Publishable, ValidatedModel
 from documents.models import Document
 

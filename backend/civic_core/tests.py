@@ -1,8 +1,10 @@
 from datetime import timedelta
+
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils import timezone
+
 from .models import ContactMessage, Institution, Menu, MenuItem, Page, Section
 
 
@@ -33,7 +35,7 @@ class ContentTests(TestCase):
         first = self.client.get('/api/v1/sites/test/search/?search=Result&page_size=1').json()
         second = self.client.get('/api/v1/sites/test/search/?search=Result&page_size=1&page=2').json()
         self.assertEqual(first['count'], 2)
-        self.assertEqual(first['results'][0]['href'], '#/a')
+        self.assertEqual(first['results'][0]['href'], '/a')
         self.assertEqual(second['results'][0]['href'], 'https://example.com/b.pdf')
         self.assertIsNone(second['next'])
         self.assertEqual(self.client.get('/api/v1/sites/other/search/?search=Result').json()['count'], 0)
@@ -57,12 +59,12 @@ class ContentTests(TestCase):
         menu = Menu.objects.create(institution=self.site, title='Main', slug='main')
         root = MenuItem.objects.create(menu=menu, label='Root')
         child = MenuItem.objects.create(menu=menu, label='Child', parent=root)
-        MenuItem.objects.create(menu=menu, label='Third', parent=child, url='#/third')
+        MenuItem.objects.create(menu=menu, label='Third', parent=child, url='/third')
         draft = Page.objects.create(institution=self.site, title='Draft', slug='draft')
         MenuItem.objects.create(menu=menu, label='Draft', page=draft)
         items = self.client.get('/api/v1/sites/test/navigation/').json()['items']
         self.assertEqual(len(items), 1)
-        self.assertEqual(items[0]['children'][0]['children'][0]['href'], '#/third')
+        self.assertEqual(items[0]['children'][0]['children'][0]['href'], '/third')
 
     def test_page_filter_by_parent_and_pagination_limit(self):
         parent = Section.objects.create(institution=self.site, title='Parent', slug='parent')
@@ -74,9 +76,9 @@ class ContentTests(TestCase):
 
     def test_public_write_is_not_allowed_and_admin_requires_login(self):
         self.assertEqual(self.client.post('/api/v1/sites/test/pages/', {'title': 'No'}).status_code, 405)
-        response = self.client.get('/administrare-primarie/civic_core/page/add/')
+        response = self.client.get('/gestionare-primarie/civic_core/page/add/')
         self.assertEqual(response.status_code, 302)
-        self.assertIn('/administrare-primarie/login/', response.url)
+        self.assertIn('/gestionare-primarie/login/', response.url)
 
     def test_contact_message_is_stored_and_listed_in_admin(self):
         payload = {'name': 'Test Cetățean', 'email': 'test@example.com', 'subject': 'Întrebare', 'message': 'Un mesaj de test.'}
@@ -87,18 +89,18 @@ class ContentTests(TestCase):
         self.assertEqual(self.client.post('/api/v1/sites/test/contact/', {**payload, 'website': 'http://spam.example'}, content_type='application/json').status_code, 201)
         self.assertEqual(ContactMessage.objects.filter(institution=self.site).count(), 1)
         self.assertEqual(self.client.post('/api/v1/sites/test/contact/', {**payload, 'email': 'not-an-email'}, content_type='application/json').status_code, 400)
-        self.assertEqual(self.client.get('/administrare-primarie/civic_core/contactmessage/').status_code, 302)
+        self.assertEqual(self.client.get('/gestionare-primarie/civic_core/contactmessage/').status_code, 302)
         user = User.objects.create_superuser('admin', 'admin@example.com', 'secret-pass')
         self.client.force_login(user)
-        dashboard = self.client.get('/administrare-primarie/')
+        dashboard = self.client.get('/gestionare-primarie/')
         self.assertContains(dashboard, 'Mesaje de contact')
         self.assertContains(dashboard, 'Întrebare')
-        listing = self.client.get('/administrare-primarie/civic_core/contactmessage/')
+        listing = self.client.get('/gestionare-primarie/civic_core/contactmessage/')
         self.assertContains(listing, 'Test Cetățean')
         self.assertContains(listing, 'necitite')
 
     def test_axes_brute_force_lockout_after_five_failed_attempts(self):
-        login_url = '/administrare-primarie/login/'
+        login_url = '/gestionare-primarie/login/'
         User.objects.create_superuser('admin_test', 'admin_test@example.com', 'correct-pass')
 
         # First 4 attempts fail normally (invalid credentials)

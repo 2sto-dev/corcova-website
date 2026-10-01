@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, FileText, ArrowUpRight, Filter, Bell, CheckCircle, Award, Briefcase } from 'lucide-react';
+import { Search, FileText, ArrowRight, ArrowUpRight, Filter, Bell, CheckCircle, Award, Briefcase } from 'lucide-react';
 import { useApi, siteApi } from '../api';
 import './announcements.css';
 
@@ -30,6 +30,7 @@ export default function AnnouncementsView({ page }) {
   const [search, setSearch] = useState('');
   const [tab, setTab] = useState('all');
   const [year, setYear] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(4);
 
   // Fetch announcements associated with 'anunturi'
   const documentsQuery = useApi(`${siteApi}/documents/?page_slug=anunturi&page_size=100&ordering=-year,-id`);
@@ -81,6 +82,8 @@ export default function AnnouncementsView({ page }) {
     });
   }, [documents, tab, year, search]);
 
+  const visibleDocuments = filtered.slice(0, visibleCount);
+
   return (
     <div className="announcements-view">
       <div className="announcements-header">
@@ -99,18 +102,19 @@ export default function AnnouncementsView({ page }) {
           <div className="announcements-search-box">
             <Search size={18} />
             <input
+              className="!text-[20px] !leading-tight"
               type="search"
               value={search}
-              onChange={e => setSearch(e.target.value)}
+              onChange={e => { setSearch(e.target.value); setVisibleCount(4); }}
               placeholder="Filtrează după cuvânt-cheie (ex: promovare, ITL, asistență, rezultat)…"
               aria-label="Caută în anunțuri"
             />
           </div>
 
           <select
-            className="announcements-year-select"
+            className="announcements-year-select !text-[20px] !leading-tight"
             value={year}
-            onChange={e => setYear(e.target.value)}
+            onChange={e => { setYear(e.target.value); setVisibleCount(4); }}
             aria-label="Filtrează după an"
           >
             <option value="all">Toți anii</option>
@@ -118,46 +122,56 @@ export default function AnnouncementsView({ page }) {
               <option key={y} value={y}>Anul {y}</option>
             ))}
           </select>
+
+          <button
+            type="button"
+            className="announcements-search-submit"
+            onClick={() => setVisibleCount(4)}
+            aria-label="Aplică filtrarea"
+          >
+            <Search size={18} aria-hidden="true" />
+            Caută
+          </button>
         </div>
 
         <div className="announcements-tabs">
           <button
             type="button"
-            className={`announcements-tab-btn ${tab === 'all' ? 'is-active' : ''}`}
-            onClick={() => setTab('all')}
+            className={`announcements-tab-btn !text-[17px] ${tab === 'all' ? 'is-active' : ''}`}
+            onClick={() => { setTab('all'); setVisibleCount(4); }}
           >
             <span>Toate anunțurile</span>
-            <span className="badge-count">{counts.all}</span>
+            <span className="badge-count !text-[14px]">{counts.all}</span>
           </button>
 
           <button
             type="button"
-            className={`announcements-tab-btn ${tab === 'concurs' ? 'is-active' : ''}`}
-            onClick={() => setTab('concurs')}
+            className={`announcements-tab-btn !text-[17px] ${tab === 'concurs' ? 'is-active' : ''}`}
+            onClick={() => { setTab('concurs'); setVisibleCount(4); }}
           >
             <Briefcase size={14} />
             <span>Concursuri ocupare post</span>
-            <span className="badge-count">{counts.concurs}</span>
+            <span className="badge-count !text-[14px]">{counts.concurs}</span>
           </button>
 
           <button
             type="button"
-            className={`announcements-tab-btn ${tab === 'examen' ? 'is-active' : ''}`}
-            onClick={() => setTab('examen')}
+            className={`announcements-tab-btn !text-[17px] ${tab === 'examen' ? 'is-active' : ''}`}
+            onClick={() => { setTab('examen'); setVisibleCount(4); }}
           >
             <Award size={14} />
             <span>Examene de promovare</span>
-            <span className="badge-count">{counts.examen}</span>
+            <span className="badge-count !text-[14px]">{counts.examen}</span>
           </button>
 
           <button
             type="button"
-            className={`announcements-tab-btn ${tab === 'rezultat' ? 'is-active' : ''}`}
-            onClick={() => setTab('rezultat')}
+            className={`announcements-tab-btn !text-[17px] ${tab === 'rezultat' ? 'is-active' : ''}`}
+            onClick={() => { setTab('rezultat'); setVisibleCount(4); }}
           >
             <CheckCircle size={14} />
             <span>Rezultate &amp; Selecție</span>
-            <span className="badge-count">{counts.rezultat}</span>
+            <span className="badge-count !text-[14px]">{counts.rezultat}</span>
           </button>
         </div>
       </div>
@@ -171,8 +185,9 @@ export default function AnnouncementsView({ page }) {
       ) : documentsQuery.error ? (
         <p role="alert">{documentsQuery.error}</p>
       ) : filtered.length > 0 ? (
+        <>
         <div className="announcements-list">
-          {filtered.map(doc => {
+          {visibleDocuments.map(doc => {
             const type = detectType(doc.title);
             const title = cleanTitle(doc.title);
             const ext = doc.original_filename?.split('.').pop()?.toUpperCase() || 'PDF';
@@ -181,11 +196,11 @@ export default function AnnouncementsView({ page }) {
               <article key={doc.id} className="announcement-card">
                 <div className="announcement-main">
                   <div className="announcement-meta">
-                    <span className={`announcement-type-badge ${type.class}`}>
+                    <span className={`announcement-type-badge text-[14px] ${type.class}`}>
                       {type.label}
                     </span>
                     {doc.year && (
-                      <span className="announcement-year-badge">
+                      <span className="announcement-year-badge text-[14px]">
                         Anul {doc.year}
                       </span>
                     )}
@@ -199,7 +214,7 @@ export default function AnnouncementsView({ page }) {
                 <div className="announcement-action">
                   <a
                     href={doc.download_url}
-                    className="announcement-btn"
+                    className="announcement-btn !border-indigo-200 !bg-white !text-indigo-950 hover:!bg-indigo-50"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -212,13 +227,21 @@ export default function AnnouncementsView({ page }) {
             );
           })}
         </div>
+      {visibleCount < filtered.length && (
+        <div className="mt-6 flex justify-center">
+          <button type="button" className="inline-flex items-center gap-2 rounded-md bg-indigo-950 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-indigo-900" onClick={() => setVisibleCount(count => count + 4)}>
+            Continuă <ArrowRight size={18} aria-hidden="true" />
+          </button>
+        </div>
+      )}
+        </>
       ) : (
         <div className="announcements-empty">
           <p>Nu a fost găsit niciun anunț conform filtrelor selectate.</p>
           <button
             type="button"
             className="button outline"
-            onClick={() => { setSearch(''); setTab('all'); setYear('all'); }}
+            onClick={() => { setSearch(''); setTab('all'); setYear('all'); setVisibleCount(4); }}
           >
             Resetează filtrele
           </button>

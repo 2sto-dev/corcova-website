@@ -88,16 +88,16 @@ test('Monitorul Oficial Local loads registers, search, and document links', asyn
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
 
-  await page.goto('/#/monitorul-oficial-local');
+  await page.goto('/monitorul-oficial-local');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Monitorul Oficial Local');
 
   // Check registers buttons
   await expect(page.getByRole('button', { name: 'Toate registrele' })).toBeVisible();
 
   // Filter search
-  const searchInput = page.getByPlaceholder('Titlu sau număr…');
+  const searchInput = page.getByPlaceholder('Titlu, număr sau cuvânt-cheie');
   await searchInput.fill('HCL');
-  await expect(page.locator('.monitor-documents article').first()).toBeVisible();
+  await expect(page.locator('[aria-live="polite"] article').first()).toBeVisible({ timeout: 10000 });
 
   expect(errors).toEqual([]);
 });
@@ -106,7 +106,7 @@ test('Contact page displays details and submits form successfully', async ({ pag
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
 
-  await page.goto('/#/contact');
+  await page.goto('/contact');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Contact');
   await expect(page.locator('.contact-location-main')).toContainText('Primăria Comunei Corcova');
   await expect(page.locator('.contact-location-details')).toContainText('primaria.corcova@gmail.com');

@@ -1,11 +1,14 @@
 import tempfile
 from datetime import timedelta
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from django.utils import timezone
+
 from civic_core.models import Institution, Page
+
 from .models import Document, PageDocument
 
 
@@ -63,7 +66,7 @@ class DocumentTests(TestCase):
             PageDocument.objects.create(page=page, document=document)
 
     def test_filter_search_pagination_and_external_files(self):
-        document = self.document(status='published', year=2026)
+        self.document(status='published', year=2026)
         self.assertEqual(self.client.get('/api/v1/sites/test/documents/?year=2026&search=Document').json()['count'], 1)
         self.assertEqual(self.client.get('/api/v1/sites/test/documents/?year=bad').status_code, 400)
         external = Document.objects.create(institution=self.site, title='Missing', external_url='https://example.com/file.pdf', status='published')
@@ -73,7 +76,7 @@ class DocumentTests(TestCase):
     def test_admin_can_upload_and_publish_without_code_changes(self):
         user = get_user_model().objects.create_superuser('tester', password='test-password')
         self.client.force_login(user)
-        response = self.client.post('/administrare-primarie/documents/document/add/', {'institution': self.site.pk, 'title': 'Uploaded from admin',
+        response = self.client.post('/gestionare-primarie/documents/document/add/', {'institution': self.site.pk, 'title': 'Uploaded from admin',
             'status': 'published', 'year': 2026, 'file': pdf(), 'pagedocument_set-TOTAL_FORMS': '0',
             'pagedocument_set-INITIAL_FORMS': '0', 'pagedocument_set-MIN_NUM_FORMS': '0', 'pagedocument_set-MAX_NUM_FORMS': '1000', '_save': 'Save'})
         self.assertEqual(response.status_code, 302, response.content.decode()[:1000])

@@ -2,10 +2,13 @@ import io
 import json
 import tempfile
 from pathlib import Path
+
 from django.core.management import call_command
 from django.test import TestCase, override_settings
+
 from civic_core.models import Page
 from documents.models import Document
+
 from .sql_reader import read_tables
 
 

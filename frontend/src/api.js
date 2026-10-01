@@ -150,7 +150,7 @@ function resolveLocalEndpoint(url) {
       if (p.title.toLowerCase().includes(q) || p.content.toLowerCase().includes(q)) {
         results.push({
           title: p.title,
-          href: `#/${p.slug}`,
+          href: `/${p.slug}`,
           kind: 'page',
           id: p.id
         });

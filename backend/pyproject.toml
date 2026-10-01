@@ -1,0 +1,25 @@
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = [
+  "*/migrations/*.py",
+  "media/**",
+  "wordpress_import/fixtures/**"
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["civic_core", "documents", "local_monitor", "wordpress_import"]
+
+[tool.vulture]
+exclude = [
+  ".venv312/**",
+  "media/**",
+  "*/migrations/*.py",
+  "*/tests.py",
+  "*/management/commands/*.py"
+]
+min_confidence = 80

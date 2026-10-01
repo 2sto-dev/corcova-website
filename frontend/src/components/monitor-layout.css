@@ -1,0 +1,55 @@
+@reference "../tailwind.css";
+
+.monitor-page-layout {
+  @apply flex w-full max-w-none justify-center mx-auto px-6 lg:px-10;
+}
+
+.container.page-layout.monitor-page-layout {
+  @apply flex w-full max-w-none px-6 lg:px-10;
+  width: 100% !important;
+  max-width: none !important;
+  grid-template-columns: none !important;
+}
+
+.monitor-page-main {
+  @apply mx-auto w-full max-w-7xl;
+  flex: 1 1 auto;
+}
+
+.page-main.monitor-page-main {
+  @apply w-full max-w-7xl;
+}
+
+.monitor-page-main .breadcrumb {
+  @apply mx-auto w-full;
+}
+
+.monitor-hero > span {
+  @apply text-sm text-indigo-900;
+}
+
+.monitor-hero > h1 {
+  @apply mx-auto mt-4 w-full max-w-4xl text-center text-slate-900;
+}
+
+.monitor-hero > p {
+  @apply mt-5 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl;
+}
+
+.monitor-hero > div[aria-label="Rezumat documente"] {
+  @apply mt-8 gap-3 text-slate-700;
+}
+
+.monitor-hero > div[aria-label="Rezumat documente"] > span {
+  @apply rounded-full border border-sky-100 bg-white px-5 py-2 shadow-sm;
+}
+
+.monitor-hero > div[aria-label="Rezumat documente"] strong {
+  @apply text-indigo-900;
+}
+
+@media (max-width: 767px) {
+  .monitor-page-layout {
+    @apply px-4;
+  }
+}

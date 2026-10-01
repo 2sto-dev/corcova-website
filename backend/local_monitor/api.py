@@ -2,9 +2,11 @@ from django.db.models import Count, Q
 from django.utils import timezone
 from rest_framework import filters, generics, serializers
 from rest_framework.exceptions import ValidationError
+
 from civic_core.api import SiteScoped
-from documents.models import Document
 from documents.api import DocumentSerializer
+from documents.models import Document
+
 from .models import Entry, Register
 
 
@@ -49,6 +51,6 @@ class EntryList(SiteScoped, generics.ListAPIView):
                 if not 1 <= year <= 9999:
                     raise ValueError
             except ValueError:
-                raise ValidationError({'year': 'An invalid.'})
+                raise ValidationError({'year': 'An invalid.'}) from None
             qs = qs.filter(Q(issued_on__year=year) | Q(issued_on__isnull=True, document__year=year))
         return qs

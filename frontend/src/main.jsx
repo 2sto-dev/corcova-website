@@ -12,6 +12,9 @@ import Chatbot from './components/Chatbot';
 import HeroShowcase from './components/HeroShowcase';
 import PageGallery from './components/PageGallery';
 import { PAGE_GALLERIES } from './mediaData';
+import { cleanInternalHref, currentSlug, replaceLegacyHashRoute } from './routing';
+import './typography.css';
+import './tailwind.css';
 
 function Brand({ footer = false, site }) {
   const name = (site?.name || 'Primăria Comunei Corcova').toLocaleUpperCase('ro-RO');
@@ -19,7 +22,7 @@ function Brand({ footer = false, site }) {
 
   if (footer) {
     return (
-      <a className="brand brand-footer" href="#/" aria-label={`${name} — Acasă`}>
+      <a className="brand brand-footer !text-white" href="/" aria-label={`${name} — Acasă`}>
         <img className="footer-county-logo" src={countyLogo} alt="Stema județului Mehedinți" width="404" height="448"/>
         <span>
           <strong>{name}</strong>
@@ -31,7 +34,7 @@ function Brand({ footer = false, site }) {
   }
 
   return (
-    <a className="masthead-brand" href="#/" aria-label={`${name} — Acasă`}>
+    <a className="masthead-brand" href="/" aria-label={`${name} — Acasă`}>
       <span className="masthead-identity">
         <span className="masthead-lettering">
           <strong>{name}</strong>
@@ -222,24 +225,27 @@ function App() {
     return items.map(item => ({
       ...item,
       label: String(item.label || ''),
+      href: cleanInternalHref(item.href),
       children: item.children?.length ? normalizeMenu(item.children) : undefined
     }));
   }
 
-  const [slug, setSlug] = useState(() => window.location.hash.replace(/^#\/?/, ''));
+  const [slug, setSlug] = useState(() => currentSlug());
   const [searchOpen, setSearchOpen] = useState(false);
   const searchButton = useRef(null);
   const main = useRef(null);
 
   useEffect(() => {
     const route = () => {
-      setSlug(window.location.hash.replace(/^#\/?/, ''));
+      replaceLegacyHashRoute();
+      setSlug(currentSlug());
       setSearchOpen(false);
       window.scrollTo(0, 0);
       main.current?.focus({ preventScroll: true });
     };
-    window.addEventListener('hashchange', route);
-    return () => window.removeEventListener('hashchange', route);
+    route();
+    window.addEventListener('popstate', route);
+    return () => window.removeEventListener('popstate', route);
   }, []);
 
   const closeSearch = () => {
@@ -247,13 +253,13 @@ function App() {
     searchButton.current?.focus();
   };
 
-  const currentSlug = slug.replace(/\/$/, '');
+  const activeSlug = slug.replace(/\/$/, '');
 
   return (
     <>
-      <a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); main.current?.focus(); }}>
+      <button className="skip-link" type="button" onClick={() => main.current?.focus()}>
         Sari la conținut
-      </a>
+      </button>
 
       <header className="masthead">
         <Brand site={site.data}/>
@@ -261,6 +267,7 @@ function App() {
           <button
             ref={searchButton}
             className="search-button"
+            type="button"
             onClick={() => setSearchOpen(!searchOpen)}
             aria-label={searchOpen ? 'Închide căutarea' : 'Deschide căutarea'}
             aria-expanded={searchOpen}
@@ -271,31 +278,36 @@ function App() {
         </div>
       </header>
 
-      <Menu items={normalizeMenu(navigation.data?.items || [])} activeHref={`#/${currentSlug}`}/>
+      <Menu items={normalizeMenu(navigation.data?.items || [])} activeHref={`/${activeSlug}`}/>
 
       {searchOpen && <ApiSearch close={closeSearch}/>}
 
       <main id="main-content" tabIndex={-1} ref={main}>
         {navigation.error && <p className="container" role="alert">{navigation.error}</p>}
-        {!currentSlug || currentSlug === 'front-page' ? (
+        {!activeSlug || activeSlug === 'front-page' ? (
           <Home
             presentation={site.data?.presentation}
             site={site.data}
             illustration={<HeroShowcase/>}
           />
-        ) : currentSlug === 'contact' ? (
-          <div className="container page-layout">
-            <div className="page-main">
+        ) : activeSlug === 'contact' ? (
+          <div className="contact-page container page-layout !w-full !max-w-none !grid-cols-1 !gap-0 px-6 lg:px-10">
+            <div className="page-main mx-auto w-full max-w-7xl">
+              <div className="breadcrumb">
+                <a href="/">AcasÄƒ</a>
+                <span>â€º</span>
+                <span>Contact</span>
+              </div>
               <h1>Contact</h1>
               <Contact site={site.data}/>
             </div>
           </div>
         ) : (
-          <CmsPage key={currentSlug} slug={currentSlug}/>
+          <CmsPage key={activeSlug} slug={activeSlug}/>
         )}
       </main>
 
-      <footer>
+      <footer className="!bg-[#12447d] !text-white">
         <div className="container footer-main">
           <div>
             <Brand footer site={site.data}/>
@@ -304,34 +316,34 @@ function App() {
 
           {site.data?.presentation?.footer?.groups?.map((group, index) => (
             <div key={index}>
-              <h3>{group.title}</h3>
+              <h3 className="!text-white">{group.title}</h3>
               {group.links?.map((link, i) => (
-                <a key={i} href={safeHref(link.href)}>{link.label}</a>
+                <a className="!text-white/80 hover:!text-white" key={i} href={safeHref(link.href)}>{link.label}</a>
               ))}
             </div>
           ))}
 
           <div className="footer-contact">
-            <h3>Contact</h3>
+              <h3 className="!text-white">Contact</h3>
             <div className="footer-contact-item">
-              <MapPin size={18}/>
+              <MapPin className="!text-white" size={18}/>
               <span>
                 {site.data?.presentation?.footer?.location || 'Comuna Corcova'}<br/>
                 <small>{site.data?.address || 'Județul Mehedinți'}</small>
               </span>
             </div>
             <a className="footer-contact-item footer-contact-link" href={`mailto:${site.data?.email || 'primaria.corcova@gmail.com'}`}>
-              <Mail size={18}/>
+              <Mail className="!text-white" size={18}/>
               <span>{site.data?.email || 'primaria.corcova@gmail.com'}</span>
             </a>
             <a className="footer-contact-item footer-contact-link" href={`tel:${(site.data?.phone || '0252 383 464').replace(/[\s.]/g, '')}`}>
-              <Phone size={18}/>
+              <Phone className="!text-white" size={18}/>
               <span>{site.data?.phone || '0252 383 464'}</span>
             </a>
           </div>
         </div>
 
-        <div className="container footer-bottom">
+        <div className="container footer-bottom !border-indigo-800 !text-white/75">
           <span>© {new Date().getFullYear()} {site.data?.name || 'Primăria Comunei Corcova'}</span>
           <span>{site.data?.presentation?.footer?.caption || 'În serviciul comunității.'}</span>
         </div>

@@ -53,7 +53,7 @@ def read_tables(path, prefix='wp_'):
                 elif token[4] == ')':
                     if len(row) != len(columns):
                         raise ValueError(f'Unexpected column count in {name}: {len(row)}')
-                    tables[name].append(dict(zip(columns, row)))
+                    tables[name].append(dict(zip(columns, row, strict=True)))
                 elif token[1] is not None:
                     value = re.sub(r'\\(.)', lambda m: {'n':'\n', 'r':'\r', 't':'\t', '0':'\0'}.get(m[1], m[1]), token[1], flags=re.S)
                     row.append(value.replace("''", "'"))

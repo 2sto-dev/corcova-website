@@ -1,8 +1,10 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
+
 from civic_core.models import Institution
 from documents.models import Document
-from .models import Register, Entry
+
+from .models import Entry, Register
 
 
 class MonitorTests(TestCase):

@@ -3,10 +3,13 @@ import logging
 import os
 import re
 import time
+
 from django.urls import reverse
 from django.utils.html import strip_tags
-from .models import Institution, Page
+
 from documents.models import Document
+
+from .models import Institution, Page
 
 logger = logging.getLogger(__name__)
 
@@ -73,7 +76,7 @@ def get_doc_url(doc: Document) -> str:
             return reverse('documents:download', kwargs={'site_slug': doc.institution.slug, 'pk': doc.pk})
         except Exception:
             pass
-    return doc.external_url or '#/documente'
+    return doc.external_url or '/documente'
 
 
 def get_cached_page_index(institution: Institution):
@@ -251,6 +254,13 @@ def get_leadership_response(institution: Institution) -> dict:
     }
 
 
+def get_mayor_response() -> dict:
+    return {
+        'reply': 'Primarul Comunei Corcova este **Adam DURAC**.',
+        'sources': [{'title': 'Organigrama', 'url': '/organigrama'}]
+    }
+
+
 def get_greeting_response(institution: Institution) -> dict:
     reply = (
         f"Bună ziua! Sunt asistentul virtual al **{institution.name}**.\n\n"
@@ -280,7 +290,9 @@ def get_greeting_response(institution: Institution) -> dict:
 def search_knowledge_base(institution: Institution, question: str) -> dict:
     norm_q = normalize_ro(question)
     tokens = [t for t in re.findall(r'\b\w{3,}\b', norm_q) if t not in {
-        'care', 'unde', 'este', 'sunt', 'cum', 'pot', 'face', 'aveti', 'pentru', 'despre', 'acest', 'aceasta', 'prin', 'dintre'
+        'care', 'unde', 'este', 'sunt', 'cum', 'pot', 'face', 'aveti', 'pentru', 'despre', 'acest', 'aceasta', 'prin', 'dintre',
+        'serviciu', 'servicii', 'procedura', 'proceduri', 'solicit', 'solicitare', 'municipal', 'exista', 'inexistent',
+        'casa', 'case', 'casele', 'nou', 'noi'
     }]
     stems = [get_stem(t) for t in tokens]
 
@@ -296,6 +308,13 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
     is_asking_leadership = any(k in norm_q for k in leadership_keywords) or (
         ('cine' in norm_q or 'care' in norm_q) and any(w in norm_q for w in ['conduc', 'primar', 'viceprimar', 'executiv'])
     )
+    is_asking_mayor_only = (
+        'primar' in norm_q
+        and any(term in norm_q for term in ['cine', 'care', 'nume', 'cheama'])
+        and not any(term in norm_q for term in ['viceprimar', 'conducere', 'organigrama', 'echipa', 'secretar', 'consiliu'])
+    )
+    if is_asking_mayor_only:
+        return get_mayor_response()
     if is_asking_leadership:
         return get_leadership_response(institution)
 
@@ -356,7 +375,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         if norm_slug in norm_q:
             score += 40
 
-        for t, s in zip(tokens, stems):
+        for t, s in zip(tokens, stems, strict=True):
             in_title = t in norm_title or s in norm_title
             in_summary = t in norm_summary or s in norm_summary
             in_body = t in norm_body or s in norm_body
@@ -392,7 +411,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         if norm_q in norm_doc_title:
             d_score += 45
 
-        for t, s in zip(tokens, stems):
+        for t, s in zip(tokens, stems, strict=True):
             if t in norm_doc_title or s in norm_doc_title:
                 d_score += 25
             elif t in norm_doc_desc or s in norm_doc_desc:
@@ -412,7 +431,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
     scored_docs.sort(key=lambda x: x[0], reverse=True)
 
     # Response Case A: Strongly matching page found
-    if scored_pages and scored_pages[0][0] >= 10:
+    if scored_pages and scored_pages[0][0] >= 20:
         best_score, _, best_page, plain_body = scored_pages[0]
 
         summary = make_page_summary(best_page, plain_body, stems)
@@ -468,7 +487,7 @@ def search_knowledge_base(institution: Institution, question: str) -> dict:
         return {'reply': reply, 'sources': sources}
 
     # Response Case B: Relevant document(s) found via title, description, or OCR/extracted text
-    if scored_docs and scored_docs[0][0] >= 8:
+    if scored_docs and (scored_docs[0][0] >= 25 or scored_docs[0][3] >= 2):
         best_d_score, best_doc, best_snippet, best_matched_text = scored_docs[0]
         sources = []
         best_url = get_doc_url(best_doc)
@@ -563,7 +582,10 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
     user_turns = [h for h in (history or []) if h.get('role') == 'user']
     is_ongoing_conversation = len(user_turns) > 0
 
-    cache_key = (institution.id, clean_q, is_ongoing_conversation)
+    recent_user_context = ''
+    if user_turns:
+        recent_user_context = normalize_ro(str(user_turns[-1].get('text', '')))[:200]
+    cache_key = (institution.id, clean_q, recent_user_context)
     now = time.time()
     if cache_key in _RESPONSE_CACHE:
         cache_time, cached_res = _RESPONSE_CACHE[cache_key]
@@ -613,6 +635,8 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
                     "Oferă cetățenilor un răspuns clar, omenesc, concis și profesionist în limba română.\n\n"
                     f"{greeting_instruction}\n\n"
                     "Reguli importante de redactare:\n"
+                    "- Folosește exclusiv informațiile din contextul oficial. Dacă nu există un răspuns verificabil, spune clar acest lucru și recomandă Formularul de Contact.\n"
+                    "- Limitează răspunsul la cel mult 3 paragrafe scurte sau 5 puncte și include numai surse relevante.\n"
                     "• Răspunde direct și la obiect la întrebarea cetățeanului.\n"
                     "• Dacă întrebarea este despre proceduri (ajutoare sociale, acte, urbanism, stare civilă), explică pașii simplu și pe înțelesul tuturor.\n"
                     "• NU reda NICIODATĂ fragmente brute sau ciudate din fișiere OCR (cum ar fi 'nu no da, yes, since...', coduri sau etichete de formular). "
@@ -636,7 +660,7 @@ def ask_chatbot(institution: Institution, question: str, history: list = None) -
 
                 from google.genai import types
                 gen_config = types.GenerateContentConfig(
-                    max_output_tokens=450,
+                    max_output_tokens=320,
                     temperature=0.2,
                 )
 

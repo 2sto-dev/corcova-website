@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, ChevronDown, X, Send, Bot, FileText, ArrowUpRight } from 'lucide-react';
+import { MessageCircle, ChevronDown, X, Send, Bot, FileText, ArrowUpRight, Mail } from 'lucide-react';
 import { siteApi } from '../api';
 import countyLogo from '../logo_mehedinti.png';
+import { cleanInternalHref } from '../routing';
 import './chatbot.css';
 
 const INITIAL_GREETING = 'Bună ziua! Sunt asistentul virtual al Primăriei Comunei Corcova. Cu ce vă putem ajuta astăzi?';
@@ -17,6 +18,13 @@ const SUGGESTIONS = [
 function answerLocally(query) {
   const q = query.toLowerCase();
 
+  if (/\b(cine|care|nume)\b.*\bprimar\b/.test(q) && !q.includes('viceprimar')) {
+    return {
+      text: 'Primarul Comunei Corcova este **Adam DURAC**.',
+      sources: [{ title: 'Organigrama', url: '/organigrama' }]
+    };
+  }
+
   if (q.includes('contact') || q.includes('telefon') || q.includes('email') || q.includes('mail') || q.includes('numar') || q.includes('adresa') || q.includes('fax')) {
     return {
       text: '**Datele de contact ale Primăriei Comunei Corcova:**\n\n' +
@@ -24,8 +32,8 @@ function answerLocally(query) {
         '• **Telefon:** 0252 383 464\n' +
         '• **Fax:** 0252 383 465\n' +
         '• **E-mail:** primaria.corcova@gmail.com\n\n' +
-        'Puteți de asemenea să ne trimiteți un mesaj direct din [Formularul de Contact](#/contact).',
-      sources: [{ title: 'Pagina de Contact', url: '#/contact' }]
+        'Puteți de asemenea să ne trimiteți un mesaj direct din [Formularul de Contact](/contact).',
+      sources: [{ title: 'Pagina de Contact', url: '/contact' }]
     };
   }
 
@@ -36,10 +44,10 @@ function answerLocally(query) {
         '• **Viceprimar:** GOLOGAN Gheorghe\n' +
         '• **Secretar:** COARDĂ George Marian\n' +
         '• **Contabil:** ENESCU Camelia\n\n' +
-        'Pentru detalii complete privind aparatul administrativ și compartimentele de specialitate, consultați [Organigrama Primăriei](#/organigrama).',
+        'Pentru detalii complete privind aparatul administrativ și compartimentele de specialitate, consultați [Organigrama Primăriei](/organigrama).',
       sources: [
-        { title: 'Organigrama', url: '#/organigrama' },
-        { title: 'Administrația', url: '#/administratia' }
+        { title: 'Organigrama', url: '/organigrama' },
+        { title: 'Administrația', url: '/administratia' }
       ]
     };
   }
@@ -51,8 +59,8 @@ function answerLocally(query) {
         'Comuna are în componență 13 sate: **Corcova** (reședință), Breța, Cernaia, Cordun, Croica, Gârbovățu de Jos, Imoasa, Jirov, Măru Roșu, Pîrvulești, Stejaru și Vlădăsești.\n\n' +
         'Zona este de asemenea renumită pentru tradiția seculară viticolă și podgoriile de la Corcova.',
       sources: [
-        { title: 'Geografia comunei', url: '#/geografia' },
-        { title: 'Istoria comunei', url: '#/istoria' }
+        { title: 'Geografia comunei', url: '/geografia' },
+        { title: 'Istoria comunei', url: '/istoria' }
       ]
     };
   }
@@ -68,8 +76,8 @@ function answerLocally(query) {
         '• Dosare handicap copii și adulți\n\n' +
         'Găsiți toate cererile și modelele descărcabile în secțiunea dedicată.',
       sources: [
-        { title: 'Tipizate & Formulare', url: '#/tipizate' },
-        { title: 'Asistență Socială', url: '#/compartimentul-de-asistenta-sociala' }
+        { title: 'Tipizate & Formulare', url: '/tipizate' },
+        { title: 'Asistență Socială', url: '/compartimentul-de-asistenta-sociala' }
       ]
     };
   }
@@ -77,11 +85,11 @@ function answerLocally(query) {
   if (q.includes('monitor') || q.includes('hotarar') || q.includes('hcl') || q.includes('dispoziti') || q.includes('dsp') || q.includes('buget') || q.includes('finant')) {
     return {
       text: '**Monitorul Oficial Local:**\n\n' +
-        'Toate actele normative, hotărârile Consiliului Local Corcova (HCL), dispozițiile primarului (DSP) și situațiile financiare/bugetare sunt publicate în format electronic în [Monitorul Oficial Local](#/monitorul-oficial-local).\n\n' +
+        'Toate actele normative, hotărârile Consiliului Local Corcova (HCL), dispozițiile primarului (DSP) și situațiile financiare/bugetare sunt publicate în format electronic în [Monitorul Oficial Local](/monitorul-oficial-local).\n\n' +
         'Puteți filtra documentele după registru, an sau cuvânt-cheie.',
       sources: [
-        { title: 'Monitorul Oficial Local', url: '#/monitorul-oficial-local' },
-        { title: 'Documente 2022', url: '#/2022-2' }
+        { title: 'Monitorul Oficial Local', url: '/monitorul-oficial-local' },
+        { title: 'Documente 2022', url: '/2022-2' }
       ]
     };
   }
@@ -91,21 +99,21 @@ function answerLocally(query) {
       text: '**Anunțuri și Concursuri de Angajare:**\n\n' +
         'Anunțurile privind posturile vacante, organizarea examenelor de promovare și concursurilor publice sunt actualizate periodic pe site.',
       sources: [
-        { title: 'Anunțuri și examene', url: '#/anunturi-concursuri-si-examene' }
+        { title: 'Anunțuri și examene', url: '/anunturi-concursuri-si-examene' }
       ]
     };
   }
 
   return {
     text: `Am înregistrat întrebarea dumneavoastră legată de „${query}”.\n\n` +
-      'Puteți căuta informația în [Căutarea pe site](#/) sau consulta direct secțiunile:\n' +
-      '• [Despre Comună](#/geografia)\n' +
-      '• [Tipizate & Formulare](#/tipizate)\n' +
-      '• [Monitorul Oficial Local](#/monitorul-oficial-local)\n' +
-      '• [Contact Primărie](#/contact)',
+      'Puteți căuta informația în [Căutarea pe site](/) sau consulta direct secțiunile:\n' +
+      '• [Despre Comună](/geografia)\n' +
+      '• [Tipizate & Formulare](/tipizate)\n' +
+      '• [Monitorul Oficial Local](/monitorul-oficial-local)\n' +
+      '• [Contact Primărie](/contact)',
     sources: [
-      { title: 'Monitorul Oficial Local', url: '#/monitorul-oficial-local' },
-      { title: 'Contact', url: '#/contact' }
+        { title: 'Monitorul Oficial Local', url: '/monitorul-oficial-local' },
+        { title: 'Contact', url: '/contact' }
     ]
   };
 }
@@ -161,7 +169,7 @@ function renderInline(str) {
       parts.push(<strong key={match.index}>{token.slice(2, -2)}</strong>);
     } else if (token.startsWith('[') && token.includes('](')) {
       const label = token.substring(1, token.indexOf(']('));
-      const url = token.substring(token.indexOf('](') + 2, token.length - 1);
+      const url = cleanInternalHref(token.substring(token.indexOf('](') + 2, token.length - 1));
       parts.push(
         <a key={match.index} href={url} target={url.startsWith('http') || url.includes('/download/') ? '_blank' : undefined} rel="noreferrer">
           {label}
@@ -272,6 +280,7 @@ export default function Chatbot({ site }) {
         aria-expanded={isOpen}
       >
         {isOpen ? <ChevronDown size={30} /> : <MessageCircle size={28} />}
+        <span className="chatbot-ai-label" aria-hidden="true">AI</span>
       </button>
 
       {isOpen && (
@@ -311,7 +320,7 @@ export default function Chatbot({ site }) {
                       {msg.sources.map((s, idx) => (
                         <a
                           key={idx}
-                          href={s.url}
+                          href={cleanInternalHref(s.url)}
                           className="chat-source-chip"
                           target={s.url.startsWith('http') || s.url.includes('/download/') || s.url.includes('/uploads/') ? '_blank' : undefined}
                           rel="noreferrer"
@@ -322,6 +331,13 @@ export default function Chatbot({ site }) {
                         </a>
                       ))}
                     </div>
+                  )}
+                  {msg.sender === 'bot' && msg.id !== 1 && (
+                    <a className="chat-contact-action" href="/contact">
+                      <Mail size={14} />
+                      Trimite o solicitare către primărie
+                      <ArrowUpRight size={14} />
+                    </a>
                   )}
                 </div>
               </div>

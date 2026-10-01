@@ -36,7 +36,7 @@ test('homepage displays authentic Corcova photo showcase and community pillars',
 
 test('subpage displays photo gallery with interactive lightbox modal', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/#/geografia');
+  await page.goto('/geografia');
 
   // Verify gallery header and 5 image cards
   await expect(page.locator('.page-gallery-section')).toBeVisible();

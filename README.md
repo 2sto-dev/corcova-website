@@ -54,7 +54,7 @@ npm ci
 npm run build
 ```
 
-Comanda pornește din rădăcina proiectului. Publică numai `frontend/dist` ca rădăcină statică în Nginx/Apache, cu HTTPS. Trimite către Django rutele `/api/`, `/gestionare-primarie/`, `/admin/` și `/administrare-primarie/`. Servește `/static/` din `backend/staticfiles/`. Documentele private sunt livrate prin API, nu printr-un alias public către `backend/media/`.
+Comanda pornește din rădăcina proiectului. Publică numai `frontend/dist` ca rădăcină statică în Nginx/Apache, cu HTTPS. Trimite către Django rutele `/api/`, `/gestionare-primarie/`, `/admin/` și `/administrare-primarie/`. Pentru rutele publice ale frontendului (de exemplu `/monitorul-oficial-local`), configurează Nginx/Apache să servească `frontend/dist/index.html` ca fallback (`try_files $uri $uri/ /index.html;` în Nginx). Servește `/static/` din `backend/staticfiles/`. Documentele private sunt livrate prin API, nu printr-un alias public către `backend/media/`.
 
 Nu publica rădăcina repository-ului, `.git`, `.env`, SQLite sau exportul SQL ca fișiere web. Contul serviciului Django trebuie să aibă drept de scriere asupra folderului bazei SQLite, inclusiv pentru jurnalele bazei.
 
@@ -124,4 +124,22 @@ flowchart TD
      - 📋 **Rezumat oficial**
      - 📂 **Documente și formulare conexe** (cu link direct de descărcare PDF)
      - 🔗 **Unde puteți citi mai multe** (linkuri către subpaginile site-ului)
+
+## Audit cod și fișiere neutilizate
+
+Frontend-ul include Knip și Madge, iar backend-ul include Ruff și Vulture. Acestea raportează fișiere, importuri, exporturi și simboluri care pot fi neutilizate; nu șterg automat nimic.
+
+```powershell
+# Frontend
+cd frontend
+npm run audit:knip
+npm run audit:madge
+
+# Backend
+cd ..\backend
+ruff check .
+vulture civic_core documents local_monitor wordpress_import --config pyproject.toml
+```
+
+Configurația se află în `frontend/knip.json`, `backend/pyproject.toml` și `backend/.vulture`. Verifică manual rezultatele înainte de ștergere, deoarece Django folosește convenții precum migrații, template-uri, comenzi de management și rute dinamice.
 

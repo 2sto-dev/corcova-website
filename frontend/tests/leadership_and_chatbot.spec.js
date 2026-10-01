@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Leadership & Administration Section', () => {
   test('renders 3-column executive & specialty administration section with 9 members', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
-    await page.goto('http://127.0.0.1:5173/#/');
+    await page.goto('http://127.0.0.1:5173/');
 
     const section = page.locator('.leadership-section');
     await expect(section).toBeVisible();
@@ -16,7 +16,7 @@ test.describe('Leadership & Administration Section', () => {
     // Verify Organigrama Button
     const organigramaBtn = section.locator('.organigrama-link');
     await expect(organigramaBtn).toBeVisible();
-    await expect(organigramaBtn).toHaveAttribute('href', '#/organigrama');
+    await expect(organigramaBtn).toHaveAttribute('href', '/organigrama');
 
     // Verify all 9 cards
     const cards = section.locator('.leadership-card');
@@ -95,8 +95,8 @@ test.describe('Leadership & Administration Section', () => {
     await section.screenshot({ path: 'leadership_section.png' });
   });
 
-  test('subpage #/organigrama displays leadership team', async ({ page }) => {
-    await page.goto('http://127.0.0.1:5173/#/organigrama');
+  test('subpage /organigrama displays leadership team', async ({ page }) => {
+    await page.goto('http://127.0.0.1:5173/organigrama');
     const leadershipSub = page.locator('.leadership-subpage-section');
     await expect(leadershipSub).toBeVisible();
     await expect(leadershipSub.locator('.leadership-card')).toHaveCount(9);

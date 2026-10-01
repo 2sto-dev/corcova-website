@@ -5,6 +5,7 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
+
 from civic_core.models import Institution
 from documents.models import Document
 from local_monitor.models import Entry, Register

@@ -42,21 +42,20 @@ test.describe('Django Backend & Admin Tests', () => {
   });
 
   test('Django Admin authentication and back-office management dashboard', async ({ page }) => {
+    test.skip(!adminUsername || !adminPassword, 'Set DJANGO_ADMIN_USERNAME and DJANGO_ADMIN_PASSWORD in backend/.env');
+
     // Navigate to Django admin login via /admin/ redirect
     await page.goto('http://127.0.0.1:8000/admin/login/');
     await expect(page).toHaveURL(/.*\/gestionare-primarie\/login\//);
-    await expect(page.locator('h1, #site-name')).toContainText('Administrarea site-ului');
+    await expect(page.locator('h1, #site-name')).toContainText('Administrare Primăria Corcova');
 
     // Log in with server-side credentials; never include them in the frontend bundle.
-    if (!adminUsername || !adminPassword) {
-      throw new Error('Set DJANGO_ADMIN_USERNAME and DJANGO_ADMIN_PASSWORD in backend/.env');
-    }
     await page.locator('input[name="username"]').fill(adminUsername);
     await page.locator('input[name="password"]').fill(adminPassword);
     await page.locator('input[type="submit"]').click();
 
     // Verify redirected to dashboard
-    await expect(page).toHaveURL(/.*\/gestionare-primarie\//);
+    await expect(page).toHaveURL(/.*\/gestionare-primarie\/$/);
     await expect(page.locator('#tab-messages-panel')).toBeVisible();
 
     // Switch to Sections tab
