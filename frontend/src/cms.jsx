@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import DOMPurify from 'dompurify';
-import { Accessibility, ArrowRight, ArrowUpRight, Baby, ChevronDown, ChevronUp, ClipboardList, Compass, Droplets, FileText, FileType2, Flame, HeartHandshake, Mountain, PawPrint, Route, Search, Sprout, WalletCards, X } from 'lucide-react';
+import { Accessibility, ArrowRight, ArrowUpRight, Baby, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, ClipboardList, Clock, Compass, Droplets, FileText, FileType2, Flame, HeartHandshake, Mail, MapPin, Mountain, PawPrint, Phone, Route, Search, ShieldCheck, Sprout, Users, WalletCards, X } from 'lucide-react';
 import { apiBase, siteApi, siteSlug, useApi, useDebounce } from './api';
 import MonitorLocal from './components/MonitorLocal';
 import PageGallery from './components/PageGallery';
@@ -61,9 +61,15 @@ export function ApiSearch({ close }) {
                 ))}
                 {(search.data?.previous || search.data?.next) && (
                   <div className="monitor-pagination">
-                    <button disabled={page === 1} onClick={() => setPage(page - 1)}>Anterior</button>
-                    <span>Pagina {page}</span>
-                    <button disabled={!search.data?.next} onClick={() => setPage(page + 1)}>Următor</button>
+                    <button type="button" disabled={page === 1} onClick={() => setPage(page - 1)}>
+                      <ChevronLeft size={16} aria-hidden="true" />
+                      <span>Anterior</span>
+                    </button>
+                    <span>Pagina <strong>{page}</strong></span>
+                    <button type="button" disabled={!search.data?.next} onClick={() => setPage(page + 1)}>
+                      <span>Următor</span>
+                      <ChevronRight size={16} aria-hidden="true" />
+                    </button>
                   </div>
                 )}
               </>
@@ -136,6 +142,150 @@ function FormsIntro() {
             <p className="mt-2 text-base leading-6 !text-slate-800">{text}</p>
           </article>
         ))}
+      </div>
+    </section>
+  );
+}
+
+
+function SocialAssistanceIntro() {
+  const services = [
+    {
+      icon: HeartHandshake,
+      title: 'Venit Minim de Incluziune (VMI)',
+      desc: 'Sprijin pentru incluziune și familii cu copii (Legea 196/2016)',
+      href: '#/venit-minim-garantat',
+    },
+    {
+      icon: Flame,
+      title: 'Ajutor Încălzire Locuință',
+      desc: 'Lemne, cărbuni, energie pentru sezonul rece (Legea 226/2021)',
+      href: '#/ajutor-incalzire',
+    },
+    {
+      icon: Baby,
+      title: 'Alocații & Creștere Copil',
+      desc: 'Alocație de stat, indemnizație ICC și stimulent de inserție',
+      href: '#/indemnizatie-crestere-copil',
+    },
+    {
+      icon: Accessibility,
+      title: 'Protecție Dizabilități / Handicap',
+      desc: 'Anchete sociale, dosare DGASPC și drepturi asistent personal',
+      href: '#/handicap-adulti',
+    },
+    {
+      icon: Users,
+      title: 'Copii cu Părinți în Străinătate',
+      desc: 'Notificare legală obligatorie și delegare autoritate (HG 691/2015)',
+      href: '#/documente-hg-691-din-2015',
+    },
+    {
+      icon: WalletCards,
+      title: 'Tichete Sociale Grădiniță & Școală',
+      desc: 'Stimulent educațional preșcolar și sprijin electronic rechizite',
+      href: '#/stimulent-educationaltichet-social-de-gradinita',
+    },
+  ];
+
+  return (
+    <section className="mb-8 space-y-6" aria-label="Prezentare Asistență Socială">
+      <div className="grid gap-5 overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-sky-50/40 to-slate-100 p-6 shadow-sm lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-900">
+            <HeartHandshake size={15} /> Servicii Publice &amp; Sprijin Comunitar
+          </span>
+          <h2 className="mt-3 font-serif text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
+            Compartimentul de Asistență Socială
+          </h2>
+          <p className="mt-3 text-base leading-7 text-slate-700">
+            Asigurăm sprijinul direct pentru familii, copii, persoane vârstnice și persoane cu dizabilități din toate cele 13 sate ale comunei Corcova. Vă oferim consiliere, instrumentarea dosarelor și acces transparent la beneficiile de asistență socială prevăzute de lege.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-700">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <ShieldCheck size={16} className="text-emerald-700" /> Drepturi &amp; Prestații Legale
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <Users size={16} className="text-sky-700" /> Acoperire 13 Sate
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <FileText size={16} className="text-indigo-700" /> Formulare Tipizate
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between rounded-xl border border-sky-200 bg-white p-5 shadow-sm">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-wider text-sky-900">
+              Echipa &amp; Program cu Publicul
+            </span>
+            <h3 className="mt-1 text-lg font-bold text-slate-900">
+              Ana ȘERBAN &amp; Victoria VLAD
+            </h3>
+            <p className="text-xs font-semibold text-slate-500">
+              Referenți Asistență Socială
+            </p>
+
+            <ul className="mt-4 space-y-2.5 text-sm text-slate-700">
+              <li className="flex items-center gap-2.5">
+                <Clock size={16} className="shrink-0 text-emerald-700" />
+                <span><strong>Program:</strong> Luni – Vineri: 08:00 – 16:00</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <MapPin size={16} className="shrink-0 text-red-600" />
+                <span>Sediul Primăriei Corcova, Județul Mehedinți</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Phone size={16} className="shrink-0 text-sky-700" />
+                <a href="tel:0252383464" className="font-semibold text-sky-800 hover:underline">
+                  0252 383 464
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Mail size={16} className="shrink-0 text-indigo-700" />
+                <a href="mailto:primaria.corcova@gmail.com" className="font-semibold text-indigo-800 hover:underline">
+                  primaria.corcova@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-500">
+            Audiențe de specialitate: <strong>Luni și Miercuri 09:00 – 12:00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="mb-3 text-lg font-bold text-slate-800">
+          Ghid Servicii &amp; Prestații Sociale
+        </h3>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map(({ icon: Icon, title, desc, href }) => (
+            <a
+              key={title}
+              href={href}
+              className="group flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-md"
+            >
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-sky-50 text-sky-800 transition group-hover:bg-sky-100">
+                    <Icon size={20} strokeWidth={2.1} />
+                  </span>
+                  <h4 className="text-base font-bold leading-snug text-slate-900 group-hover:text-sky-900">
+                    {title}
+                  </h4>
+                </div>
+                <p className="mt-2 text-xs leading-5 text-slate-600">
+                  {desc}
+                </p>
+              </div>
+              <span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-sky-700 group-hover:underline">
+                Accesează detalii &amp; formulare <ArrowUpRight size={14} />
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -367,7 +517,6 @@ export function CmsPage({ slug }) {
   const monitor = slug === 'monitorul-oficial-local';
   const isAnnouncements = slug === 'anunturi' || slug === 'anunturi-concursuri-si-examene';
   const isDeclarations = slug === 'declaratii-de-avere' || slug === 'declaratii-de-interese';
-  const isLeadership = slug === 'organigrama' || slug === 'administratia' || slug === 'conducerea-primariei';
   const resource = useApi(monitor ? null : `${siteApi}/pages/${encodeURIComponent(slug)}/`);
   const [documentPage, setDocumentPage] = useState(1);
   const [childrenPage, setChildrenPage] = useState(1);
@@ -441,54 +590,23 @@ export function CmsPage({ slug }) {
             )}
             {(children.data?.next || children.data?.previous) && (
               <div className="monitor-pagination">
-                <button disabled={!children.data.previous} onClick={() => setChildrenPage(childrenPage - 1)}>Anterior</button>
-                <button disabled={!children.data.next} onClick={() => setChildrenPage(childrenPage + 1)}>Următor</button>
+                <button type="button" disabled={!children.data.previous} onClick={() => setChildrenPage(childrenPage - 1)}>
+                  <ChevronLeft size={16} aria-hidden="true" />
+                  <span>Anterior</span>
+                </button>
+                <span>Pagina <strong>{childrenPage}</strong></span>
+                <button type="button" disabled={!children.data.next} onClick={() => setChildrenPage(childrenPage + 1)}>
+                  <span>Următor</span>
+                  <ChevronRight size={16} aria-hidden="true" />
+                </button>
               </div>
             )}
 
             {slug === 'geografia' && <GeographyIntro />}
             {slug === 'geografia' && <GeographySections />}
             {slug === 'tipizate' && <FormsIntro />}
+            {slug === 'compartimentul-de-asistenta-sociala' && <SocialAssistanceIntro />}
             {sanitized.trim() && <ExpandableArticle html={sanitized} geography={slug === 'geografia'} forms={slug === 'tipizate'} declarations={isDeclarations} declarationsTitle={slug === 'declaratii-de-interese' ? 'Declarații de interese' : 'Declarații de avere'} declarationDocuments={documents.data?.results || []} />}
-
-            {isLeadership && (
-              <section className="leadership-subpage-section" style={{ marginTop: 32, marginBottom: 32 }}>
-                <h2 style={{ fontSize: '1.25rem', marginBottom: 16, color: '#17477d' }}>
-                  Conducerea Executivă &amp; Aparatul de Specialitate
-                </h2>
-                <div className="leadership-grid">
-                  {HOMEPAGE_MEDIA.leadership.map((member) => (
-                    <div
-                      key={member.id}
-                      className={`leadership-card ${member.isMayor ? 'is-mayor' : ''}`}
-                    >
-                      <div className="leadership-avatar-col">
-                        {member.image ? (
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className="leadership-photo"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="leadership-monogram" aria-hidden="true">
-                            {member.initials}
-                          </div>
-                        )}
-                      </div>
-                      <div className="leadership-info-col">
-                        <span className={`leadership-status-badge ${member.isMayor ? 'badge-mayor' : ''}`}>
-                          {member.status}
-                        </span>
-                        <h3 className="leadership-name">{member.name}</h3>
-                        <div className="leadership-role">{member.role}</div>
-                        <div className="leadership-dept">{member.dept}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
 
             {PAGE_GALLERIES[slug] && (
               <PageGallery gallery={PAGE_GALLERIES[slug]} />
@@ -512,24 +630,40 @@ export function CmsPage({ slug }) {
                       const isWord = extension === 'DOC' || extension === 'DOCX';
                       const DocumentIcon = isWord ? FileType2 : FileText;
 
+                      const badgeClass = isWord ? 'badge-docx' : extension === 'PDF' ? 'badge-pdf' : 'badge-other';
+
                       return (
-                      <article key={doc.id} className="grid items-center gap-4 px-5 py-4 transition hover:bg-slate-50 md:grid-cols-[minmax(0,1fr)_auto]">
+                      <article key={doc.id} className="grid items-center gap-4 px-5 py-3.5 transition hover:bg-slate-50 md:grid-cols-[minmax(0,1fr)_auto]">
                         <div className="flex min-w-0 flex-wrap items-baseline gap-x-4 gap-y-1">
                           <h3 className="min-w-0 break-words text-base font-bold leading-6 text-slate-800">{doc.title}</h3>
                           <small className="shrink-0 text-sm text-slate-500">{doc.year ? `Anul ${doc.year}` : ''}</small>
                         </div>
-                        <a className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-blue-200 px-3 py-2 text-sm font-bold text-blue-900 transition hover:border-blue-500 hover:bg-blue-50" href={cleanInternalHref(doc.download_url)} target="_blank" rel="noopener noreferrer">
-                          <DocumentIcon size={18} aria-hidden="true" />
-                          Descarcă {doc.original_filename?.split('.').pop()?.toUpperCase() || ''} ↗
+                        <a
+                          className="doc-download-button"
+                          href={cleanInternalHref(doc.download_url)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className={`doc-download-badge ${badgeClass}`}>
+                            {extension}
+                          </span>
+                          <span>Descarcă</span>
+                          <ArrowUpRight size={14} aria-hidden="true" />
                         </a>
                       </article>
                       );
                     })}
                   </div>
                   <div className="monitor-pagination">
-                    <button disabled={!documents.data?.previous} onClick={() => setDocumentPage(documentPage - 1)}>Anterior</button>
-                    <span>Pagina {documentPage}</span>
-                    <button disabled={!documents.data?.next} onClick={() => setDocumentPage(documentPage + 1)}>Următor</button>
+                    <button type="button" disabled={!documents.data?.previous} onClick={() => setDocumentPage(documentPage - 1)}>
+                      <ChevronLeft size={16} aria-hidden="true" />
+                      <span>Anterior</span>
+                    </button>
+                    <span>Pagina <strong>{documentPage}</strong></span>
+                    <button type="button" disabled={!documents.data?.next} onClick={() => setDocumentPage(documentPage + 1)}>
+                      <span>Următor</span>
+                      <ChevronRight size={16} aria-hidden="true" />
+                    </button>
                   </div>
                 </details>
               ) : !sanitized.trim() && !children.data?.count && (

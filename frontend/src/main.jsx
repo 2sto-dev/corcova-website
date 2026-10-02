@@ -294,8 +294,8 @@ function App() {
           <div className="contact-page container page-layout !w-full !max-w-none !grid-cols-1 !gap-0 px-6 lg:px-10">
             <div className="page-main mx-auto w-full max-w-7xl">
               <div className="breadcrumb">
-                <a href="/">AcasÄƒ</a>
-                <span>â€º</span>
+                <a href="/">Acasă</a>
+                <span>›</span>
                 <span>Contact</span>
               </div>
               <h1>Contact</h1>

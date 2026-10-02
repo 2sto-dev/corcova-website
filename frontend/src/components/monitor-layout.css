@@ -24,20 +24,37 @@
   @apply mx-auto w-full;
 }
 
+.monitor-hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
 .monitor-hero > span {
   @apply text-sm text-indigo-900;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .monitor-hero > h1 {
-  @apply mx-auto mt-4 w-full max-w-4xl text-center text-slate-900;
+  @apply mt-4 w-full max-w-4xl text-center text-slate-900;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
 }
 
 .monitor-hero > p {
-  @apply mt-5 max-w-3xl text-lg leading-8 text-slate-700 sm:text-xl;
+  @apply mt-4 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl text-center;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
 }
 
 .monitor-hero > div[aria-label="Rezumat documente"] {
-  @apply mt-8 gap-3 text-slate-700;
+  @apply mt-6 flex flex-wrap justify-center gap-3 text-slate-700;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .monitor-hero > div[aria-label="Rezumat documente"] > span {

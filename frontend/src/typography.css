@@ -228,3 +228,144 @@ p,
     width: calc(100% - 2rem);
   }
 }
+
+
+/* Document Download Button & Badges */
+.doc-download-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 7px 14px !important;
+  background: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.15s ease-in-out !important;
+  white-space: nowrap !important;
+}
+
+.doc-download-button:hover {
+  background: #f0f4f8 !important;
+  border-color: #17477d !important;
+  color: #17477d !important;
+  box-shadow: 0 2px 4px rgba(23, 71, 125, 0.08) !important;
+}
+
+.doc-download-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+}
+
+.doc-download-badge.badge-pdf {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+.doc-download-badge.badge-doc,
+.doc-download-badge.badge-docx {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+}
+
+.doc-download-badge.badge-odt,
+.doc-download-badge.badge-other {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+/* Pagination Bar Styles */
+.monitor-pagination {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-top: 24px !important;
+  margin-bottom: 8px !important;
+  padding: 16px 20px !important;
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.monitor-pagination button,
+.monitor-pagination .pagination-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  min-height: 38px !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.15s ease-in-out !important;
+  cursor: pointer !important;
+}
+
+.monitor-pagination button:hover:not(:disabled),
+.monitor-pagination .pagination-btn:hover:not(:disabled) {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+}
+
+.monitor-pagination button:disabled,
+.monitor-pagination .pagination-btn:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #94a3b8 !important;
+  box-shadow: none !important;
+}
+
+.monitor-pagination span,
+.monitor-pagination .pagination-current {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  min-height: 38px !important;
+  padding: 8px 16px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  background: #ffffff !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+.monitor-pagination span strong,
+.monitor-pagination .pagination-current strong {
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+/* Scoped SVG overrides: keep icons compact inside buttons */
+body .doc-download-button svg,
+body .monitor-pagination svg,
+body .monitor-pagination button svg,
+body .pagination-btn svg {
+  width: 15px !important;
+  height: 15px !important;
+  max-width: 15px !important;
+  max-height: 15px !important;
+  color: inherit !important;
+}

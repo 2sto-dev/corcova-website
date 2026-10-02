@@ -114,7 +114,7 @@ function resolveLocalEndpoint(url) {
 
     let filtered = docsData;
     if (pageSlug) {
-      filtered = filtered.filter(d => d.page_slug === pageSlug);
+      filtered = filtered.filter(d => d.page_slug === pageSlug || (Array.isArray(d.page_slugs) && d.page_slugs.includes(pageSlug)));
     }
     if (q) {
       filtered = filtered.filter(d => d.title.toLowerCase().includes(q) || d.original_filename.toLowerCase().includes(q));

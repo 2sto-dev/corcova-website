@@ -19,7 +19,12 @@
     "extension": "PDF",
     "year": 2015,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2014-2",
+      "fp-2"
+    ],
+    "page_slug": "2014-2"
   },
   {
     "id": 3,
@@ -30,7 +35,11 @@
     "extension": "PDF",
     "year": 2015,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 4,
@@ -41,7 +50,11 @@
     "extension": "PDF",
     "year": 2015,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 5,
@@ -52,7 +65,11 @@
     "extension": "PDF",
     "year": 2015,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 6,
@@ -63,7 +80,11 @@
     "extension": "PDF",
     "year": 2015,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 7,
@@ -74,7 +95,11 @@
     "extension": "PDF",
     "year": 2015,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 8,
@@ -85,7 +110,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2015-2"
+    ],
+    "page_slug": "2015-2"
   },
   {
     "id": 9,
@@ -96,7 +125,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 10,
@@ -107,7 +140,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 11,
@@ -118,7 +155,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 12,
@@ -129,7 +170,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 13,
@@ -140,7 +185,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 14,
@@ -151,7 +200,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 15,
@@ -162,7 +215,11 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 16,
@@ -173,7 +230,12 @@
     "extension": "PDF",
     "year": 2016,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2",
+      "fp-1"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 17,
@@ -184,7 +246,11 @@
     "extension": "PDF",
     "year": 2018,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2016-2"
+    ],
+    "page_slug": "2016-2"
   },
   {
     "id": 18,
@@ -195,7 +261,11 @@
     "extension": "PDF",
     "year": 2018,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2018-2"
+    ],
+    "page_slug": "2018-2"
   },
   {
     "id": 19,
@@ -206,7 +276,11 @@
     "extension": "PDF",
     "year": 2019,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2018-2"
+    ],
+    "page_slug": "2018-2"
   },
   {
     "id": 20,
@@ -217,7 +291,11 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2019-2"
+    ],
+    "page_slug": "2019-2"
   },
   {
     "id": 21,
@@ -228,7 +306,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "ajutor-incalzire",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "ajutor-incalzire"
   },
   {
     "id": 22,
@@ -239,7 +322,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "indemnizatie-crestere-copil"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 23,
@@ -250,7 +338,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "handicap-copii"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 24,
@@ -261,7 +354,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "handicap-adulti"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 25,
@@ -272,7 +370,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "documente-hg-691-din-2015"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 26,
@@ -283,7 +386,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tichet-social-pe-suport-electronic"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 27,
@@ -294,7 +402,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-de-insertie"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 28,
@@ -305,7 +418,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-educationaltichet-social-de-gradinita"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 29,
@@ -316,7 +434,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "alocatie-de-sustinere-a-familiei",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "alocatie-de-sustinere-a-familiei"
   },
   {
     "id": 30,
@@ -327,7 +450,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "ajutor-incalzire",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "ajutor-incalzire"
   },
   {
     "id": 31,
@@ -338,7 +466,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-educationaltichet-social-de-gradinita"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 32,
@@ -349,7 +482,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "venit-minim-garantat"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 33,
@@ -360,7 +498,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "indemnizatie-crestere-copil"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 34,
@@ -371,7 +514,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "alocatie-de-stat",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "alocatie-de-stat"
   },
   {
     "id": 35,
@@ -382,7 +530,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-de-insertie"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 36,
@@ -393,7 +546,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "venit-minim-garantat"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 37,
@@ -404,7 +562,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "alocatie-de-sustinere-a-familiei",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "alocatie-de-sustinere-a-familiei"
   },
   {
     "id": 38,
@@ -415,7 +578,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "indemnizatie-crestere-copil"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 39,
@@ -426,7 +594,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "ajutor-incalzire",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "ajutor-incalzire"
   },
   {
     "id": 40,
@@ -437,7 +610,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "alocatie-de-stat",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "alocatie-de-stat"
   },
   {
     "id": 41,
@@ -448,7 +626,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-de-insertie"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 42,
@@ -459,7 +642,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "indemnizatie-crestere-copil"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 43,
@@ -470,7 +658,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "alocatie-de-sustinere-a-familiei",
+      "compartimentul-de-asistenta-sociala"
+    ],
+    "page_slug": "alocatie-de-sustinere-a-familiei"
   },
   {
     "id": 44,
@@ -481,7 +674,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "venit-minim-garantat"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 45,
@@ -492,7 +690,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "documente-hg-691-din-2015"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 46,
@@ -503,7 +706,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "documente-hg-691-din-2015"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 47,
@@ -514,7 +722,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "indemnizatie-crestere-copil"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 48,
@@ -525,7 +738,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "stimulent-de-insertie"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 49,
@@ -536,7 +754,12 @@
     "extension": "PDF",
     "year": 2020,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "documente-hg-691-din-2015"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 50,
@@ -547,7 +770,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "documente-hg-691-din-2015"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 51,
@@ -558,7 +786,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 52,
@@ -569,7 +801,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 53,
@@ -580,7 +816,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2021-2"
   },
   {
     "id": 54,
@@ -591,7 +832,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2021-2"
   },
   {
     "id": 55,
@@ -602,7 +848,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 56,
@@ -613,7 +863,13 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 57,
@@ -624,7 +880,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 58,
@@ -635,7 +895,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 59,
@@ -646,7 +910,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 60,
@@ -657,7 +925,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 61,
@@ -668,7 +940,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 62,
@@ -679,7 +955,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 63,
@@ -690,7 +970,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 64,
@@ -701,7 +985,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 65,
@@ -712,7 +1000,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 66,
@@ -723,7 +1015,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 67,
@@ -734,7 +1030,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 68,
@@ -745,7 +1045,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 69,
@@ -756,7 +1060,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 70,
@@ -767,7 +1075,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 71,
@@ -778,7 +1090,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 72,
@@ -789,7 +1105,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 73,
@@ -800,7 +1120,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 74,
@@ -811,7 +1135,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 75,
@@ -822,7 +1150,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 76,
@@ -833,7 +1165,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 77,
@@ -844,7 +1180,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 78,
@@ -855,7 +1195,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 79,
@@ -866,7 +1210,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 80,
@@ -877,7 +1225,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 81,
@@ -888,7 +1240,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 82,
@@ -899,7 +1255,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 83,
@@ -910,7 +1270,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 84,
@@ -921,7 +1285,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 85,
@@ -932,7 +1300,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-avere"
+    ],
+    "page_slug": "declaratii-de-avere"
   },
   {
     "id": 86,
@@ -943,7 +1315,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 87,
@@ -954,7 +1330,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 88,
@@ -965,7 +1345,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 89,
@@ -976,7 +1360,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 90,
@@ -987,7 +1375,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 91,
@@ -998,7 +1390,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 92,
@@ -1009,7 +1405,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 93,
@@ -1020,7 +1420,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 94,
@@ -1031,7 +1435,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 95,
@@ -1042,7 +1450,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 96,
@@ -1053,7 +1465,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 97,
@@ -1064,7 +1480,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 98,
@@ -1075,7 +1495,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 99,
@@ -1086,7 +1510,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 100,
@@ -1097,7 +1525,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 101,
@@ -1108,7 +1540,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 102,
@@ -1119,7 +1555,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 103,
@@ -1130,7 +1570,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 104,
@@ -1141,7 +1585,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 105,
@@ -1152,7 +1600,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 106,
@@ -1163,7 +1615,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 107,
@@ -1174,7 +1630,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 108,
@@ -1185,7 +1645,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 109,
@@ -1196,7 +1660,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 110,
@@ -1207,7 +1675,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 111,
@@ -1218,7 +1690,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 112,
@@ -1229,7 +1705,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 113,
@@ -1240,7 +1720,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "dai",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 114,
@@ -1251,7 +1735,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "declaratii-de-interese"
+    ],
+    "page_slug": "declaratii-de-interese"
   },
   {
     "id": 115,
@@ -1262,7 +1750,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 116,
@@ -1273,7 +1765,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 117,
@@ -1284,7 +1780,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 118,
@@ -1295,7 +1795,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 119,
@@ -1306,7 +1810,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "hcl",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 120,
@@ -1317,7 +1825,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2021-2"
   },
   {
     "id": 121,
@@ -1328,7 +1841,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2021-2"
   },
   {
     "id": 122,
@@ -1339,7 +1857,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2019-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2019-2"
   },
   {
     "id": 123,
@@ -1350,7 +1873,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2021-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2021-2"
   },
   {
     "id": 124,
@@ -1361,7 +1889,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 125,
@@ -1372,7 +1904,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 126,
@@ -1383,7 +1919,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 127,
@@ -1394,7 +1934,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 128,
@@ -1405,7 +1949,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 129,
@@ -1416,7 +1964,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 130,
@@ -1427,7 +1979,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 131,
@@ -1438,7 +1994,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 132,
@@ -1449,7 +2009,11 @@
     "extension": "PDF",
     "year": 2021,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "monitorul-oficial-local"
   },
   {
     "id": 133,
@@ -1460,7 +2024,12 @@
     "extension": "PDF",
     "year": 2021,
     "category": "finante",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2019-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2019-2"
   },
   {
     "id": 134,
@@ -1471,7 +2040,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2019-2",
+      "monitorul-oficial-local"
+    ],
+    "page_slug": "2019-2"
   },
   {
     "id": 135,
@@ -1482,7 +2056,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 136,
@@ -1493,7 +2072,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 137,
@@ -1504,7 +2088,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 138,
@@ -1515,7 +2104,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 139,
@@ -1526,7 +2120,12 @@
     "extension": "PDF",
     "year": 2022,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 140,
@@ -1537,7 +2136,11 @@
     "extension": "PDF",
     "year": 2022,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "2022-2"
+    ],
+    "page_slug": "2022-2"
   },
   {
     "id": 141,
@@ -1548,7 +2151,12 @@
     "extension": "PDF",
     "year": 2023,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi",
+      "2022-2"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 142,
@@ -1559,7 +2167,8 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": []
   },
   {
     "id": 143,
@@ -1570,7 +2179,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 144,
@@ -1581,7 +2195,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 145,
@@ -1592,7 +2211,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 146,
@@ -1603,7 +2227,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 147,
@@ -1614,7 +2243,12 @@
     "extension": "ODT",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 148,
@@ -1625,7 +2259,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 149,
@@ -1636,7 +2275,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 150,
@@ -1647,7 +2291,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 151,
@@ -1658,7 +2307,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 152,
@@ -1669,7 +2323,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 153,
@@ -1680,7 +2339,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 154,
@@ -1691,7 +2355,11 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi"
+    ],
+    "page_slug": "anunturi"
   },
   {
     "id": 155,
@@ -1702,7 +2370,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 156,
@@ -1713,7 +2386,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 157,
@@ -1724,7 +2402,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 158,
@@ -1735,7 +2418,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 159,
@@ -1746,7 +2434,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 160,
@@ -1757,7 +2450,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 161,
@@ -1768,7 +2466,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunt-privind-ocuparea-prin-concurs-a-unei-functii-publice-de-executie-temporar-vacanta",
+      "anunturi"
+    ],
+    "page_slug": "anunt-privind-ocuparea-prin-concurs-a-unei-functii-publice-de-executie-temporar-vacanta"
   },
   {
     "id": 162,
@@ -1779,7 +2482,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 163,
@@ -1790,7 +2498,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   },
   {
     "id": 164,
@@ -1801,7 +2514,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 165,
@@ -1812,7 +2530,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 166,
@@ -1823,7 +2546,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 167,
@@ -1834,7 +2562,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 168,
@@ -1845,7 +2578,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 169,
@@ -1856,7 +2594,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 170,
@@ -1867,7 +2610,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 171,
@@ -1878,7 +2626,12 @@
     "extension": "ODT",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 172,
@@ -1889,7 +2642,12 @@
     "extension": "DOC",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 173,
@@ -1900,7 +2658,12 @@
     "extension": "DOC",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 174,
@@ -1911,7 +2674,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 175,
@@ -1922,7 +2690,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 176,
@@ -1933,7 +2706,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 177,
@@ -1944,7 +2722,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 178,
@@ -1955,7 +2738,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 179,
@@ -1966,7 +2754,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 180,
@@ -1977,7 +2770,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 181,
@@ -1988,7 +2786,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 182,
@@ -1999,7 +2802,12 @@
     "extension": "DOCX",
     "year": 2025,
     "category": "tipizate",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 183,
@@ -2010,7 +2818,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "diverse",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 184,
@@ -2021,7 +2834,12 @@
     "extension": "PDF",
     "year": 2025,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "compartimentul-de-asistenta-sociala",
+      "tipizate"
+    ],
+    "page_slug": "compartimentul-de-asistenta-sociala"
   },
   {
     "id": 185,
@@ -2032,6 +2850,11 @@
     "extension": "PDF",
     "year": 2026,
     "category": "anunturi",
-    "available_locally": true
+    "available_locally": true,
+    "page_slugs": [
+      "anunturi-concursuri-si-examene",
+      "anunturi"
+    ],
+    "page_slug": "anunturi-concursuri-si-examene"
   }
 ]

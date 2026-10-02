@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download, FileText, Filter, Search, SlidersHorizontal } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight, Download, FileText, Filter, Search, SlidersHorizontal } from 'lucide-react';
 import { useApi, useDebounce } from '../api';
 import './monitor-layout.css';
 
@@ -14,7 +14,6 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
   const [year, setYear] = useState('');
   const [page, setPage] = useState(1);
   const [registerPage, setRegisterPage] = useState(1);
-  const [visibleCount, setVisibleCount] = useState(5);
 
   useEffect(() => {
     const onPopState = () => {
@@ -30,12 +29,7 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
   const entries = useApi(`${root}/entries/?${new URLSearchParams({ register, search: debounced, year, page, page_size: 20 })}`);
   const hasFilters = Boolean(register || search || year);
   const resultItems = entries.data?.results || [];
-  const visibleEntries = resultItems.slice(0, visibleCount);
-  const canContinue = visibleCount < resultItems.length || Boolean(entries.data?.next);
-
-  useEffect(() => {
-    setVisibleCount(5);
-  }, [register, debounced, year, page]);
+  const visibleEntries = resultItems;
 
   function filter(setter, value) {
     setter(value);
@@ -49,22 +43,12 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
     setPage(1);
   }
 
-  function continueDocuments() {
-    if (visibleCount < resultItems.length) {
-      setVisibleCount(count => count + 5);
-      return;
-    }
-    if (entries.data?.next) {
-      setPage(currentPage => currentPage + 1);
-    }
-  }
-
   return (
     <section className="w-full space-y-6 text-[18px] leading-7 text-slate-700" aria-label={title}>
-      <header className="monitor-hero rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-sky-50 px-6 py-10 text-center shadow-md sm:px-12 sm:py-12">
-        <span className="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500"><FileText size={15} /> Registru public digital</span>
-        <h1 className="mx-auto !mt-3 !mb-0 max-w-4xl font-serif !text-4xl leading-tight font-semibold text-slate-800 sm:!text-5xl">{title}</h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600">Accesați hotărâri, dispoziții și documente oficiale publicate de administrația locală.</p>
+      <header className="monitor-hero flex flex-col items-center justify-center rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-sky-50 px-6 py-10 text-center shadow-md sm:px-12 sm:py-12">
+        <span className="!mx-auto inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500"><FileText size={15} /> Registru public digital</span>
+        <h1 className="!mx-auto !mt-3 !mb-0 w-full max-w-4xl text-center font-serif !text-4xl leading-tight font-semibold text-slate-800 sm:!text-5xl">{title}</h1>
+        <p className="!mx-auto mt-4 max-w-2xl text-center text-lg leading-8 text-slate-600">Accesați hotărâri, dispoziții și documente oficiale publicate de administrația locală.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-base text-slate-600" aria-label="Rezumat documente">
           <span><strong className="mr-2 text-2xl font-bold text-blue-900">{entries.data?.count ?? '—'}</strong> documente găsite</span>
           <span><strong className="mr-2 text-2xl font-bold text-blue-900">{registers.data?.count ?? '—'}</strong> registre disponibile</span>
@@ -157,8 +141,12 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
                   <h3 className="break-words text-lg font-bold leading-7 text-slate-800">{entry.title}</h3>
                   <p className="mt-1 text-base text-slate-500">{[entry.number && `Nr. ${entry.number}`, entry.issued_on && new Date(`${entry.issued_on}T12:00:00`).toLocaleDateString('ro-RO')].filter(Boolean).join(' · ') || 'Document public'}</p>
                 </div>
-                <a className="inline-flex min-h-11 items-center justify-center gap-2 justify-self-start rounded-md border border-blue-200 px-3 py-2 text-base font-bold text-blue-900 transition hover:border-blue-500 hover:bg-blue-50 md:justify-self-end" href={entry.document.download_url} target="_blank" rel="noreferrer">
-                  <Download size={17} /> {entry.document.available_locally ? 'Descarcă' : 'Deschide'}
+                <a className="doc-download-button md:justify-self-end" href={entry.document.download_url} target="_blank" rel="noreferrer">
+                  <span className="doc-download-badge badge-pdf">
+                    {entry.document.original_filename?.split('.').pop()?.toUpperCase() || 'PDF'}
+                  </span>
+                  <span>{entry.document.available_locally ? 'Descarcă' : 'Deschide'}</span>
+                  <ArrowUpRight size={14} aria-hidden="true" />
                 </a>
               </article>
             ))}
@@ -170,15 +158,16 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
         )}
 
         <div className="mt-6 flex flex-col items-center gap-3 text-base font-semibold text-slate-500">
-          {canContinue && (
-            <button className="rounded-md bg-blue-900 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-blue-950" type="button" onClick={continueDocuments}>
-              Continuă
+          <div className="monitor-pagination">
+            <button type="button" disabled={!entries.data?.previous} onClick={() => setPage(page - 1)}>
+              <ChevronLeft size={16} aria-hidden="true" />
+              <span>Anterior</span>
             </button>
-          )}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <button className="rounded-md border border-slate-300 bg-white px-3 py-2 text-base font-semibold text-slate-700 transition hover:border-blue-600 hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-40" disabled={!entries.data?.previous} onClick={() => setPage(page - 1)}>Anterior</button>
-            <span>Pagina {page}</span>
-            <button className="rounded-md border border-slate-300 bg-white px-3 py-2 text-base font-semibold text-slate-700 transition hover:border-blue-600 hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-40" disabled={!entries.data?.next} onClick={() => setPage(page + 1)}>Următor</button>
+            <span>Pagina <strong>{page}</strong></span>
+            <button type="button" disabled={!entries.data?.next} onClick={() => setPage(page + 1)}>
+              <span>Următor</span>
+              <ChevronRight size={16} aria-hidden="true" />
+            </button>
           </div>
         </div>
       </section>

@@ -53,36 +53,40 @@
       "label": "Documente",
       "children": [
         {
-          "label": "2022",
+          "label": "Arhiva oficială de documente",
+          "href": "#/monitorul-oficial-local"
+        },
+        {
+          "label": "Bugete și situații financiare",
+          "href": "#/monitorul-oficial-local?register=finante"
+        },
+        {
+          "label": "Documente și anunțuri 2022",
           "href": "#/2022-2"
         },
         {
-          "label": "2021",
+          "label": "Grile salariale și documente 2021",
           "href": "#/2021-2"
         },
         {
-          "label": "2019",
-          "href": "#/2019-2"
+          "label": "Strategia de dezvoltare durabilă",
+          "href": "/dosare/documente/2014/strategie_dezvoltare_corcova.pdf"
         },
         {
-          "label": "2018",
-          "href": "#/2018-2"
+          "label": "Bugete 2016 (PDF)",
+          "href": "/dosare/documente/2016/buget_2016.06.08.pdf"
         },
         {
-          "label": "2016",
-          "href": "#/2016-2"
+          "label": "Situații financiare 2016 (PDF)",
+          "href": "/dosare/documente/2016/finante_2016.04.25.pdf"
         },
         {
-          "label": "2015",
-          "href": "#/2015-2"
+          "label": "Investiții 2016 (PDF)",
+          "href": "/dosare/documente/2016/investitii_2016.02.05.pdf"
         },
         {
-          "label": "2014",
-          "href": "#/2014-2"
-        },
-        {
-          "label": "Toate registrele (Monitorul Oficial)",
-          "href": "#/monitorul-oficial-local"
+          "label": "Arhivă bugete 2015 (PDF)",
+          "href": "/dosare/documente/2015/buget_2015.12.17.pdf"
         }
       ]
     },
