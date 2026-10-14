@@ -6,7 +6,40 @@ import MonitorLocal from './components/MonitorLocal';
 import PageGallery from './components/PageGallery';
 import AnnouncementsView from './components/AnnouncementsView';
 import { PAGE_GALLERIES, HOMEPAGE_MEDIA } from './mediaData';
-import { cleanInternalHref } from './routing';
+import { cleanInternalHref, cleanMediaSrc } from './routing';
+
+const CMS_SANITIZE_CONFIG = {
+  USE_PROFILES: { html: true },
+  ALLOW_DATA_ATTR: false,
+  FORBID_TAGS: ['base', 'embed', 'form', 'iframe', 'input', 'link', 'math', 'meta', 'object', 'script', 'select', 'style', 'svg', 'textarea'],
+  FORBID_ATTR: ['formaction', 'srcdoc', 'srcset'],
+};
+
+function sanitizeCmsHtml(value) {
+  const sanitized = DOMPurify.sanitize(value || '', CMS_SANITIZE_CONFIG);
+  const document = new DOMParser().parseFromString(sanitized, 'text/html');
+  document.body.querySelectorAll('a[href]').forEach(link => {
+    const safeHref = cleanInternalHref(link.getAttribute('href'), '');
+    if (!safeHref) {
+      link.removeAttribute('href');
+      link.removeAttribute('target');
+      return;
+    }
+    link.setAttribute('href', safeHref);
+    if (link.getAttribute('target') === '_blank') {
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+  document.body.querySelectorAll('img[src]').forEach(image => {
+    const safeSrc = cleanMediaSrc(image.getAttribute('src'));
+    if (!safeSrc) {
+      image.remove();
+      return;
+    }
+    image.setAttribute('src', safeSrc);
+  });
+  return document.body.innerHTML;
+}
 
 export function ApiSearch({ close }) {
   const [query, setQuery] = useState('');
@@ -544,7 +577,7 @@ export function CmsPage({ slug }) {
         }
       }
     });
-    return DOMPurify.sanitize(body.innerHTML);
+    return sanitizeCmsHtml(body.innerHTML);
   }, [page]);
 
   const title = monitor ? 'Monitorul Oficial Local' : page?.title;

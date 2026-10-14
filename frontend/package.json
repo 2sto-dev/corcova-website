@@ -21,7 +21,7 @@
     "@playwright/test": "^1.50.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^4.3.0",
-    "knip": "^5.88.1",
+    "knip": "^6.41.0",
     "madge": "^8.0.0",
     "tailwindcss": "^4.3.3",
     "vite": "^6.0.0"

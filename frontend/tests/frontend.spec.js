@@ -148,3 +148,30 @@ test('Chatbot virtual assistant opens and answers citizen inquiries', async ({ p
 
   expect(errors).toEqual([]);
 });
+
+test('CMS content blocks scripts, active elements, event handlers and unsafe URLs', async ({ page }) => {
+  await page.route('**/api/v1/sites/corcova/pages/xss/', route => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({
+      id: 999,
+      title: 'Security test',
+      slug: 'xss',
+      body: '<p id="safe">Conținut sigur</p><script>window.__xss = true</script><img src="x" onerror="window.__xss = true"><a id="bad-link" href="javascript:window.__xss=true">link</a><iframe srcdoc="<script>window.__xss=true</script>"></iframe>',
+      section: null,
+    }),
+  }));
+  await page.route('**/api/v1/sites/corcova/documents/**', route => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({ count: 0, next: null, previous: null, results: [] }),
+  }));
+  await page.route('**/api/v1/sites/corcova/pages/?**', route => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({ count: 0, next: null, previous: null, results: [] }),
+  }));
+
+  await page.goto('/xss');
+  await expect(page.locator('#safe')).toHaveText('Conținut sigur');
+  await expect(page.locator('article script, article iframe')).toHaveCount(0);
+  await expect(page.locator('#bad-link')).not.toHaveAttribute('href', /javascript:/i);
+  expect(await page.evaluate(() => window.__xss)).toBeUndefined();
+});

@@ -8,7 +8,7 @@ from rest_framework.throttling import AnonRateThrottle
 from rest_framework.views import APIView
 
 from .chatbot import ask_chatbot
-from .models import ContactMessage, Institution, Menu, Page, Section
+from .models import ContactMessage, Institution, Menu, Page, Section, sanitize_html
 from .pagination import StandardPagination
 
 
@@ -49,10 +49,16 @@ class SectionList(SiteScoped, generics.ListAPIView):
 
 class PageSerializer(serializers.ModelSerializer):
     section = SectionSerializer(read_only=True)
+    body = serializers.SerializerMethodField()
 
     class Meta:
         model = Page
         fields = ['id', 'title', 'slug', 'summary', 'body', 'section', 'published_at', 'updated_at']
+
+    def get_body(self, obj):
+        # Sanitize on output as well as on save. This also protects legacy rows
+        # imported before model validation was introduced.
+        return sanitize_html(obj.body)
 
 
 class PageList(SiteScoped, generics.ListAPIView):
@@ -133,6 +139,10 @@ class ContactThrottle(AnonRateThrottle):
     rate = '8/hour'
 
 
+class ChatbotThrottle(AnonRateThrottle):
+    rate = '20/minute'
+
+
 class ContactMessageSerializer(serializers.Serializer):
     name = serializers.CharField(min_length=2, max_length=200)
     email = serializers.EmailField()
@@ -171,14 +181,22 @@ class ContactCreate(SiteScoped, APIView):
 class ChatbotView(SiteScoped, APIView):
     authentication_classes = []
     permission_classes = [AllowAny]
-    throttle_classes = [AnonRateThrottle]
+    throttle_classes = [ChatbotThrottle]
+
+    class InputSerializer(serializers.Serializer):
+        class HistoryItemSerializer(serializers.Serializer):
+            role = serializers.ChoiceField(choices=['user', 'bot'])
+            text = serializers.CharField(max_length=2000, trim_whitespace=True)
+
+        message = serializers.CharField(min_length=1, max_length=1000, trim_whitespace=True)
+        history = HistoryItemSerializer(many=True, required=False, max_length=10)
 
     def post(self, request, **kwargs):
         institution = self.get_institution()
-        message = str(request.data.get('message', '')).strip()
-        if not message:
-            return Response({'error': 'Vă rugăm să introduceți un mesaj.'}, status=400)
-        history = request.data.get('history', [])
+        serializer = self.InputSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        message = serializer.validated_data['message']
+        history = serializer.validated_data.get('history', [])
         result = ask_chatbot(institution, message, history=history)
         result['reply'] = result.get('reply', '').replace('](#/', '](/')
         for source in result.get('sources', []):

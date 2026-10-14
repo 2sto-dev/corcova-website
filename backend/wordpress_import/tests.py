@@ -3,6 +3,7 @@ import json
 import tempfile
 from pathlib import Path
 
+import pymupdf
 from django.core.management import call_command
 from django.test import TestCase, override_settings
 
@@ -20,7 +21,10 @@ class ImportTests(TestCase):
         self.sql = self.root / 'source.sql'
         self.uploads = self.root / 'uploads'
         (self.uploads / '2024').mkdir(parents=True)
-        (self.uploads / '2024' / 'one.pdf').write_bytes(b'%PDF-1.4\n%%EOF')
+        pdf = pymupdf.open()
+        pdf.new_page().insert_text((72, 72), 'Imported document')
+        pdf.save(self.uploads / '2024' / 'one.pdf')
+        pdf.close()
         self.sql.write_text('''-- ignored comment
 INSERT INTO `wp_posts` (`ID`,`post_type`,`post_status`,`post_password`,`post_name`,`post_title`,`post_content`,`post_excerpt`,`post_date`,`guid`,`menu_order`) VALUES
 (1,'page','publish','','one','Titlu; test','<p>Text</p><a href="https://old.test/wp-content/uploads/2024/one.pdf">One</a><a href="https://old.test/wp-content/uploads/2024/missing.pdf">Missing</a>','','2024-01-01 00:00:00','https://old.test/one',0),

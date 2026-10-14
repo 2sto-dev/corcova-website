@@ -15,7 +15,7 @@ def extract_text_from_pdf(pdf_path: str, max_ocr_pages: int = 6) -> str:
         return ""
 
     try:
-        import fitz  # PyMuPDF
+        import pymupdf
     except ImportError:
         logger.warning("PyMuPDF (fitz) is not installed; skipping PDF text extraction.")
         return ""
@@ -24,7 +24,7 @@ def extract_text_from_pdf(pdf_path: str, max_ocr_pages: int = 6) -> str:
     needs_ocr = False
 
     try:
-        doc = fitz.open(pdf_path)
+        doc = pymupdf.open(pdf_path)
         total_pages = min(len(doc), max_ocr_pages)
 
         for page_idx in range(total_pages):

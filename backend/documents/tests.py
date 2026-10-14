@@ -1,6 +1,9 @@
+import io
 import tempfile
+import zipfile
 from datetime import timedelta
 
+import pymupdf
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -12,8 +15,20 @@ from civic_core.models import Institution, Page
 from .models import Document, PageDocument
 
 
-def pdf(name='document.pdf'):
-    return SimpleUploadedFile(name, b'%PDF-1.4\nTest document\n%%EOF', content_type='application/pdf')
+def pdf(name='document.pdf', suffix=b''):
+    document = pymupdf.open()
+    document.new_page().insert_text((72, 72), 'Test document')
+    payload = document.tobytes() + suffix
+    document.close()
+    return SimpleUploadedFile(name, payload, content_type='application/pdf')
+
+
+def zipped_document(name, entries):
+    payload = io.BytesIO()
+    with zipfile.ZipFile(payload, 'w', zipfile.ZIP_DEFLATED) as archive:
+        for path, content in entries.items():
+            archive.writestr(path, content)
+    return SimpleUploadedFile(name, payload.getvalue(), content_type='application/zip')
 
 
 class DocumentTests(TestCase):
@@ -40,6 +55,8 @@ class DocumentTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(b''.join(response.streaming_content).startswith(b'%PDF'))
         self.assertIn('attachment;', response['Content-Disposition'])
+        self.assertEqual(response['X-Content-Type-Options'], 'nosniff')
+        self.assertEqual(response['Content-Security-Policy'], "default-src 'none'; sandbox")
         self.assertEqual(self.client.get(url.replace('/test/', '/other/')).status_code, 404)
 
     def test_draft_future_and_inactive_site_downloads_are_private(self):
@@ -58,6 +75,34 @@ class DocumentTests(TestCase):
                 Document.objects.create(institution=self.site, title='Bad', file=file)
         with override_settings(DOCUMENT_MAX_BYTES=3), self.assertRaises(ValidationError):
             self.document()
+
+    def test_active_and_disguised_files_are_rejected(self):
+        dangerous = [
+            pdf('active.pdf', b'\n/OpenAction << /S /JavaScript /JS (alert(1)) >>'),
+            pdf('invoice.php.pdf'),
+            zipped_document('fake.docx', {
+                '[Content_Types].xml': '<Types/>',
+                'word/document.xml': '<document/>',
+                'word/vbaProject.bin': b'active code',
+            }),
+            zipped_document('traversal.docx', {
+                '[Content_Types].xml': '<Types/>',
+                'word/document.xml': '<document/>',
+                '../payload.js': b'alert(1)',
+            }),
+        ]
+        for uploaded in dangerous:
+            with self.subTest(uploaded.name), self.assertRaises(ValidationError):
+                Document.objects.create(institution=self.site, title='Bad', file=uploaded)
+
+    def test_valid_office_archive_is_accepted_and_stored_under_uuid(self):
+        uploaded = zipped_document('council-minutes.docx', {
+            '[Content_Types].xml': '<Types/>',
+            'word/document.xml': '<document/>',
+        })
+        document = Document.objects.create(institution=self.site, title='Minutes', file=uploaded)
+        self.assertRegex(document.file.name, r'^documents/\d+/[0-9a-f]{32}\.docx$')
+        self.assertNotIn('council-minutes', document.file.name)
 
     def test_cross_site_page_relation_is_rejected(self):
         document = self.document()

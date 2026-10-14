@@ -1,3 +1,6 @@
+from pathlib import Path
+
+from django.core.exceptions import SuspiciousFileOperation
 from django.http import FileResponse, Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
@@ -9,6 +12,19 @@ from civic_core.api import SiteScoped
 from civic_core.models import Page
 
 from .models import Category, Document
+
+DOWNLOAD_CONTENT_TYPES = {
+    '.pdf': 'application/pdf',
+    '.doc': 'application/msword',
+    '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    '.xls': 'application/vnd.ms-excel',
+    '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    '.odt': 'application/vnd.oasis.opendocument.text',
+    '.ods': 'application/vnd.oasis.opendocument.spreadsheet',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+}
 
 
 class DocumentSerializer(serializers.ModelSerializer):
@@ -84,9 +100,14 @@ class DownloadView(SiteScoped, APIView):
             raise Http404('Fișierul nu este disponibil local. Consultați adresa sursă din metadate.')
         try:
             stream = document.file.open('rb')
-        except FileNotFoundError:
+        except (FileNotFoundError, OSError, SuspiciousFileOperation):
             raise Http404('Fișierul nu este disponibil.') from None
-        response = FileResponse(stream, as_attachment=True, filename=document.original_filename or document.file.name.rsplit('/', 1)[-1])
+        filename = document.original_filename or document.file.name.rsplit('/', 1)[-1]
+        suffix = Path(filename).suffix.lower()
+        content_type = DOWNLOAD_CONTENT_TYPES.get(suffix, 'application/octet-stream')
+        response = FileResponse(stream, as_attachment=True, filename=filename, content_type=content_type)
         response['X-Content-Type-Options'] = 'nosniff'
         response['Cache-Control'] = 'private, no-store'
+        response['Content-Security-Policy'] = "default-src 'none'; sandbox"
+        response['Cross-Origin-Resource-Policy'] = 'same-origin'
         return response
