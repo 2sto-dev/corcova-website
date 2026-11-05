@@ -24,6 +24,7 @@ test('homepage "Vezi toate" button navigates to anunturi and displays all announ
 
   // Heading check
   await expect(announcementsView.locator('h1')).toContainText('Anunțuri Publice');
+  await expect(announcementsView.locator('h1')).toBeVisible();
 
   // Verify tabs
   const allTab = announcementsView.locator('.announcements-tab-btn:has-text("Toate anunțurile")');

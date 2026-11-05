@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, FileText, ArrowRight, ArrowUpRight, Filter, Bell, CheckCircle, Award, Briefcase } from 'lucide-react';
 import { useApi, siteApi } from '../api';
+import LoadingRows from './LoadingRows';
 import './announcements.css';
 
 function cleanTitle(rawTitle) {
@@ -102,7 +103,7 @@ export default function AnnouncementsView({ page }) {
           <div className="announcements-search-box">
             <Search size={18} />
             <input
-              className="!text-[20px] !leading-tight"
+              className="!text-[16px] !leading-normal"
               type="search"
               value={search}
               onChange={e => { setSearch(e.target.value); setVisibleCount(4); }}
@@ -112,7 +113,7 @@ export default function AnnouncementsView({ page }) {
           </div>
 
           <select
-            className="announcements-year-select !text-[20px] !leading-tight"
+            className="announcements-year-select !text-[16px] !leading-normal"
             value={year}
             onChange={e => { setYear(e.target.value); setVisibleCount(4); }}
             aria-label="Filtrează după an"
@@ -141,7 +142,7 @@ export default function AnnouncementsView({ page }) {
             onClick={() => { setTab('all'); setVisibleCount(4); }}
           >
             <span>Toate anunțurile</span>
-            <span className="badge-count !text-[14px]">{counts.all}</span>
+            <span className="badge-count !text-[14px]">{documentsQuery.loading ? '…' : counts.all}</span>
           </button>
 
           <button
@@ -151,7 +152,7 @@ export default function AnnouncementsView({ page }) {
           >
             <Briefcase size={14} />
             <span>Concursuri ocupare post</span>
-            <span className="badge-count !text-[14px]">{counts.concurs}</span>
+            <span className="badge-count !text-[14px]">{documentsQuery.loading ? '…' : counts.concurs}</span>
           </button>
 
           <button
@@ -161,7 +162,7 @@ export default function AnnouncementsView({ page }) {
           >
             <Award size={14} />
             <span>Examene de promovare</span>
-            <span className="badge-count !text-[14px]">{counts.examen}</span>
+            <span className="badge-count !text-[14px]">{documentsQuery.loading ? '…' : counts.examen}</span>
           </button>
 
           <button
@@ -171,17 +172,17 @@ export default function AnnouncementsView({ page }) {
           >
             <CheckCircle size={14} />
             <span>Rezultate &amp; Selecție</span>
-            <span className="badge-count !text-[14px]">{counts.rezultat}</span>
+            <span className="badge-count !text-[14px]">{documentsQuery.loading ? '…' : counts.rezultat}</span>
           </button>
         </div>
       </div>
 
-      <div className="announcements-count-bar">
+      {!documentsQuery.loading && !documentsQuery.error && <div className="announcements-count-bar">
         Se afișează {filtered.length} din {documents.length} anunțuri publicate
-      </div>
+      </div>}
 
       {documentsQuery.loading ? (
-        <p role="status">Se încarcă anunțurile oficiale…</p>
+        <LoadingRows label="Se încarcă anunțurile oficiale…" />
       ) : documentsQuery.error ? (
         <p role="alert">{documentsQuery.error}</p>
       ) : filtered.length > 0 ? (
@@ -214,7 +215,7 @@ export default function AnnouncementsView({ page }) {
                 <div className="announcement-action">
                   <a
                     href={doc.download_url}
-                    className="announcement-btn !border-indigo-200 !bg-white !text-indigo-950 hover:!bg-indigo-50"
+                    className="announcement-btn"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -229,7 +230,7 @@ export default function AnnouncementsView({ page }) {
         </div>
       {visibleCount < filtered.length && (
         <div className="mt-6 flex justify-center">
-          <button type="button" className="inline-flex items-center gap-2 rounded-md bg-indigo-950 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-indigo-900" onClick={() => setVisibleCount(count => count + 4)}>
+          <button type="button" className="inline-flex items-center gap-2 rounded-md bg-blue-900 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-blue-950" onClick={() => setVisibleCount(count => count + 4)}>
             Continuă <ArrowRight size={18} aria-hidden="true" />
           </button>
         </div>

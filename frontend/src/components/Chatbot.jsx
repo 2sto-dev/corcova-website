@@ -257,13 +257,11 @@ export default function Chatbot({ site }) {
       };
       setMessages(prev => [...prev, botMsg]);
     } catch (err) {
-      // Intelligent local fallback
-      const localAnswer = answerLocally(text);
       const botMsg = {
         id: Date.now() + 1,
         sender: 'bot',
-        text: localAnswer.text,
-        sources: localAnswer.sources
+        text: 'Nu pot verifica acum informația în baza oficială. Vă rugăm să încercați din nou sau să folosiți [Formularul de Contact](/contact).',
+        sources: [{ title: 'Contact Primărie', url: '/contact' }]
       };
       setMessages(prev => [...prev, botMsg]);
     } finally {
@@ -273,6 +271,32 @@ export default function Chatbot({ site }) {
 
   return (
     <>
+      <a
+        className="ghiseul-floating-link"
+        href="https://www.ghiseul.ro/ghiseul/public/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Deschide platforma oficială Ghișeul.ro într-o filă nouă"
+        title="Plătește online taxe și impozite prin Ghișeul.ro"
+      >
+        <span className="ghiseul-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" role="presentation">
+            <path className="ghiseul-mark-blue" d="M8 7h15v9H8z" />
+            <path className="ghiseul-mark-yellow" d="M23 7h13v9H23z" />
+            <path className="ghiseul-mark-red" d="M8 16h28v7H8z" />
+            <path className="ghiseul-mark-blue" d="M8 23h8v14H8z" />
+            <path className="ghiseul-mark-yellow" d="M16 23h12v8H16z" />
+            <path className="ghiseul-mark-red" d="M28 23h8v14H28z" />
+            <path className="ghiseul-mark-blue" d="M16 31h12v6H16z" />
+          </svg>
+        </span>
+        <span className="ghiseul-wordmark">
+          <strong>GHIȘEUL<span>.ro</span></strong>
+          <small>Plăți online</small>
+        </span>
+        <ArrowUpRight className="ghiseul-external-icon" size={15} aria-hidden="true" />
+      </a>
+
       <button
         className="chatbot-bubble-btn"
         onClick={() => setIsOpen(!isOpen)}

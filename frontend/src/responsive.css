@@ -1,0 +1,448 @@
+/* Mobile-first finishing layer. Loaded last so narrow-screen repairs remain
+   predictable even when component styles use utility classes. */
+html,
+body,
+#root {
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+/* Footer: five content groups share one balanced row on wide screens. Text,
+   links and contact details use one consistent scale and rhythm. */
+footer .footer-main {
+  align-items: start;
+  padding-block: 46px 38px;
+}
+
+footer .footer-main > div {
+  min-width: 0;
+}
+
+footer .footer-main h3 {
+  margin: 2px 0 14px;
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+footer .footer-main p,
+footer .footer-main > div > a:not(.brand),
+footer .footer-main .footer-contact-item,
+footer .footer-main .footer-contact-item small {
+  color: rgba(255, 255, 255, 0.84) !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0;
+  opacity: 1;
+}
+
+footer .footer-main p {
+  max-width: 42ch;
+  margin: 16px 0 0;
+}
+
+footer .footer-main > div > a:not(.brand) {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 34px;
+  margin: 2px 0;
+}
+
+footer .footer-main > div > a:not(.brand):hover,
+footer .footer-main a.footer-contact-item:hover {
+  color: #fff !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+footer .brand-footer {
+  align-items: center;
+}
+
+footer .brand-footer strong {
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+footer .brand-footer small {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 1.4px;
+}
+
+footer .footer-contact {
+  gap: 2px;
+}
+
+footer .footer-main .footer-contact-item {
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 36px;
+  margin: 2px 0;
+}
+
+footer .footer-main .footer-contact-item svg {
+  margin-top: 3px;
+}
+
+footer .footer-main .footer-contact-item span,
+footer .footer-main .footer-contact-item small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+footer .footer-main .footer-contact-item small {
+  display: block;
+  margin-top: 1px;
+}
+
+footer .footer-bottom {
+  padding-block: 18px;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: rgba(255, 255, 255, 0.76) !important;
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: 1;
+}
+
+@media (min-width: 1200px) {
+  footer .footer-main {
+    grid-template-columns:
+      minmax(260px, 1.45fr)
+      minmax(130px, 0.78fr)
+      minmax(190px, 1.08fr)
+      minmax(170px, 0.96fr)
+      minmax(230px, 1.2fr);
+    gap: clamp(28px, 2.7vw, 44px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  footer .footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 40px;
+  }
+
+  footer .footer-main > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  /* The decorative grape cluster crossed the wordmark on phones. The brand
+     stays visually clean here; the motif remains present on larger screens. */
+  .grape-decor,
+  .grape-decor--dreapta {
+    display: none;
+  }
+
+  .masthead {
+    min-height: 80px;
+    padding: 10px 12px;
+  }
+
+  .masthead-brand {
+    max-width: calc(100% - 52px);
+  }
+
+  .masthead-identity,
+  .masthead-lettering {
+    width: 100%;
+  }
+
+  .masthead-lettering > strong {
+    font-size: clamp(14px, 4.25vw, 18px);
+    line-height: 1.16;
+    white-space: nowrap;
+  }
+
+  .masthead-search {
+    flex: 0 0 44px;
+  }
+
+  .masthead-search .search-button,
+  .site-menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .hero-copy {
+    padding: 30px 0 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(30px, 9vw, 39px);
+    line-height: 1.14;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .hero-actions .button,
+  .hero-actions .text-link {
+    min-height: 46px;
+  }
+
+  .section-heading {
+    align-items: flex-end;
+  }
+
+  .news-layout > div,
+  .citizen-panel,
+  .contact-page,
+  .monitor-page-layout,
+  .monitor-page-main,
+  .page-main {
+    min-width: 0;
+  }
+
+  .news-row {
+    position: relative;
+    gap: 12px;
+  }
+
+  .news-content {
+    min-width: 0;
+  }
+
+  .news-content h3,
+  .document-caption,
+  .citizen-contact-entry,
+  .footer-main a,
+  .footer-contact-item span {
+    overflow-wrap: anywhere;
+  }
+
+  .citizen-panel > a,
+  .citizen-contact-entry,
+  .pillar-more-link,
+  .footer-main > div > a:not(.brand) {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .page-layout,
+  .contact-page,
+  .monitor-page-layout,
+  .container.page-layout.monitor-page-layout {
+    padding-inline: 16px !important;
+  }
+
+  .page-main h1,
+  .announcements-header h1 {
+    font-size: clamp(29px, 8vw, 36px);
+  }
+
+  .contact-location-main,
+  .contact-location-details,
+  .contact-badge-link {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .announcements-search-box input,
+  .announcements-year-select {
+    font-size: 16px;
+  }
+
+  .announcements-controls {
+    padding: 16px;
+  }
+
+  .announcements-search-box {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .announcement-card {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .announcement-title {
+    font-size: clamp(20px, 6vw, 24px);
+    line-height: 1.35;
+  }
+
+  .announcement-desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .announcement-btn {
+    min-height: 46px;
+  }
+
+  .monitor-hero {
+    padding-inline: 20px !important;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-block: 30px 22px;
+  }
+
+  .footer-main > div,
+  .footer-main > div:first-child {
+    grid-column: auto;
+    min-width: 0;
+  }
+
+  footer .footer-main > div + div {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  footer .footer-main h3 {
+    margin-bottom: 8px;
+  }
+
+  footer .footer-main > div > a:not(.brand),
+  footer .footer-main .footer-contact-item {
+    width: 100%;
+    min-height: 44px;
+    margin: 0;
+  }
+
+  .footer-bottom {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .quick-access {
+    grid-template-columns: 1fr;
+  }
+
+  .shortcut {
+    min-height: 86px;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 16px;
+  }
+
+  .shortcut-arrow {
+    position: static;
+    align-self: center;
+    margin-left: auto;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section-heading > .text-link {
+    margin-top: 0;
+  }
+
+  .announcements-search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .announcements-search-box {
+    grid-column: 1 / -1;
+  }
+
+  .announcements-year-select,
+  .announcements-search-submit {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .announcements-tab-btn {
+    min-height: 44px;
+  }
+
+  .chatbot-window {
+    right: 12px;
+    bottom: 78px;
+    width: calc(100vw - 24px);
+    height: min(72dvh, 620px);
+    max-height: calc(100dvh - 96px);
+  }
+
+  .chatbot-bubble-btn {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .ghiseul-floating-link {
+    left: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .masthead {
+    padding-inline: 10px;
+  }
+
+  .masthead-lettering > strong {
+    font-size: clamp(13px, 4.2vw, 15px);
+  }
+
+  .masthead-county {
+    font-size: 9px;
+  }
+
+  .masthead-crest {
+    width: 29px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-actions .button,
+  .hero-actions .text-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .news-date {
+    width: 44px;
+  }
+
+  .news-row > svg {
+    display: none;
+  }
+
+  .contact-page,
+  .monitor-page-layout,
+  .container.page-layout.monitor-page-layout {
+    padding-inline: 12px !important;
+  }
+}

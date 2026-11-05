@@ -10,6 +10,11 @@ test('desktop navigation supports branding, hover, keyboard, routes and search',
   // Masthead branding
   await expect(page.locator('.masthead-lettering strong')).toContainText('PRIMĂRIA COMUNEI CORCOVA');
   await expect(page.locator('.masthead-county')).toContainText('MEHEDINȚI');
+  await expect(page.locator('.masthead-contact')).toBeVisible();
+  await expect(page.locator('.masthead-contact')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(page.locator('.masthead-contact')).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(page.locator('.masthead-contact a[href="mailto:primaria.corcova@gmail.com"]')).toBeVisible();
+  await expect(page.locator('.masthead-contact a[href="tel:0252383464"]')).toBeVisible();
 
   // Hero section
   await expect(page.getByRole('heading', { level: 1 })).toContainText('O comunitate unită');
@@ -70,7 +75,10 @@ test('mobile disclosure menu opens, closes after navigation', async ({ page }) =
   await page.goto('/');
 
   const nav = page.getByRole('navigation', { name: 'Navigare principală' });
-  const toggle = nav.getByRole('button', { name: 'MENU', exact: true });
+  const toggle = nav.getByRole('button', { name: 'Meniu', exact: true });
+
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(412);
+  await expect(page.locator('.masthead-contact')).toBeHidden();
 
   await expect(nav.getByRole('link', { name: 'Acasă', exact: true })).toBeHidden();
   await toggle.click();
@@ -82,6 +90,24 @@ test('mobile disclosure menu opens, closes after navigation', async ({ page }) =
 
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Istoria');
   expect(errors).toEqual([]);
+});
+
+test('hero image cards show their full titles on desktop and mobile', async ({ page }) => {
+  for (const width of [1280, 412]) {
+    await page.setViewportSize({ width, height: 915 });
+    await page.goto('/');
+
+    const cards = page.locator('.hero-thumb-btn');
+    await expect(cards).toHaveCount(4);
+    expect(await cards.evaluateAll(buttons => buttons.every(button => {
+      const title = button.querySelector('span');
+      return title &&
+        title.scrollHeight <= title.clientHeight &&
+        title.scrollWidth <= title.clientWidth &&
+        button.scrollHeight <= button.clientHeight &&
+        button.scrollWidth <= button.clientWidth;
+    }))).toBe(true);
+  }
 });
 
 test('Monitorul Oficial Local loads registers, search, and document links', async ({ page }) => {
@@ -105,6 +131,7 @@ test('Monitorul Oficial Local loads registers, search, and document links', asyn
 test('Contact page displays details and submits form successfully', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
+  await page.route('**/api/v1/sites/corcova/contact/', route => route.fulfill({ status: 201, contentType: 'application/json', body: '{"ok":true}' }));
 
   await page.goto('/contact');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Contact');
@@ -123,9 +150,31 @@ test('Contact page displays details and submits form successfully', async ({ pag
   expect(errors).toEqual([]);
 });
 
+test('Contact keeps the message and reports an API failure honestly', async ({ page }) => {
+  await page.route('**/api/v1/sites/corcova/contact/', route => route.abort());
+  await page.goto('/contact');
+  await page.locator('input[name="name"]').fill('Ion Popescu');
+  await page.locator('input[name="email"]').fill('ion.popescu@exemplu.ro');
+  await page.locator('input[name="subject"]').fill('Solicitare informații');
+  await page.locator('textarea[name="message"]').fill('Un mesaj suficient de lung pentru verificarea formularului.');
+  await page.getByRole('button', { name: 'Trimite mesajul' }).click();
+
+  await expect(page.getByRole('alert')).toContainText('Mesajul nu a fost trimis');
+  await expect(page.locator('textarea[name="message"]')).toHaveValue('Un mesaj suficient de lung pentru verificarea formularului.');
+  await expect(page.getByText('Mesajul a fost trimis.')).toHaveCount(0);
+});
+
 test('Chatbot virtual assistant opens and answers citizen inquiries', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
+  await page.route('**/api/v1/sites/corcova/chatbot/', route => route.fulfill({
+    status: 200,
+    contentType: 'application/json',
+    body: JSON.stringify({
+      reply: '**Contact:** 0252 383 464 · primaria.corcova@gmail.com',
+      sources: [{ title: 'Contact Primărie', url: '/contact' }],
+    }),
+  }));
 
   await page.goto('/');
 

@@ -9,10 +9,6 @@
   border-bottom: 1px solid #e2e8f0;
 }
 
-.announcements-header > * {
-  display: none;
-}
-
 .announcements-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -31,7 +27,7 @@
 .announcements-header h1 {
   font-size: 32px;
   color: #17324d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: "Lora", Cambria, Georgia, "Times New Roman", serif;
   margin: 0 0 10px 0;
 }
 
@@ -267,7 +263,7 @@
   margin: 0 0 6px 0;
   font-size: 32px;
   color: #17324d;
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: "Lora", Cambria, Georgia, "Times New Roman", serif;
   line-height: 1.35;
 }
 

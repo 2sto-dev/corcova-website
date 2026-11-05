@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  /* Si `--font-sans`, nu doar `--font-serif`: altfel orice element cu un
+     utilitar Tailwind de font ramanea pe stiva implicita (Aptos). */
+  --font-sans: "Lora", Cambria, Georgia, "Times New Roman", serif;
   --font-serif: "Lora", Cambria, Georgia, "Times New Roman", serif;
 }

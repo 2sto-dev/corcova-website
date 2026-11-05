@@ -52,3 +52,7 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Fisier de mediu cu parola de admin si cheia Gemini, in radacina (fara punct in nume)
+env
+.claude/
