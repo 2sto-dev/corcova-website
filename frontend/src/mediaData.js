@@ -222,6 +222,12 @@ export const PAGE_GALLERIES = {
 export const HOMEPAGE_MEDIA = {
   heroSlides: [
     {
+      src: '/dosare/imagini/design/administratia/sediu-primarie.jpg',
+      tag: 'ADMINISTRAȚIE',
+      title: 'Primăria Corcova',
+      caption: 'În slujba cetățenilor și dezvoltării durabile a celor 13 sate'
+    },
+    {
       src: '/dosare/imagini/design/istoria/vedere1.jpg',
       tag: 'VEDERE PANORAMICĂ',
       title: 'Comuna Corcova',
@@ -232,12 +238,6 @@ export const HOMEPAGE_MEDIA = {
       tag: 'TRADIȚIE VITICOLĂ',
       title: 'Podgoria Corcova',
       caption: 'Domeniul Roy & Dâmboviceanu – renumit pe plan european'
-    },
-    {
-      src: '/dosare/imagini/design/administratia/sediu-primarie.jpg',
-      tag: 'ADMINISTRAȚIE',
-      title: 'Primăria Corcova',
-      caption: 'În slujba cetățenilor și dezvoltării durabile a celor 13 sate'
     },
     {
       src: '/dosare/imagini/design/geografia/camp1.jpg',
