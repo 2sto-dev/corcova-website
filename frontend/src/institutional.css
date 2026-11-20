@@ -1,0 +1,342 @@
+/* Shared public-sector presentation tokens and targeted responsive repairs. */
+:root {
+  --civic-blue-950: #0d2c4c;
+  --civic-blue-900: #123e68;
+  --civic-blue-700: #1b5688;
+  --civic-ink: #203348;
+  --civic-muted: #506477;
+  --civic-border: #cbd7e1;
+  --civic-surface: #f5f8fa;
+  --navy: var(--civic-blue-900);
+  --ink: var(--civic-ink);
+  --muted: var(--civic-muted);
+  --line: var(--civic-border);
+}
+
+body { color: var(--civic-ink); }
+
+.masthead {
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 104px;
+  padding: 15px clamp(16px, 3vw, 48px);
+  background: var(--civic-blue-900);
+}
+.masthead-brand { min-width: 0; align-items: flex-start; }
+.masthead-identity { max-width: 100%; align-items: center; }
+.masthead-lettering { text-align: left; }
+.masthead-lettering > strong {
+  font-size: clamp(22px, 2.45vw, 34px);
+  line-height: 1.12;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+.masthead-county { font-size: clamp(12px, 1.1vw, 15px); text-align: center; }
+.masthead-tricolor { height: 5px; margin: 6px 0 3px; }
+.masthead-crest { width: clamp(40px, 4vw, 55px); }
+.masthead-contact {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.8vw, 26px);
+  margin-left: auto;
+  color: #fff;
+}
+.masthead-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.masthead-contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.masthead-contact svg { flex: none; }
+.masthead-search { position: static; transform: none; flex: none; }
+.masthead-search .search-button { min-width: 44px; min-height: 44px; justify-content: center; }
+
+.site-menu {
+  background: var(--civic-blue-950);
+  color: #fff;
+  border-bottom: 1px solid #315578;
+}
+.site-menu-toggle,
+.site-menu-trigger,
+.site-menu-link { color: #fff; font-family: var(--font-sans); }
+.site-menu-trigger,
+.site-menu-link {
+  min-height: 44px;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: .01em;
+}
+.site-menu > ul > li > .site-menu-trigger,
+.site-menu > ul > li > .site-menu-link { padding-inline: clamp(7px, .8vw, 14px); }
+.site-menu-trigger:hover,
+.site-menu-link:hover,
+.site-menu-trigger[aria-expanded="true"],
+.site-menu-link[aria-current="page"] { background: var(--civic-blue-700); color: #fff; }
+.site-submenu { background: var(--civic-blue-950); border-color: #416384; }
+.site-submenu[hidden] { display: none !important; }
+.site-submenu .site-menu-link { font-size: 14px; }
+.site-menu svg { color: currentColor; }
+
+.hero-inner { min-height: 370px; }
+.hero-copy { padding-block: 35px 42px; }
+.hero h1 { font-size: clamp(34px, 3vw, 45px); line-height: 1.16; }
+.hero-copy > p { color: var(--civic-muted); }
+.home-page .quick-access { margin-bottom: 45px; }
+.section-heading h2,
+.community-inner h2,
+.citizen-panel h2 { color: var(--civic-ink); }
+.page-main h1 { color: var(--civic-ink); }
+.breadcrumb { color: var(--civic-muted); }
+.breadcrumb a { text-decoration: underline; text-underline-offset: 3px; }
+.contact-page .contact-form { max-width: 940px; }
+.contact-page .contact-location { flex-wrap: wrap; }
+.contact-form input,
+.contact-form textarea { min-height: 48px; border-color: var(--civic-border); }
+.contact-form textarea { min-height: 160px; }
+.form-note { max-width: 72ch; }
+
+.content-loading {
+  margin: 20px 0 32px;
+  padding: 24px;
+  border: 1px solid var(--civic-border);
+  border-radius: 12px;
+  background: #f8fafc;
+  color: var(--civic-muted);
+}
+.content-loading-page { min-height: 320px; padding: clamp(24px, 4vw, 44px); }
+.content-loading p { margin: 0 0 22px; font-size: 16px; font-weight: 600; }
+.content-loading-lines { display: grid; gap: 14px; max-width: 760px; }
+.content-loading-lines span {
+  display: block;
+  height: 17px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #e3eaf0, #f0f4f7, #e3eaf0);
+  background-size: 200% 100%;
+  animation: content-loading-shimmer 1.8s ease-in-out infinite;
+}
+.content-loading-lines span:nth-child(2) { width: 82%; }
+.content-loading-lines span:nth-child(3) { width: 61%; }
+@keyframes content-loading-shimmer { to { background-position: -200% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .content-loading-lines span { animation: none; }
+}
+
+@media (max-width: 1023px) {
+  .site-menu-toggle { min-height: 48px; font-size: 15px; letter-spacing: .04em; }
+  .site-menu > ul > li > .site-menu-trigger,
+  .site-menu > ul > li > .site-menu-link { width: 100%; padding: 12px 14px; font-size: 16px; }
+  .site-submenu {
+    position: static;
+    min-width: 0;
+    margin: 0 8px 10px;
+    box-shadow: none;
+    border-left: 2px solid #8eb4d4;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .masthead { flex-wrap: wrap; gap: 8px 12px; }
+  .masthead-brand { order: 0; }
+  .masthead-search { order: 1; margin-left: auto; }
+  .masthead-contact {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .masthead-contact { display: none; }
+}
+
+@media (max-width: 600px) {
+  .masthead { min-height: 76px; gap: 8px; padding: 10px 12px; }
+  .masthead-identity { gap: 6px; }
+  .masthead-lettering > strong { font-size: clamp(15px, 4.1vw, 20px); line-height: 1.16; }
+  .masthead-county { font-size: 10px; }
+  .masthead-tricolor { height: 4px; margin: 4px 0 2px; }
+  .masthead-crest { width: 31px; }
+  .masthead-search .search-button { padding: 8px; }
+  .hero h1 { font-size: clamp(32px, 9vw, 39px); }
+  .home-page .hero-copy > p { font-size: 16px; line-height: 1.6; }
+  .contact-page .contact-location { align-items: stretch; }
+  .contact-page .contact-badge-link {
+    min-width: 0;
+    justify-content: flex-start;
+    font-size: clamp(13px, 3.8vw, 16px);
+  }
+  .contact-page .contact-badge-link span { min-width: 0; overflow-wrap: anywhere; }
+}
+
+/* Titlul se incadreaza in mijlocul headerului, nu in spatiul ramas la stanga.
+   Cat timp contactul si cautarea stateau in acelasi flux, ele impingeau titlul
+   spre margine: 533 px de titlu intr-un header de 1265 px ajungeau cu centrul
+   la 305, nu la 633.
+
+   Headerul devine o grila de trei coloane, cu cele doua margini egale (1fr) si
+   titlul in cea din mijloc — asa centrul titlului coincide cu centrul paginii.
+   Nu prin pozitionare absoluta: aceea centreaza titlul si cand nu incape, iar
+   la 1024 px il suprapunea peste blocul de contact. Coloanele „1fr" nu scad sub
+   continutul lor, deci cand spatiul se termina titlul aluneca spre stanga in loc
+   sa intre peste text.
+
+   Contactul trece pe doua randuri, ca sa lase titlului mai multa latime.
+   Doar pe ecrane late: sub 900 px headerul se rearanjeaza pe randuri, iar acolo
+   `display: contents` lasa regulile existente sa lucreze direct pe copii. */
+.masthead-aside { display: contents; }
+
+@media (min-width: 901px) {
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    /* Spatiul dintre coloane e mic: fiecare pixel luat de aici il castiga
+       coloanele laterale, iar adresa de e-mail are nevoie de el ca sa nu ajunga
+       sub ciorchinele din dreapta. */
+    gap: 8px;
+  }
+  .masthead-brand { grid-column: 2; }
+  /* Telefonul in coloana din stanga, e-mailul si cautarea in cea din dreapta.
+     Amandoua se string spre titlu, nu spre marginile headerului: colturile sunt
+     ale ciorchinilor, care fiind pozitionati absolut nu ocupa loc in grila. */
+  .masthead-aside {
+    display: flex;
+    grid-column: 3;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(12px, 1.6vw, 20px);
+  }
+  .masthead-aside--stanga { grid-column: 1; justify-content: flex-end; }
+  .masthead-contact { margin-left: 0; }
+}
+
+/* Accentul paginii: rosu aprins in loc de verdele-salvie.
+   Rosul e ales cat sa ramana aprins, dar sa treaca pragul de contrast: alb pe
+   #d42525 da 4,9:1, peste 4,5:1 cerut de WCAG pentru text normal, iar pe fundalul
+   crem al zonei de deschidere textul „Corcova" ajunge la ~5,2:1. Un rosu mai
+   deschis ar fi aratat mai viu, dar scrisul alb de pe buton n-ar mai fi fost
+   lizibil. Se schimba toate butoanele principale, nu doar cel din deschidere:
+   doua butoane identice, unul rosu si unul albastru, ar arata a scapare. */
+.hero h1 em { color: #d42525; }
+.button.primary { background: #d42525; }
+.button.primary:hover { background: #ae1b1b; }
+
+/* Caseta cu anul documentului: rosu aprins in loc de gri, cu scris alb.
+   Si `small`-ul din ea avea culoarea lui proprie, gri deschis, deci trebuie
+   trecut explicit pe alb — altfel ar fi ramas gri pe rosu, la 2,2:1.
+   Rama gri-deschis dispare: pe fond rosu nu se mai vedea oricum. */
+.news-date {
+  background: #d42525;
+  border-color: #d42525;
+  color: #fff;
+}
+.news-date strong,
+.news-date small { color: #fff; }
+
+/* Etichetele mici, scrise cu majuscule si litere ratite — „COMUNA CORCOVA,
+   JUDETUL MEHEDINTI", „LA ZI CU PRIMARIA", „DOCUMENT PUBLIC" si celelalte —
+   trec toate pe indigo inchis. Pana acum fiecare sectiune avea nuanta ei de
+   gri-albastru sau gri-verde, deci acelasi fel de eticheta arata altfel de la
+   un bloc la altul. Indigo-ul da 11,9:1 pe fundalul crem, mult peste prag.
+   Bulina din fata etichetei merge cu textul: lasata verde-salvie ar fi iesit
+   in evidenta tocmai pentru ca e singura ramasa asa. */
+.eyebrow,
+.hero .eyebrow,
+.citizen-panel .eyebrow,
+.community-inner .eyebrow,
+.section-heading .eyebrow,
+.tag { color: #312e81; }
+
+.hero .eyebrow > span,
+.eyebrow > span { background: #312e81; }
+
+/* Eticheta anunturilor e o pastila, cu fundalul ei; doar scrisul se schimba. */
+.announcements-eyebrow { color: #312e81; }
+
+/* Titlul panoului „Primaria in slujba comunitatii": rosu deschis, ingrosat.
+   Fundalul panoului e aproape alb (#f0f4f7), deci un rosu cu adevarat deschis
+   (#ff8080) ar fi coborat la 2,2:1 si n-ar mai fi fost lizibil. #e04848 e cel
+   mai deschis rosu care tine 3,67:1 — peste pragul de 3:1 pentru text mare.
+
+   Fontul ramane cel cu serife al titlurilor, fiindca el se potriveste cu restul
+   paginii, dar trece la grosimea 700: la 400, o culoare deschisa pe fundal
+   deschis subtiaza literele si se citeste greu. */
+.citizen-panel h2 {
+  color: #e04848;
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------- icoane rosii
+
+   Toate pictogramele trec pe rosu, dar nu pe aceeasi nuanta: contextul difera.
+   Pe fundal deschis merge rosul site-ului. Pe bara bleumarin (antet, meniu,
+   cardurile albastre, subsol) acelasi rosu ar da 1,9:1, adica o pata greu de
+   deslusit, deci acolo se foloseste varianta deschisa, care ajunge la 3,5:1.
+   Pictogramele lucide deseneaza cu `currentColor`, deci e de ajuns `color`. */
+
+.panel-icon svg,
+.citizen-contact-entry svg,
+.community-icon svg,
+.news-row svg,
+.text-link svg,
+.pillar-more-link svg,
+.button.outline svg,
+.hero-location-chip svg,
+.eyebrow svg,
+.breadcrumb svg,
+.category-links svg,
+.page-sidebar svg,
+.sidebar-help svg,
+.contact-location svg,
+.search-input svg,
+.icon-button svg,
+.monitor-page-main svg,
+.shortcut-arrow { color: #d42525; }
+
+.masthead svg,
+.site-menu svg:not(.grape-decor),
+.shortcut svg,
+.footer-contact-item svg { color: #ff6b6b; }
+
+/* Butonul de cautare isi impune culoarea cu `!important`, deci trebuie egalat. */
+.masthead-search .search-button svg {
+  color: #ff6b6b !important;
+  stroke: #ff6b6b !important;
+}
+
+/* In butonul rosu plin, sageata ramane alba: rosu pe rosu n-ar insemna nimic. */
+.button.primary svg { color: #fff; }
+
+/* Cardul bleumarin al Monitorului: pictograma din supratitlu urmeaza fundalul
+   inchis, nu regula pentru fundal deschis de mai sus. */
+.monitor-hero svg { color: #ff6b6b; }
+
+/* Pictogramele din cardurile albastre de pe pagina de start isi iau albul cu
+   `!important` din styles.css (`.home-page .shortcut-icon svg`), deci regula
+   trebuie egalata ca specificitate si ca prioritate, nu doar rescrisa. */
+.home-page .shortcut-icon svg {
+  color: #ff6b6b !important;
+  stroke: #ff6b6b !important;
+}
+
+/* Capul panoului cetateanului: pictograma langa supratitlu, nu deasupra lui.
+   Marginea de jos a pictogramei trece pe invelis, ca spatiul pana la titlu sa
+   ramana cat era. */
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.panel-head .panel-icon { margin-bottom: 0; flex: none; }
+.panel-head .eyebrow { margin: 0; }

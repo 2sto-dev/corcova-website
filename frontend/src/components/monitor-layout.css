@@ -24,41 +24,54 @@
   @apply mx-auto w-full;
 }
 
+/* Cardul de deschidere al Monitorului, pe fond bleumarin.
+   Odata cu fundalul trebuie schimbat si scrisul: pe #12447d, culorile de dinainte
+   (indigo pentru supratitlu, gri-ardezie pentru text) coborau sub 2:1 si nu s-ar
+   mai fi citit. Pastilele cu cifre raman albe, deci continutul lor nu se atinge. */
 .monitor-hero {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
+  background: #12447d;
+  border: 1px solid #1b5688;
 }
 
 .monitor-hero > span {
-  @apply text-sm text-indigo-900;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  @apply text-sm;
+  color: #bcd4ee;
 }
 
-.monitor-hero > h1 {
-  @apply mt-4 w-full max-w-4xl text-center text-slate-900;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  text-align: center !important;
+/* Titlul: centrat, ingrosat, rosu.
+   Nu rosul site-ului (#d42525): pe bleumarin da 1,9:1, adica practic nelizibil.
+   #ff6b6b ajunge la 3,5:1, peste pragul de 3:1 pentru text mare — si titlul e
+   mare, 36 px pe telefon si 48 px pe desktop, cu grosime 700.
+
+   Selectorul porneste de la `header` ca sa treaca peste regula generala
+   `.page-main h1` din styles.css, care are aceeasi specificitate dar vine mai
+   tarziu in foaie. Aceea ii dadea culoarea inchisa si grosimea 400, dar si
+   `margin: 13px 0`, care anula `mx-auto` — de aceea titlul statea la stanga
+   desi textul era aliniat la centru. */
+header.monitor-hero > h1 {
+  @apply mt-4 w-full max-w-4xl text-center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ff6b6b;
+  font-weight: 700;
 }
 
 .monitor-hero > p {
-  @apply mt-4 max-w-2xl text-lg leading-8 text-slate-700 sm:text-xl text-center;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  text-align: center !important;
+  @apply mt-5 max-w-3xl text-lg leading-8 sm:text-xl;
+  color: #dbe7f4;
 }
 
 .monitor-hero > div[aria-label="Rezumat documente"] {
-  @apply mt-6 flex flex-wrap justify-center gap-3 text-slate-700;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  @apply mt-8 gap-3;
+  color: #dbe7f4;
 }
 
+/* Pastilele raman albe pe fondul bleumarin, deci scrisul din ele ramane inchis.
+   Fara aceasta regula ar fi mostenit culoarea deschisa pusa pe randul de mai sus
+   si ar fi ajuns text deschis pe alb, la 1,25:1. */
 .monitor-hero > div[aria-label="Rezumat documente"] > span {
   @apply rounded-full border border-sky-100 bg-white px-5 py-2 shadow-sm;
+  color: #334155;
 }
 
 .monitor-hero > div[aria-label="Rezumat documente"] strong {

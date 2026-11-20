@@ -5,6 +5,7 @@ import { apiBase, siteApi, siteSlug, useApi, useDebounce } from './api';
 import MonitorLocal from './components/MonitorLocal';
 import PageGallery from './components/PageGallery';
 import AnnouncementsView from './components/AnnouncementsView';
+import LoadingRows from './components/LoadingRows';
 import { PAGE_GALLERIES, HOMEPAGE_MEDIA } from './mediaData';
 import { cleanInternalHref, cleanMediaSrc } from './routing';
 
@@ -450,14 +451,24 @@ function FormsArticleContent({ html }) {
 
 function DeclarationsArticleContent({ html, title = 'Declarații de avere', documents = [] }) {
   const documentList = new DOMParser().parseFromString(html, 'text/html');
+  const getPersonName = (documentTitle, filename = '') => {
+    const source = String(documentTitle || filename || '').trim();
+    const name = source
+      .replace(/^declara(?:ție|tie)\s+de\s+(?:avere|interese)\s*[–—-]?\s*/i, '')
+      .replace(/^declaratie-de-(?:avere|interese)-/i, '')
+      .replace(/\.[a-z0-9]+$/i, '')
+      .replace(/[-_]+/g, ' ')
+      .trim();
+    return name || source;
+  };
   const items = Array.from(documentList.querySelectorAll('li'));
   const sourceItems = documents.length
-    ? documents.map(document => ({ href: cleanInternalHref(document.download_url || document.external_url || '/'), title: document.title, year: document.year || 'Arhiva' }))
+    ? documents.map(document => ({ href: cleanInternalHref(document.download_url || document.external_url || '/'), title: document.title, filename: document.original_filename, year: document.year || 'Arhiva' }))
     : items.map(item => {
       const link = item.querySelector('a');
       const href = cleanInternalHref(link?.getAttribute('href') || '/');
       const itemTitle = link?.textContent?.trim() || item.textContent?.trim() || '';
-      return { href, title: itemTitle, year: href.match(/\/(20\d{2})\//)?.[1] || itemTitle.match(/\b(20\d{2})\b/)?.[1] || 'Arhiva' };
+      return { href, title: itemTitle, filename: '', year: href.match(/\/(20\d{2})\//)?.[1] || itemTitle.match(/\b(20\d{2})\b/)?.[1] || 'Arhiva' };
     });
   const groupedItems = sourceItems.reduce((groups, item) => {
     const year = item.year;
@@ -471,7 +482,8 @@ function DeclarationsArticleContent({ html, title = 'Declarații de avere', docu
       {Object.entries(groupedItems).map(([year, yearItems]) => <div key={year} className="mb-6 last:mb-0">
         <h2 className="mb-4 border-b border-slate-300 pb-2 text-2xl font-semibold text-slate-800">{title} — {year}</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {yearItems.map(({ href, title: documentTitle }, index) => {
+        {yearItems.map(({ href, title: documentTitle, filename }, index) => {
+        const personName = getPersonName(documentTitle, filename);
 
         return (
           <article key={`${href}-${index}`} className="declaration-card flex min-h-28 items-center gap-3 rounded-xl border border-slate-300 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-400 hover:shadow-md">
@@ -479,7 +491,8 @@ function DeclarationsArticleContent({ html, title = 'Declarații de avere', docu
               <FileText size={24} aria-hidden="true" />
             </span>
             <div className="min-w-0 flex-1">
-              <h3 className="break-words text-lg font-semibold leading-6 text-slate-800">{documentTitle}</h3>
+              <h3 className="break-words text-lg font-semibold leading-6 text-slate-800">{personName}</h3>
+              <p className="declaration-document-title">{documentTitle}</p>
               <a className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-indigo-900 underline underline-offset-2" href={href} target="_blank" rel="noopener noreferrer">
                 Descarcă PDF <ArrowUpRight size={16} aria-hidden="true" />
               </a>
@@ -546,7 +559,7 @@ function ExpandableArticle({ html, geography = false, forms = false, declaration
   );
 }
 
-export function CmsPage({ slug }) {
+export function CmsPage({ slug, onReady }) {
   const monitor = slug === 'monitorul-oficial-local';
   const isAnnouncements = slug === 'anunturi' || slug === 'anunturi-concursuri-si-examene';
   const isDeclarations = slug === 'declaratii-de-avere' || slug === 'declaratii-de-interese';
@@ -562,7 +575,7 @@ export function CmsPage({ slug }) {
   const page = resource.data;
   const documentParams = new URLSearchParams({ page_slug: slug, page: documentPage });
   if (isDeclarations) documentParams.set('page_size', '100');
-  const documents = useApi(page ? `${siteApi}/documents/?${documentParams}` : null);
+  const documents = useApi(monitor || isAnnouncements ? null : `${siteApi}/documents/?${documentParams}`);
   const children = useApi(page ? `${siteApi}/pages/?parent=${page.id}&page=${childrenPage}` : null);
 
   const sanitized = useMemo(() => {
@@ -583,8 +596,14 @@ export function CmsPage({ slug }) {
   const title = monitor ? 'Monitorul Oficial Local' : page?.title;
 
   useEffect(() => {
-    if (title) document.title = `${title} • Primăria Corcova`;
-  }, [title]);
+    if (title && (monitor || !resource.loading)) {
+      document.title = `${title} • Primăria Corcova`;
+      onReady?.(title);
+    } else if (resource.error) {
+      document.title = 'Pagină indisponibilă • Primăria Corcova';
+      onReady?.('Pagină indisponibilă');
+    }
+  }, [title, monitor, resource.loading, resource.error, onReady]);
 
   return (
     <div className={`container page-layout ${monitor ? 'monitor-page-layout' : ''} !w-full !max-w-none !grid-cols-1 !gap-0 px-6 lg:px-10`}>
@@ -600,7 +619,7 @@ export function CmsPage({ slug }) {
         ) : isAnnouncements ? (
           <AnnouncementsView page={page} />
         ) : resource.loading ? (
-          <p role="status">Se încarcă pagina…</p>
+          <LoadingRows label="Se încarcă informațiile paginii…" page />
         ) : resource.error ? (
           <div role="alert">
             <h1>Pagină indisponibilă</h1>
@@ -639,7 +658,9 @@ export function CmsPage({ slug }) {
             {slug === 'geografia' && <GeographySections />}
             {slug === 'tipizate' && <FormsIntro />}
             {slug === 'compartimentul-de-asistenta-sociala' && <SocialAssistanceIntro />}
-            {sanitized.trim() && <ExpandableArticle html={sanitized} geography={slug === 'geografia'} forms={slug === 'tipizate'} declarations={isDeclarations} declarationsTitle={slug === 'declaratii-de-interese' ? 'Declarații de interese' : 'Declarații de avere'} declarationDocuments={documents.data?.results || []} />}
+            {sanitized.trim() && (isDeclarations && documents.loading
+              ? <LoadingRows label="Se încarcă declarațiile publice…" />
+              : <ExpandableArticle html={sanitized} geography={slug === 'geografia'} forms={slug === 'tipizate'} declarations={isDeclarations} declarationsTitle={slug === 'declaratii-de-interese' ? 'Declarații de interese' : 'Declarații de avere'} declarationDocuments={documents.data?.results || []} />)}
 
             {PAGE_GALLERIES[slug] && (
               <PageGallery gallery={PAGE_GALLERIES[slug]} />
@@ -647,7 +668,7 @@ export function CmsPage({ slug }) {
 
             <div className={`local-monitor ${isDeclarations ? 'hidden' : ''}`}>
               {documents.loading ? (
-                <p role="status">Se încarcă documentele…</p>
+                <LoadingRows label="Se încarcă documentele…" />
               ) : documents.error ? (
                 <p role="alert">{documents.error}</p>
               ) : documents.data?.count > 0 ? (

@@ -4,6 +4,7 @@ import { siteApi, useApi } from './api';
 import HeroShowcase from './components/HeroShowcase';
 import CommunityPillars from './components/CommunityPillars';
 import { cleanInternalHref } from './routing';
+import LoadingRows from './components/LoadingRows';
 
 const icons = {
   file: FileText,
@@ -26,7 +27,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
       <section className="hero relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-sky-50">
         <div className="container hero-inner relative">
           <div className="hero-copy">
-            <div className="eyebrow text-sky-800">
+            <div className="eyebrow">
               <span/>{hero.eyebrow || 'COMUNA CORCOVA, JUDEȚUL MEHEDINȚI'}
             </div>
             <h1>
@@ -35,7 +36,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
             <p>{hero.description}</p>
             <div className="hero-actions mt-8">
               {hero.primary && (
-                <a className="button primary rounded-lg px-6 shadow-md shadow-blue-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg" href={safeHref(hero.primary.href)}>
+                <a className="button primary rounded-lg px-6 shadow-md shadow-red-900/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg" href={safeHref(hero.primary.href)}>
                   {hero.primary.label} <ArrowRight size={18}/>
                 </a>
               )}
@@ -70,9 +71,6 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
         </section>
       )}
 
-      {/* Domenii principale, inițiative strategice și conducerea comunei */}
-      <CommunityPillars />
-
       <section className="container news-layout items-start">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <div className="section-heading">
@@ -86,7 +84,7 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
           </div>
 
           <div className="news-list">
-            {latest.loading && <p role="status">Se încarcă documentele…</p>}
+            {latest.loading && <LoadingRows label="Se încarcă documentele recente…" />}
             {latest.error && <p role="alert">{latest.error}</p>}
             {latest.data?.results?.map(doc => (
               <a className="news-row rounded-lg px-3 transition-colors hover:bg-slate-50" key={doc.id} href={doc.download_url} target="_blank" rel="noopener noreferrer">
@@ -110,8 +108,13 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
         </div>
 
         <aside className="citizen-panel rounded-2xl border-slate-200 bg-gradient-to-b from-sky-50 to-white shadow-sm lg:sticky lg:top-6">
-          <span className="panel-icon"><Landmark size={28}/></span>
-          <span className="eyebrow">{panel.eyebrow || 'ADMINISTRAȚIE DESCHISĂ'}</span>
+          {/* Pictograma si supratitlul pe acelasi rand, intr-un singur invelis:
+              altfel pictograma, fiind `inline-grid`, si supratitlul, care e
+              `display: block`, se asezau unul sub altul. */}
+          <span className="panel-head">
+            <span className="panel-icon"><Landmark size={28}/></span>
+            <span className="eyebrow">{panel.eyebrow || 'ADMINISTRAȚIE DESCHISĂ'}</span>
+          </span>
           <h2>{panel.title || 'Primăria în slujba comunității.'}</h2>
           <p>{panel.description || 'Acces simplu și transparent la deciziile autorităților locale.'}</p>
           {panel.links?.map((link, index) => (
@@ -132,6 +135,8 @@ export default function Home({ presentation = {}, site = {}, illustration }) {
           <span className="panel-bottom">{panel.caption || 'TRANSPARENȚĂ. DIALOG. IMPLICARE.'}</span>
         </aside>
       </section>
+
+      <CommunityPillars />
 
       <section className="community-strip bg-gradient-to-r from-slate-50 via-emerald-50/60 to-slate-50">
         <div className="container community-inner">

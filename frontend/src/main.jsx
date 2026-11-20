@@ -1,20 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ArrowRight, ArrowUpRight, Search, Landmark, FileText, UsersRound, MapPin, ChevronRight, X, Mail, Phone, BookOpen, Sprout, Check } from 'lucide-react';
 import Menu from './menu';
-import { siteApi, useApi } from './api';
+import { prefetchApi, siteApi, useApi } from './api';
 import { ApiSearch, CmsPage } from './cms';
 import countyLogo from './logo_mehedinti.png';
 import './styles.css';
 import './gallery.css';
 import Home, { safeHref } from './home';
 import Chatbot from './components/Chatbot';
+import { AccessibilityTools, CookieNotice, CookiePolicy } from './components/SiteUtilities';
 import HeroShowcase from './components/HeroShowcase';
 import PageGallery from './components/PageGallery';
 import { PAGE_GALLERIES } from './mediaData';
-import { cleanInternalHref, currentSlug, replaceLegacyHashRoute } from './routing';
+import { cleanInternalHref, clientRouteForAnchor, currentSlug, replaceLegacyHashRoute } from './routing';
 import './typography.css';
 import './tailwind.css';
+import './institutional.css';
+import './responsive.css';
 
 function Brand({ footer = false, site }) {
   const name = (site?.name || 'Primăria Comunei Corcova').toLocaleUpperCase('ro-RO');
@@ -47,6 +50,36 @@ function Brand({ footer = false, site }) {
         {(site?.welcome_text || 'Bine ați venit!').toLocaleUpperCase('ro-RO')}
       </span>
     </a>
+  );
+}
+
+function MastheadContact({ site, doar }) {
+  const email = site?.email?.trim();
+  const phone = site?.phone?.trim();
+  if (!email && !phone) return null;
+
+  // `doar` separa cele doua randuri in blocuri distincte: telefonul se aseaza in
+  // stanga headerului, adresa de e-mail ramane in dreapta, langa cautare.
+  const arataEmail = email && doar !== 'telefon';
+  const arataTelefon = phone && doar !== 'email';
+  if (!arataEmail && !arataTelefon) return null;
+
+  return (
+    <div className={`masthead-contact${doar ? ` masthead-contact--${doar}` : ''}`}
+         aria-label="Contact primărie">
+      {arataEmail && (
+        <a href={`mailto:${email}`}>
+          <Mail size={17} aria-hidden="true"/>
+          <span>{email}</span>
+        </a>
+      )}
+      {arataTelefon && (
+        <a href={`tel:${phone.replace(/[^\d+]/g, '')}`}>
+          <Phone size={17} aria-hidden="true"/>
+          <span>{phone}</span>
+        </a>
+      )}
+    </div>
   );
 }
 
@@ -109,33 +142,22 @@ function Contact({ site }) {
       });
 
       if (!response.ok) {
-        throw new Error('Eroare la trimiterea mesajului.');
+        throw new Error(response.status === 429
+          ? 'Ați trimis prea multe mesaje într-un interval scurt. Vă rugăm să încercați mai târziu sau să ne contactați telefonic.'
+          : 'Serverul nu a confirmat înregistrarea mesajului. Vă rugăm să încercați din nou sau să ne contactați prin e-mail ori telefon.');
       }
       form.reset();
       setStatus({
         type: 'ok',
         title: 'Mesajul a fost trimis.',
-        detail: 'Vă mulțumim. Primăria Comunei Corcova a înregistrat mesajul și vă va răspunde în cel mai scurt timp.'
+        detail: 'Vă mulțumim. Mesajul a fost înregistrat în sistemul primăriei.'
       });
     } catch (error) {
-      // Standalone mode fallback: save locally
-      try {
-        const stored = JSON.parse(localStorage.getItem('corcova_messages') || '[]');
-        stored.push({ ...data, date: new Date().toISOString() });
-        localStorage.setItem('corcova_messages', JSON.stringify(stored));
-        form.reset();
-        setStatus({
-          type: 'ok',
-          title: 'Mesajul a fost trimis.',
-          detail: 'Vă mulțumim. Mesajul dumneavoastră a fost înregistrat cu succes.'
-        });
-      } catch (storageErr) {
-        setStatus({
-          type: 'error',
-          title: 'Mesajul nu a putut fi trimis.',
-          detail: 'Vă rugăm să ne contactați direct prin e-mail sau telefon.'
-        });
-      }
+      setStatus({
+        type: 'error',
+        title: 'Mesajul nu a fost trimis.',
+        detail: error.message || 'Vă rugăm să ne contactați direct prin e-mail sau telefon.'
+      });
     } finally {
       setSending(false);
     }
@@ -196,7 +218,7 @@ function Contact({ site }) {
           <textarea name="message" rows="6" required minLength={10} maxLength={5000}></textarea>
         </label>
         <p className="form-note">
-          Mesajul este înregistrat la registratura primăriei și va fi redirecționat către compartimentul de specialitate.
+          Mesajul este înregistrat numai după ce primiți confirmarea de trimitere. Pentru solicitări urgente, sunați la numărul afișat mai sus.
         </p>
         <button className="button primary" type="submit" disabled={sending}>
           {sending ? 'Se trimite…' : 'Trimite mesajul'} <ArrowRight size={18}/>
@@ -232,20 +254,54 @@ function App() {
 
   const [slug, setSlug] = useState(() => currentSlug());
   const [searchOpen, setSearchOpen] = useState(false);
+  const [routeAnnouncement, setRouteAnnouncement] = useState('');
   const searchButton = useRef(null);
   const main = useRef(null);
 
+  const pageReady = useCallback(title => {
+    setRouteAnnouncement(`${title} — pagină încărcată`);
+  }, []);
+
   useEffect(() => {
-    const route = () => {
+    const route = (moveFocus = true) => {
       replaceLegacyHashRoute();
       setSlug(currentSlug());
       setSearchOpen(false);
-      window.scrollTo(0, 0);
-      main.current?.focus({ preventScroll: true });
+      if (moveFocus) {
+        setRouteAnnouncement('Se încarcă pagina…');
+        window.scrollTo(0, 0);
+        requestAnimationFrame(() => main.current?.focus({ preventScroll: true }));
+      }
     };
-    route();
-    window.addEventListener('popstate', route);
-    return () => window.removeEventListener('popstate', route);
+    const onClick = event => {
+      const anchor = event.target.closest?.('a[href]');
+      const destination = clientRouteForAnchor(anchor, event);
+      if (!destination) return;
+      event.preventDefault();
+      window.history.pushState(null, '', destination);
+      route();
+    };
+    const onPotentialNavigation = event => {
+      const anchor = event.target.closest?.('a[href]');
+      const destination = clientRouteForAnchor(anchor);
+      if (!destination) return;
+      const nextSlug = new URL(destination, window.location.href).pathname.replace(/^\/+|\/+$/g, '');
+      if (nextSlug && nextSlug !== 'contact' && nextSlug !== 'front-page' && nextSlug !== 'monitorul-oficial-local') {
+        prefetchApi(`${siteApi}/pages/${encodeURIComponent(nextSlug)}/`).catch(() => {});
+      }
+    };
+    const onPopState = () => route();
+    route(false);
+    document.addEventListener('click', onClick);
+    document.addEventListener('pointerover', onPotentialNavigation);
+    document.addEventListener('focusin', onPotentialNavigation);
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      document.removeEventListener('click', onClick);
+      document.removeEventListener('pointerover', onPotentialNavigation);
+      document.removeEventListener('focusin', onPotentialNavigation);
+      window.removeEventListener('popstate', onPopState);
+    };
   }, []);
 
   const closeSearch = () => {
@@ -255,6 +311,18 @@ function App() {
 
   const activeSlug = slug.replace(/\/$/, '');
 
+  useEffect(() => {
+    if (!activeSlug || activeSlug === 'front-page' || activeSlug === 'contact' || activeSlug === 'politica-cookie-uri') {
+      const title = activeSlug === 'contact'
+        ? 'Contact'
+        : activeSlug === 'politica-cookie-uri'
+          ? 'Politica de cookie-uri'
+          : (site.data?.name || 'Primăria Comunei Corcova');
+      document.title = `${title} • Mehedinți`;
+      pageReady(title);
+    }
+  }, [activeSlug, site.data?.name, pageReady]);
+
   return (
     <>
       <button className="skip-link" type="button" onClick={() => main.current?.focus()}>
@@ -262,25 +330,39 @@ function App() {
       </button>
 
       <header className="masthead">
+        {/* Telefonul si cautarea in coloana din stanga a grilei, e-mailul in cea
+            din dreapta; titlul ramane in cea din mijloc. Cautarea a trecut la
+            stanga fiindca in dreapta cadea exact peste ciorchine, iar o
+            pictograma alba peste desenul deschis la culoare nu se mai vede.
+            Sub 900 px invelisurile sunt `display: contents`, deci nu schimba
+            asezarea de pe telefon. */}
+        <div className="masthead-aside masthead-aside--stanga">
+          <MastheadContact site={site.data} doar="telefon"/>
+          <div className="masthead-search">
+            <button
+              ref={searchButton}
+              className="search-button"
+              type="button"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label={searchOpen ? 'Închide căutarea' : 'Deschide căutarea'}
+              aria-expanded={searchOpen}
+            >
+              <Search size={25}/>
+              <span>Caută pe site</span>
+            </button>
+          </div>
+        </div>
         <Brand site={site.data}/>
-        <div className="masthead-search">
-          <button
-            ref={searchButton}
-            className="search-button"
-            type="button"
-            onClick={() => setSearchOpen(!searchOpen)}
-            aria-label={searchOpen ? 'Închide căutarea' : 'Deschide căutarea'}
-            aria-expanded={searchOpen}
-          >
-            <Search size={25}/>
-            <span>Caută pe site</span>
-          </button>
+        <div className="masthead-aside">
+          <MastheadContact site={site.data} doar="email"/>
         </div>
       </header>
 
       <Menu items={normalizeMenu(navigation.data?.items || [])} activeHref={`/${activeSlug}`}/>
 
       {searchOpen && <ApiSearch close={closeSearch}/>}
+
+      <div className="sr-only" aria-live="polite" aria-atomic="true">{routeAnnouncement}</div>
 
       <main id="main-content" tabIndex={-1} ref={main}>
         {navigation.error && <p className="container" role="alert">{navigation.error}</p>}
@@ -295,15 +377,17 @@ function App() {
             <div className="page-main mx-auto w-full max-w-7xl">
               <div className="breadcrumb">
                 <a href="/">Acasă</a>
-                <span>›</span>
+                <span aria-hidden="true">›</span>
                 <span>Contact</span>
               </div>
               <h1>Contact</h1>
               <Contact site={site.data}/>
             </div>
           </div>
+        ) : activeSlug === 'politica-cookie-uri' ? (
+          <CookiePolicy site={site.data}/>
         ) : (
-          <CmsPage key={activeSlug} slug={activeSlug}/>
+          <CmsPage key={activeSlug} slug={activeSlug} onReady={pageReady}/>
         )}
       </main>
 
@@ -345,10 +429,16 @@ function App() {
 
         <div className="container footer-bottom !border-indigo-800 !text-white/75">
           <span>© {new Date().getFullYear()} {site.data?.name || 'Primăria Comunei Corcova'}</span>
-          <span>{site.data?.presentation?.footer?.caption || 'În serviciul comunității.'}</span>
+          <div className="footer-legal">
+            <a href="/politica-cookie-uri">Politica de cookie-uri</a>
+            <button type="button" onClick={() => window.dispatchEvent(new Event('open-accessibility-tools'))}>Accesibilitate</button>
+            <span>{site.data?.presentation?.footer?.caption || 'În serviciul comunității.'}</span>
+          </div>
         </div>
       </footer>
 
+      <CookieNotice/>
+      <AccessibilityTools/>
       <Chatbot site={site.data}/>
     </>
   );

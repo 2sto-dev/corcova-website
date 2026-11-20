@@ -8,6 +8,28 @@ import monitorData from './monitor.json';
 export const apiBase = (import.meta.env.VITE_API_BASE_URL || '/api/v1').replace(/\/$/, '');
 export const siteSlug = import.meta.env.VITE_SITE_SLUG || 'corcova';
 export const siteApi = `${apiBase}/sites/${encodeURIComponent(siteSlug)}`;
+const allowLocalFallback = import.meta.env.VITE_ENABLE_LOCAL_FALLBACK === 'true';
+const apiCache = new Map();
+const SHORT_CACHE_MS = 60_000;
+const SITE_CACHE_MS = 5 * 60_000;
+const MAX_CACHE_ENTRIES = 100;
+
+function cachedData(url) {
+  const entry = apiCache.get(url);
+  if (!entry || !Object.hasOwn(entry, 'data')) return undefined;
+  if (entry.expiresAt <= Date.now()) {
+    apiCache.delete(url);
+    return undefined;
+  }
+  return entry.data;
+}
+
+function remember(url, data) {
+  const lifetime = url === `${siteApi}/` || url === `${siteApi}/navigation/` ? SITE_CACHE_MS : SHORT_CACHE_MS;
+  apiCache.delete(url);
+  apiCache.set(url, { data, expiresAt: Date.now() + lifetime });
+  if (apiCache.size > MAX_CACHE_ENTRIES) apiCache.delete(apiCache.keys().next().value);
+}
 
 // Mock / Standalone fallback handler for local frontend development
 function resolveLocalEndpoint(url) {
@@ -182,57 +204,85 @@ function resolveLocalEndpoint(url) {
   return null;
 }
 
+/** Shared GET cache also coalesces requests from prefetch and mounted components. */
+export function prefetchApi(url) {
+  if (!url) return Promise.resolve(null);
+  const data = cachedData(url);
+  if (data !== undefined) return Promise.resolve(data);
+  const pending = apiCache.get(url)?.promise;
+  if (pending) return pending;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10_000);
+  const promise = fetch(url, { signal: controller.signal })
+    .then(async response => {
+      if (!response.ok) {
+        const error = new Error(response.status === 404 ? 'Pagina nu a fost găsită.' : 'Informațiile nu pot fi încărcate acum.');
+        error.status = response.status;
+        throw error;
+      }
+      return response.json();
+    })
+    .catch(error => {
+      const local = allowLocalFallback && error.status !== 404 ? resolveLocalEndpoint(url) : null;
+      if (local !== null) return local;
+      throw error;
+    })
+    .then(result => {
+      remember(url, result);
+      return result;
+    })
+    .catch(error => {
+      apiCache.delete(url);
+      throw error;
+    })
+    .finally(() => clearTimeout(timeout));
+  apiCache.set(url, { promise });
+  return promise;
+}
+
+function initialApiState(url) {
+  const data = url ? cachedData(url) : undefined;
+  return { data: data ?? null, error: null, loading: Boolean(url) && data === undefined, url };
+}
+
 export function useApi(url) {
-  const [state, setState] = useState({ data: null, error: null, loading: Boolean(url), url });
+  const [state, setState] = useState(() => initialApiState(url));
 
   useEffect(() => {
     if (!url) {
-      setState({ data: null, error: null, loading: false, url });
+      setState(initialApiState(url));
       return;
     }
 
-    const controller = new AbortController();
+    let active = true;
+    const data = cachedData(url);
+    if (data !== undefined) {
+      setState({ data, error: null, loading: false, url });
+      return () => { active = false; };
+    }
+
     setState({ data: null, error: null, loading: true, url });
-
-    // Try fetching from real backend first with a fast timeout
-    const fetchTimeout = setTimeout(() => controller.abort(), 1200);
-
-    fetch(url, { signal: controller.signal })
-      .then(async response => {
-        clearTimeout(fetchTimeout);
-        if (!response.ok) {
-          throw new Error(response.status === 404 ? 'Pagina nu a fost găsită.' : 'Eroare încărcare.');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setState({ data, error: null, loading: false, url });
+    prefetchApi(url)
+      .then(result => {
+        if (active) setState({ data: result, error: null, loading: false, url });
       })
       .catch(error => {
-        clearTimeout(fetchTimeout);
-        // Fallback to local embedded dataset
-        const local = resolveLocalEndpoint(url);
-        if (local !== null) {
-          setState({ data: local, error: null, loading: false, url });
-        } else {
-          setState({
-            data: null,
-            error: error.name === 'AbortError'
-              ? (resolveLocalEndpoint(url) ? null : 'Informațiile nu pot fi încărcate acum.')
-              : (error.message || 'Pagina nu a fost găsită.'),
-            loading: false,
-            url
-          });
-        }
+        if (!active) return;
+        setState({
+          data: null,
+          error: error.name === 'AbortError'
+            ? 'Informațiile nu pot fi încărcate acum. Vă rugăm să reîncercați.'
+            : (error.message || 'Informațiile nu pot fi încărcate acum.'),
+          loading: false,
+          url
+        });
       });
 
-    return () => {
-      clearTimeout(fetchTimeout);
-      controller.abort();
-    };
+    return () => { active = false; };
   }, [url]);
 
-  return state.url === url ? state : { data: null, error: null, loading: Boolean(url) };
+  return state.url === url ? state : initialApiState(url);
 }
 
 export function useDebounce(value, delay = 250) {

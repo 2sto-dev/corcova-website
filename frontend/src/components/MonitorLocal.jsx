@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, ChevronLeft, ChevronRight, Download, FileText, Filter, Search, SlidersHorizontal } from 'lucide-react';
 import { useApi, useDebounce } from '../api';
+import { cleanInternalHref } from '../routing';
+import LoadingRows from './LoadingRows';
 import './monitor-layout.css';
 
 function getRegister() {
@@ -45,49 +47,38 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
 
   return (
     <section className="w-full space-y-6 text-[18px] leading-7 text-slate-700" aria-label={title}>
-      <header className="monitor-hero flex flex-col items-center justify-center rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-sky-50 px-6 py-10 text-center shadow-md sm:px-12 sm:py-12">
-        <span className="!mx-auto inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500"><FileText size={15} /> Registru public digital</span>
-        <h1 className="!mx-auto !mt-3 !mb-0 w-full max-w-4xl text-center font-serif !text-4xl leading-tight font-semibold text-slate-800 sm:!text-5xl">{title}</h1>
-        <p className="!mx-auto mt-4 max-w-2xl text-center text-lg leading-8 text-slate-600">Accesați hotărâri, dispoziții și documente oficiale publicate de administrația locală.</p>
+      <header className="monitor-hero rounded-2xl px-6 py-10 text-center shadow-md sm:px-12 sm:py-12">
+        <span className="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.12em]"><FileText size={15} /> Registru public digital</span>
+        <h1 className="mx-auto !mt-3 !mb-0 max-w-4xl font-serif !text-4xl leading-tight sm:!text-5xl">{title}</h1>
+        <p className="mx-auto mt-4 max-w-2xl text-lg leading-8">Accesați hotărâri, dispoziții și documente oficiale publicate de administrația locală.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3 text-base text-slate-600" aria-label="Rezumat documente">
           <span><strong className="mr-2 text-2xl font-bold text-blue-900">{entries.data?.count ?? '—'}</strong> documente găsite</span>
           <span><strong className="mr-2 text-2xl font-bold text-blue-900">{registers.data?.count ?? '—'}</strong> registre disponibile</span>
         </div>
       </header>
 
-      <section className="grid grid-cols-2 gap-5" aria-label="Categorii informații publice">
-        <article className="flex min-h-[220px] flex-col justify-between rounded-xl border border-slate-200 bg-white p-7 text-slate-800 shadow-sm sm:p-8">
+      {/* Cardul „Acces rapid" a fost scos: numarul de documente pe care il arata
+          apare oricum in pastila din capul paginii. Au ramas cele doua carduri cu
+          imagine, unul langa altul. Pe ecran ingust se aseaza unul sub altul —
+          doua coloane la 375 px le-ar lasa sub 160 px fiecare, iar titlurile s-ar
+          taia, cum se intampla si inainte. */}
+      <section className="grid grid-cols-1 gap-5 sm:grid-cols-2" aria-label="Categorii informații publice">
+        <article className="grid min-h-[220px] items-center gap-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)]">
+          <img className="h-28 w-full rounded-lg bg-slate-50 object-contain" src="/legislatie.webp" alt="Documente legislative și proceduri administrative" />
           <div>
-            <div className="!flex !w-max !max-w-full !flex-row !flex-nowrap items-center gap-3 overflow-x-auto whitespace-nowrap">
-              <span className="inline-flex shrink-0 items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500"><FileText size={15} /> Acces rapid</span>
-              <span className="text-xs font-bold text-slate-300">•</span>
-              <span className="shrink-0 text-xs font-bold uppercase tracking-[0.12em] text-slate-400">Registru public digital</span>
-            </div>
-            <h2 className="!m-0 !mt-5 font-serif !text-3xl font-semibold leading-tight text-slate-800 sm:!text-4xl">Documente oficiale</h2>
-            <p className="mt-4 max-w-md text-base leading-7 text-slate-600">Consultați actele publice ale administrației locale, organizate pe registre și ani de emitere.</p>
-          </div>
-          <div className="mt-8 flex flex-wrap items-end justify-between gap-4 border-t border-slate-200 pt-5">
-            <span className="text-sm text-slate-500">Documente disponibile</span>
-            <strong className="text-3xl font-bold text-slate-800">{entries.data?.count ?? '—'}</strong>
+            <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Legalitate și transparență</span>
+            <h2 className="!m-0 !mt-1 font-serif !text-2xl font-semibold leading-tight text-slate-800">Acte normative</h2>
+            <p className="mt-2 text-base leading-7 text-slate-600">Hotărâri, dispoziții și regulamente publicate pentru consultare.</p>
           </div>
         </article>
-
-          <article className="grid min-h-[220px] items-center gap-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)]">
-            <img className="h-28 w-full rounded-lg bg-slate-50 object-contain" src="/legislatie.webp" alt="Documente legislative și proceduri administrative" />
-            <div>
-              <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Legalitate și transparență</span>
-              <h2 className="!m-0 !mt-1 font-serif !text-2xl font-semibold leading-tight text-slate-800">Acte normative</h2>
-              <p className="mt-2 text-base leading-7 text-slate-600">Hotărâri, dispoziții și regulamente publicate pentru consultare.</p>
-            </div>
-          </article>
-          <article className="grid min-h-[220px] items-center gap-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)]">
-            <img className="h-28 w-full rounded-lg bg-slate-50 object-contain" src="/rapoarte.webp" alt="Rapoarte și date publice" />
-            <div>
-              <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Informare publică</span>
-              <h2 className="!m-0 !mt-1 font-serif !text-2xl font-semibold leading-tight text-slate-800">Rapoarte și finanțe</h2>
-              <p className="mt-2 text-base leading-7 text-slate-600">Documente financiar-bugetare și rapoarte de activitate ale instituției.</p>
-            </div>
-          </article>
+        <article className="grid min-h-[220px] items-center gap-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[112px_minmax(0,1fr)]">
+          <img className="h-28 w-full rounded-lg bg-slate-50 object-contain" src="/rapoarte.webp" alt="Rapoarte și date publice" />
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.1em] text-slate-500">Informare publică</span>
+            <h2 className="!m-0 !mt-1 font-serif !text-2xl font-semibold leading-tight text-slate-800">Rapoarte și finanțe</h2>
+            <p className="mt-2 text-base leading-7 text-slate-600">Documente financiar-bugetare și rapoarte de activitate ale instituției.</p>
+          </div>
+        </article>
       </section>
 
       {registers.error && <p className="border-l-4 border-red-500 bg-red-50 px-4 py-3 text-base text-red-800" role="alert">{registers.error}</p>}
@@ -132,24 +123,24 @@ export default function MonitorLocal({ apiBase, siteSlug, title = 'Monitorul Ofi
           {hasFilters && <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-bold text-emerald-800">Rezultate filtrate</span>}
         </div>
 
-        {entries.error ? <p className="border-l-4 border-red-500 bg-red-50 px-4 py-3 text-base text-red-800" role="alert">{entries.error}</p> : (
+        {entries.loading ? <LoadingRows label="Se încarcă documentele oficiale…" /> : entries.error ? <p className="border-l-4 border-red-500 bg-red-50 px-4 py-3 text-base text-red-800" role="alert">{entries.error}</p> : (
           <div className="divide-y divide-slate-200 border-y border-slate-200">
-            {visibleEntries.map(entry => (
+            {visibleEntries.map(entry => {
+              const isPage = entry.document?.extension?.toUpperCase() === 'HTML' || entry.document?.download_url?.startsWith('#/');
+              const href = cleanInternalHref(entry.document?.download_url);
+              return (
               <article className="grid items-center gap-4 px-1 py-5 transition hover:bg-slate-50 md:grid-cols-[44px_minmax(0,1fr)_auto]" key={entry.id}>
                 <span className="grid h-11 w-11 place-items-center rounded-md bg-blue-50 text-blue-800"><FileText size={22} /></span>
                 <div className="min-w-0">
                   <h3 className="break-words text-lg font-bold leading-7 text-slate-800">{entry.title}</h3>
                   <p className="mt-1 text-base text-slate-500">{[entry.number && `Nr. ${entry.number}`, entry.issued_on && new Date(`${entry.issued_on}T12:00:00`).toLocaleDateString('ro-RO')].filter(Boolean).join(' · ') || 'Document public'}</p>
                 </div>
-                <a className="doc-download-button md:justify-self-end" href={entry.document.download_url} target="_blank" rel="noreferrer">
-                  <span className="doc-download-badge badge-pdf">
-                    {entry.document.original_filename?.split('.').pop()?.toUpperCase() || 'PDF'}
-                  </span>
-                  <span>{entry.document.available_locally ? 'Descarcă' : 'Deschide'}</span>
-                  <ArrowUpRight size={14} aria-hidden="true" />
+                <a className="inline-flex min-h-11 items-center justify-center gap-2 justify-self-start rounded-md border border-blue-200 px-3 py-2 text-base font-bold text-blue-900 transition hover:border-blue-500 hover:bg-blue-50 md:justify-self-end" href={href} target={isPage ? undefined : '_blank'} rel={isPage ? undefined : 'noopener noreferrer'}>
+                  {isPage ? <FileText size={17} /> : <Download size={17} />} {isPage ? 'Citește pagina' : entry.document.available_locally ? 'Descarcă' : 'Deschide documentul'}
                 </a>
               </article>
-            ))}
+              );
+            })}
           </div>
         )}
 
