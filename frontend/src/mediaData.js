@@ -189,7 +189,7 @@ export const PAGE_GALLERIES = {
     description: 'Administrația publică în slujba cetățenilor comunei Corcova',
     images: [
       {
-        src: '/dosare/imagini/design/administratia/primarie2.jpg',
+        src: '/dosare/imagini/design/administratia/sediu-primarie.jpg',
         title: 'Sediul Primăriei Comunei Corcova',
         caption: 'Clădirea administrativă în care funcționează aparatul de specialitate al primarului'
       }
@@ -234,7 +234,7 @@ export const HOMEPAGE_MEDIA = {
       caption: 'Domeniul Roy & Dâmboviceanu – renumit pe plan european'
     },
     {
-      src: '/dosare/imagini/design/administratia/primarie2.jpg',
+      src: '/dosare/imagini/design/administratia/sediu-primarie.jpg',
       tag: 'ADMINISTRAȚIE',
       title: 'Primăria Corcova',
       caption: 'În slujba cetățenilor și dezvoltării durabile a celor 13 sate'
